@@ -15,7 +15,7 @@ const AppLayout: FC = () => {
       <Navigation toggle={taggleTabs} />
       {activeTab === "Stanovi" ? (
         <Apartmans />
-      ) : activeTab === "Klijenti" ? (
+      ) : activeTab === "Korisnici" ? (
         <Users />
       ) : activeTab === "Klijenti" ? (
         <div>in progress</div>

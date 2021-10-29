@@ -17,13 +17,13 @@ const Navigation: FC<{ toggle: any }> = ({ toggle }) => {
         >
           Klijenti
         </span>
-        <span className="hover:text-lightBlue rounded-md p-3 mx-2">
-          Korisnici
-        </span>
         <span
           onClick={() => toggle("Korisnici")}
-          className="hover:text-lightBlue cursor-pointer text-right"
+          className="hover:text-lightBlue rounded-md p-3 mx-2"
         >
+          Korisnici
+        </span>
+        <span className="hover:text-lightBlue cursor-pointer text-right">
           IME I PREZIME
         </span>
       </div>

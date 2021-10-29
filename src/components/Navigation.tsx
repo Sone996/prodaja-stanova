@@ -1,0 +1,34 @@
+import { FC } from "react";
+
+const Navigation: FC<{ toggle: any }> = ({ toggle }) => {
+  return (
+    <div className="">
+      <div className="flex items-center justify-between items-around py-2 px-6 border-b">
+        <span className="text-3xl">PRODAJA STANOVA</span>
+        <span
+          onClick={() => toggle("Stanovi")}
+          className="hover:text-lightBlue rounded-md p-3 mx-2"
+        >
+          Stanovi
+        </span>
+        <span
+          onClick={() => toggle("Klijenti")}
+          className="hover:text-lightBlue rounded-md p-3 mx-2"
+        >
+          Klijenti
+        </span>
+        <span className="hover:text-lightBlue rounded-md p-3 mx-2">
+          Korisnici
+        </span>
+        <span
+          onClick={() => toggle("Korisnici")}
+          className="hover:text-lightBlue cursor-pointer text-right"
+        >
+          IME I PREZIME
+        </span>
+      </div>
+    </div>
+  );
+};
+
+export default Navigation;

@@ -39,11 +39,11 @@
 
 // modals
 
-.modal-overlay{
-	z-index: 2;
-    background-color: rgba(0, 0, 0, .6);
+.modal-overlay {
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.6);
 }
-.modal{
+.modal {
   z-index: 3;
 }
 .course-course-modal {
@@ -71,84 +71,82 @@ div::-webkit-scrollbar {
 // notification modal
 
 .notification-modal {
-	right: 2%;
-	bottom: 2%;
-	height: 10%;	
+  right: 2%;
+  bottom: 2%;
+  height: 10%;
 }
-.goIn{
-	animation: comein 0.5s;
-	animation-iteration-count: 1;
-  	animation-timing-function: linear;
+.goIn {
+  animation: comein 0.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
 }
-.goOut{
-	animation: comeout 0.5s;
-	animation-iteration-count: 1;
-  	animation-timing-function: linear;
+.goOut {
+  animation: comeout 0.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
 }
 @keyframes comein {
   from {
-	  opacity: 0;
-	  transform: translateX(100%); 
-	  }
+    opacity: 0;
+    transform: translateX(100%);
+  }
   to {
-	  opacity: 1;
-	  transform: translateX(0);
-	  }
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 @keyframes comeout {
   from {
-	  opacity: 1;
-	  transform: translateX(0);
-	  }
+    opacity: 1;
+    transform: translateX(0);
+  }
   to {
-	  opacity: 0;
-	  transform: translateX(100%);
-	  }
+    opacity: 0;
+    transform: translateX(100%);
+  }
 }
 
 // END :: notification modal
 
-.input{
+.input {
   @apply py-2 px-3 rounded-md appearance-none border;
   &:focus {
-      @apply outline-none;
-      //@apply shadow-outline;
+    @apply outline-none;
+    //@apply shadow-outline;
   }
 }
-
 
 //button
 
 .button {
   @apply py-2 px-3 rounded-md font-medium cursor-pointer;
   &:focus {
-      @apply outline-none;
-      //shadow-outline
+    @apply outline-none;
+    //shadow-outline
   }
   &:not(button) {
-      @apply text-center text-white;
+    @apply text-center text-white;
   }
   &.button--sm {
-      @apply py-1 px-2;
+    @apply py-1 px-2;
   }
   &.button--lg {
-      @apply py-3 px-4;
+    @apply py-3 px-4;
   }
 }
-
 
 // remove number increment on input filed if type number
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
--webkit-appearance: none;
-margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Firefox */
-input[type=number] {
--moz-appearance: textfield;
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 // scroll bar
@@ -156,9 +154,8 @@ input[type=number] {
 .app {
   background-repeat: no-repeat;
   background-attachment: fixed;
-  scrollbar-width: 5px !important;   
+  scrollbar-width: 5px !important;
 }
-
 
 ::-webkit-scrollbar {
   width: 5px;
@@ -179,4 +176,18 @@ input[type=number] {
 ::-webkit-scrollbar-thumb:hover {
   background: gray;
   scrollbar-background: gray;
+}
+
+// for cards
+
+.c-card {
+  img {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.05);
+    }
+  }
 }

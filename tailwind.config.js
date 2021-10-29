@@ -8,8 +8,8 @@ module.exports = {
 				green: "#DFF2BF",  //bg-green
 				darkGreen: "#4F8A10", //text green
 				red: "#FFD2D2",  //bg-red
-				darkRed: "#DC2626",
 				darkRed: "#D8000C", //text red
+				lightBlue: '#61dafb',
 			}
 		},
 	},

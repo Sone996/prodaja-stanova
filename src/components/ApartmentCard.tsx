@@ -3,11 +3,10 @@ import { FC } from "react";
 const ApartmentCard: FC = () => {
   return (
     <div className="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
-      <a
-        href=""
+      <span
         className="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden"
       >
-        <div className="relative pb-48 overflow-hidden">
+        <div className="relative pb-48 overflow-hidden cursor-pointer">
           <img
             className="absolute inset-0 h-full w-full object-cover"
             src="https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
@@ -35,7 +34,7 @@ const ApartmentCard: FC = () => {
             <span className="text-lg font-bold text-darkGreen">135 000€</span>
           </div>
         </div>
-      </a>
+      </span>
     </div>
   );
 };

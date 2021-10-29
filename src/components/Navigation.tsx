@@ -1,6 +1,12 @@
 import { FC } from "react";
+import { useHistory } from "react-router";
 
 const Navigation: FC<{ toggle: any }> = ({ toggle }) => {
+  const history = useHistory();
+
+  const goToProfile = () => {
+    history.push("/profile");
+  };
   return (
     <div className="">
       <div className="flex items-center justify-between items-around py-2 px-6 border-b">
@@ -23,7 +29,10 @@ const Navigation: FC<{ toggle: any }> = ({ toggle }) => {
         >
           Korisnici
         </span>
-        <span className="hover:text-lightBlue cursor-pointer text-right">
+        <span
+          onClick={goToProfile}
+          className="hover:text-lightBlue cursor-pointer text-right"
+        >
           IME I PREZIME
         </span>
       </div>

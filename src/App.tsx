@@ -1,24 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import "./App.scss";
+
+import Login from "./pages/shared/Login";
+import AppLayout from "./layouts/AppLayout";
 
 function App() {
+  const queryCLient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code className="bg-red">src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="relative w-screen h-screen overflow-hidden flex">
+      <QueryClientProvider client={queryCLient}>
+        <Router>
+          <Switch>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route path="/">
+              <AppLayout />
+            </Route>
+            {/* <ProtectedRoute
+                path="*"
+                component={AppLayout}
+              ></ProtectedRoute> */}
+            {/* <Route path="*" exact>
+              <Redirect to={{ pathname: "/login" }} />
+            </Route> */}
+          </Switch>
+        </Router>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
     </div>
   );
 }

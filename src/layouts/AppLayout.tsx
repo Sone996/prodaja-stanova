@@ -12,7 +12,7 @@ const AppLayout: FC = () => {
   const history = useHistory();
 
   const taggleTabs = (val: string): void => {
-    if (window.location.pathname != "/") {
+    if (window.location.pathname !== "/") {
       history.push("/");
     }
     setActiveTab(val);

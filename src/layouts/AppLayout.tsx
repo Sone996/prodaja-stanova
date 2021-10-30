@@ -5,6 +5,7 @@ import Users from "../pages/admin/Users";
 import Apartmans from "../pages/shared/Apartments";
 import Clients from "../pages/shared/Clients";
 import Profile from "../pages/shared/Profile";
+import SingleApartment from "../pages/shared/SingleApartment";
 
 const AppLayout: FC = () => {
   const [activeTab, setActiveTab] = useState("Stanovi");
@@ -23,6 +24,8 @@ const AppLayout: FC = () => {
       <Switch>
         {/* <Route path="/profile/:id" component={Profile} /> */}
         <Route path="/profile" component={Profile} />
+        {/* <Route path="/apartment/:id" component={SingleApartment} /> */}
+        <Route path="/apartment" component={SingleApartment} />
         <Route path="/">
           {activeTab === "Stanovi" ? (
             <Apartmans />

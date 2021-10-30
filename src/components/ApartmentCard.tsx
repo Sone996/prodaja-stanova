@@ -1,12 +1,22 @@
 import { FC } from "react";
+import { useHistory } from "react-router";
 
 const ApartmentCard: FC = () => {
+  const history = useHistory();
+
+  const singleApartment = () => {
+    console.log("single");
+    // history.push({ pathname: `/apartment/${item.id}` });
+    history.push({ pathname: `/apartment` });
+  };
+
   return (
     <div className="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
       <span
-        className="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden"
+        className="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden cursor-pointer"
+        onClick={singleApartment}
       >
-        <div className="relative pb-48 overflow-hidden cursor-pointer">
+        <div className="relative pb-48 overflow-hidden">
           <img
             className="absolute inset-0 h-full w-full object-cover"
             src="https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"

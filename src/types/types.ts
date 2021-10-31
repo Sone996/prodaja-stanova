@@ -22,3 +22,11 @@ export interface ILoggedUser {
   role: string;
   "session-id": string;
 }
+
+export interface IProfileData {
+  name: string;
+  last_name: string;
+  username: string;
+  password: string;
+  repeatPassword: string;
+}

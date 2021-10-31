@@ -30,3 +30,13 @@ export interface IProfileData {
   password: string;
   repeatPassword: string;
 }
+
+export interface ISingleApartmentData {
+  id: number;
+  labela: number;
+  square: number;
+  rooms: number;
+  flor: number;
+  balcony: number;
+  status: string;
+}

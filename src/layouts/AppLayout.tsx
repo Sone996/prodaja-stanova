@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { Route, Switch, useHistory } from "react-router";
+import { observer } from "mobx-react-lite";
 import Navigation from "../components/Navigation";
 import Users from "../pages/admin/Users";
 import Apartmans from "../pages/shared/Apartments";
@@ -7,8 +8,11 @@ import Clients from "../pages/shared/Clients";
 import Profile from "../pages/shared/Profile";
 import SingleApartment from "../pages/shared/SingleApartment";
 import NewApartment from "../pages/shared/NewApartment";
+import { RootStore } from "../clientStore";
+import AddNewClientModal from "../components/modals/AddNewClientModal";
 
-const AppLayout: FC = () => {
+const AppLayout: FC = observer(() => {
+  const { appStore } = RootStore();
   const [activeTab, setActiveTab] = useState("Stanovi");
   const history = useHistory();
 
@@ -18,9 +22,35 @@ const AppLayout: FC = () => {
     }
     setActiveTab(val);
   };
+  // modal logic
+  const modalSwitch = (prop: string) => {
+    switch (prop) {
+      case "add-new-client-modal":
+        return <AddNewClientModal />;
+      // case "requrest-accept-modal":
+      //   return <RequestAcceptModal />;
+      // case "rate-course":
+      //   return <RateModal />;
+      default:
+        break;
+    }
+  };
+  // END :: modal logic
 
   return (
     <div className="flex flex-col w-full h-full">
+      {/* MODALS */}
+      {appStore.getModal.status ? (
+        <div className="fixed top-0 left-0 h-screen w-screen flex modal">
+          <div className="modal-overlay fixed top-0 left-0 modal-overlay h-screen w-screen flex"></div>
+          <div className="modal flex items-center justify-center w-full">
+            {modalSwitch(appStore.getModal.name)}
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
+      {/* END :: MODALS */}
       <Navigation toggle={taggleTabs} />
       <Switch>
         {/* <Route path="/profile/:id" component={Profile} /> */}
@@ -42,6 +72,6 @@ const AppLayout: FC = () => {
       </Switch>
     </div>
   );
-};
+});
 
 export default AppLayout;

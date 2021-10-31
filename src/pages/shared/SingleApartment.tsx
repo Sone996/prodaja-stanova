@@ -1,6 +1,7 @@
 import { FC } from "react";
 import ApartmentData from "../../components/ApartmentComponents/ApartmentData";
 import ApartmentGalery from "../../components/ApartmentComponents/ApartmentGalery";
+import ApartmentPotentialBuyers from "../../components/ApartmentComponents/ApartmentPotentialBuyers";
 import { ISingleApartmentData } from "../../types/types";
 
 const SingleApartment: FC = () => {
@@ -29,13 +30,13 @@ const SingleApartment: FC = () => {
         </div>
       </div>
       <div className="flex flex-col w-3/5 h-full">
-        <div className="flex h-1/2 w-full border-b p-2">
+        <div className="flex h-1/3 w-full border-b p-2">
           <div className="flex flex-col w-full justify-between">
             <ApartmentData data={apartment} />
           </div>
         </div>
-        <div className="flex h-1/2 w-full p-2">
-          Podaci o kopcu ako je prodat ili tabela mogucih kupaca?
+        <div className="flex h-2/3 w-full p-2">
+          <ApartmentPotentialBuyers />
         </div>
       </div>
     </div>

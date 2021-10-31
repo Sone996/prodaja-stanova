@@ -89,7 +89,7 @@ const Users: FC = () => {
     <div className="flex flex-col h-full w-full">
       <div className="flex justify-between w-full">
         <span className="text-2xl px-6 py-2">Korisnici sistema</span>
-        <span className="flex px-6 py-2 w-1/6">
+        <span className="flex px-6 py-2 w-1/4">
           <button
             className="button bg-blue-500 mx-6 w-full text-white text-2xl font-bold items-center"
             onClick={addUser}

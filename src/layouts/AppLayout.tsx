@@ -10,6 +10,7 @@ import SingleApartment from "../pages/shared/SingleApartment";
 import NewApartment from "../pages/shared/NewApartment";
 import { RootStore } from "../clientStore";
 import AddNewClientModal from "../components/modals/AddNewClientModal";
+import NewUserModal from "../components/modals/NewUserModal";
 
 const AppLayout: FC = observer(() => {
   const { appStore } = RootStore();
@@ -27,8 +28,8 @@ const AppLayout: FC = observer(() => {
     switch (prop) {
       case "add-new-client-modal":
         return <AddNewClientModal />;
-      // case "requrest-accept-modal":
-      //   return <RequestAcceptModal />;
+      case "new-user-modal":
+        return <NewUserModal />;
       // case "rate-course":
       //   return <RateModal />;
       default:

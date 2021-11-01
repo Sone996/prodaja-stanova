@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import { useHistory } from "react-router";
 import NavigationDropdown from "./ui/NavigationDropdown";
 
 const Navigation: FC<{ toggle: any }> = ({ toggle }) => {

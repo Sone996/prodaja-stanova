@@ -9,6 +9,7 @@ const AddNewClientModal: FC = () => {
     personId: 1,
   });
 
+  // eslint-disable-next-line
   const inputHandler = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {

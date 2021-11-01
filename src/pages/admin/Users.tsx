@@ -1,4 +1,6 @@
+import { observer } from "mobx-react-lite";
 import { FC } from "react";
+import { RootStore } from "../../clientStore";
 import Scroll from "../../components/ui/Scroll";
 import SimpleTable from "../../components/ui/SimpleTable";
 
@@ -76,9 +78,10 @@ const data = [
 ];
 const titles = ["Id", "Ime", "Prezime", "Rola", "Korisničko ime"];
 
-const Users: FC = () => {
+const Users: FC = observer(() => {
+  const { appStore } = RootStore();
   const addUser = () => {
-    console.log("add user");
+    appStore.setModal("new-user-modal", true, null);
   };
   const singleView = (item: any) => {
     console.log(item);
@@ -107,6 +110,6 @@ const Users: FC = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Users;

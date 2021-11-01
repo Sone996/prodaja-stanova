@@ -1,6 +1,6 @@
 import { api } from "../../api/Api";
 const ROUTES = {
-  LOGIN: "/login",
+  LOGIN: "/user/login",
   REGISTER: "/register",
   FETCH_ACCOUNT: "/user/session",
   LOGOUT: "/logout",
@@ -8,6 +8,7 @@ const ROUTES = {
 
 class AuthRepo {
   login(data: any) {
+    console.log(data)
     return api.post(ROUTES.LOGIN, data);
   }
 

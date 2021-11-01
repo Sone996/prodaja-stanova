@@ -1,15 +1,16 @@
 import { FC, useState } from "react";
+import { LoginHook } from "../customHooks/LoginHook";
 import { ILogin } from "../types/types";
 
 const loginFormDefault: ILogin = {
-  email: "",
+  username: "",
   password: "",
 };
 
 const LoginComponent: FC = () => {
   const [form, setForm] = useState(loginFormDefault);
 
-  //   const useLogin = LoginHook();
+  const useLogin = LoginHook();
 
   const inputLoginHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setForm({
@@ -19,7 +20,7 @@ const LoginComponent: FC = () => {
   };
 
   const loginSubmit = async () => {
-    // useLogin.mutate(form);
+    useLogin.mutate(form);
   };
 
   return (
@@ -28,12 +29,12 @@ const LoginComponent: FC = () => {
         <span className="text-3xl">Login</span>
       </div>
       <div className="flex flex-col justify-center mt-8">
-        <span>Email</span>
+        <span>Username</span>
         <input
           className="input"
           type="text"
-          name="email"
-          value={form.email}
+          name="username"
+          value={form.username}
           data-test="loginEmail"
           onChange={inputLoginHandler}
         />

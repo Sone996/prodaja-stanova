@@ -1,14 +1,12 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useHistory } from "react-router";
+import NavigationDropdown from "./ui/NavigationDropdown";
 
 const Navigation: FC<{ toggle: any }> = ({ toggle }) => {
-  const history = useHistory();
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-  const goToProfile = () => {
-    history.push("/profile");
-  };
-  const handleLogOut = () => {
-    console.log("logout");
+  const openMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -33,17 +31,12 @@ const Navigation: FC<{ toggle: any }> = ({ toggle }) => {
         >
           Korisnici
         </span>
-        <span
-          onClick={goToProfile}
-          className="hover:text-lightBlue cursor-pointer text-right"
-        >
+
+        <span onClick={openMenu} className="cursor-pointer text-right">
           IME I PREZIME
-        </span>
-        <span
-          onClick={handleLogOut}
-          className="hover:text-lightBlue cursor-pointer text-right"
-        >
-          Odjavi se
+          <div className="relative bottom-0 right-0">
+            <NavigationDropdown status={isMenuOpen} email={"admin"} />
+          </div>
         </span>
       </div>
     </div>

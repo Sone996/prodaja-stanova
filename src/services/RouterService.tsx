@@ -1,6 +1,7 @@
 // import { useContext } from "react";
 import { useQuery } from "react-query";
 import { useHistory } from "react-router-dom";
+import { authService } from "../serverStore/AuthModule/Auth.service";
 // import { AppContext } from "../Context/AppProvider";
 // import { ActionTypes } from "../Context/Reducers/App/AppProvider.types";
 // import { authService } from "../Modules/AuthModule/Auth.service";
@@ -10,8 +11,8 @@ export const useFetchActiveUser = () => {
 
   const fetch = async () => {
     console.log("fetch active acount");
-    // const res = await authService.fetchActiveAccount();
-    // return res.data;
+    const res = await authService.fetchActiveAccount();
+    return res.data;
   };
 
   return useQuery("activeUser", fetch, {

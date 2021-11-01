@@ -14,6 +14,8 @@ export const ProtectedRoute: FC<any> = ({ component: Component, ...rest }) => {
     return null;
   }
 
+  console.log("active account: ", loggedUser);
+
   return <Route {...rest} render={(props) => <Component {...props} />} />;
 };
 

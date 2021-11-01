@@ -54,7 +54,7 @@ const NewApartment: FC = observer(() => {
   };
 
   useEffect(() => {
-    if (saveFormsModule.getEditApartment.price != "") {
+    if (saveFormsModule.getEditApartment.price !== "") {
       console.log("imam podatke");
       console.log(saveFormsModule.getEditApartment);
       setForm({
@@ -154,12 +154,12 @@ const NewApartment: FC = observer(() => {
             <button
               className="button bg-blue-500 w-1/3 text-white font-bold items-center"
               onClick={
-                saveFormsModule.getEditApartment.price != ""
+                saveFormsModule.getEditApartment.price !== ""
                   ? handleEditApartment
                   : handleAddApartment
               }
             >
-              {saveFormsModule.getEditApartment.price != ""
+              {saveFormsModule.getEditApartment.price !== ""
                 ? "Izmeni stan"
                 : "Dodaj Stan"}
             </button>

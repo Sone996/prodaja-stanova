@@ -10,6 +10,7 @@ import "./App.scss";
 
 import Login from "./pages/shared/Login";
 import AppLayout from "./layouts/AppLayout";
+// import ProtectedRoute from "./services/ProtectedRoute";
 
 function App() {
   const queryCLient = new QueryClient({
@@ -28,14 +29,12 @@ function App() {
             <Route exact path="/login">
               <Login />
             </Route>
+            {/* prvi je u slucaju da nemam back */}
             <Route path="/">
               <AppLayout />
             </Route>
-            {/* <ProtectedRoute
-                path="*"
-                component={AppLayout}
-              ></ProtectedRoute> */}
-            {/* <Route path="*" exact>
+            {/* <ProtectedRoute path="*" component={AppLayout}></ProtectedRoute>
+            <Route path="*" exact>
               <Redirect to={{ pathname: "/login" }} />
             </Route> */}
           </Switch>

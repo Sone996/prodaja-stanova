@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
-import { LoginHook } from "../customHooks/LoginHook";
-import { ILogin } from "../types/types";
+import { LoginHook } from "../../customHooks/LoginHook";
+import { ILogin } from "../../types/types";
 
 const loginFormDefault: ILogin = {
   username: "",

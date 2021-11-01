@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import NavigationDropdown from "./ui/NavigationDropdown";
+import NavigationDropdown from "./NavigationDropdown";
 
 const Navigation: FC<{ toggle: any }> = ({ toggle }) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);

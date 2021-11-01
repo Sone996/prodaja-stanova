@@ -40,3 +40,15 @@ export interface ISingleApartmentData {
   balcony: number;
   status: string;
 }
+
+export interface IBasicClient {
+  type: string;
+  name: string;
+  email: string;
+  tel: string;
+  pib_jmbg: string;
+  adress: string;
+  date_of_visit: string;
+  status: string;
+  note: string;
+}

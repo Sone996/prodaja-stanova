@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { Route, Switch, useHistory } from "react-router";
 import { observer } from "mobx-react-lite";
-import Navigation from "../components/Navigation";
+import Navigation from "../components/ui/Navigation";
 import Users from "../pages/admin/Users";
 import Apartmans from "../pages/shared/Apartments";
 import Clients from "../pages/shared/Clients";

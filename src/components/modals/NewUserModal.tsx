@@ -4,7 +4,7 @@ import Select from "react-select";
 
 const options = [
   { value: "admin", label: "Admin" },
-  { value: "finance ", label: "Finansije" },
+  { value: "finance", label: "Finansije" },
   { value: "salesman", label: "Prodavac" },
 ];
 

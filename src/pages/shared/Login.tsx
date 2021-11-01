@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
-import LoginComponent from "../../components/LoginComponent";
-import RegisterComponent from "../../components/RegisterComponent";
+import LoginComponent from "../../components/loginComponents/LoginComponent";
+import RegisterComponent from "../../components/loginComponents/RegisterComponent";
 
 const Login: FC = () => {
   const [register, setRegister] = useState(false);

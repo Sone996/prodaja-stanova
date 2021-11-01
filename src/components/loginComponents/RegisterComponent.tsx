@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { IRegister } from "../types/types";
+import { IRegister } from "../../types/types";
 
 const registerFormTemplate: IRegister = {
   name: "",

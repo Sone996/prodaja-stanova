@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Scroll from "../../components/ui/Scroll";
-import ApartmentCard from "../../components/ApartmentCard";
+import ApartmentCard from "../../components/ApartmentComponents/ApartmentCard";
 import { useHistory } from "react-router";
 
 const Apartments: FC = () => {

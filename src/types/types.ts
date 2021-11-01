@@ -33,12 +33,14 @@ export interface IProfileData {
 
 export interface ISingleApartmentData {
   id: number;
-  labela: number;
+  lamela: number;
   square: number;
   rooms: number;
   flor: number;
   balcony: number;
   status: string;
+  price: number;
+  orijentation: string;
 }
 
 export interface IBasicClient {
@@ -51,4 +53,9 @@ export interface IBasicClient {
   date_of_visit: string;
   status: string;
   note: string;
+}
+
+export interface ISelectOption {
+  value: string;
+  label: string;
 }

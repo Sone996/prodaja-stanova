@@ -4,6 +4,16 @@ import { makeAutoObservable } from "mobx";
 
 export class SaveFormsStore {
   // STATE
+  editApartment = {
+    lamela: "",
+    square: "",
+    rooms: "",
+    flor: "",
+    orijentation: "",
+    balcony: "",
+    price: "",
+    status: "",
+  };
   // END :: STATE
 
   constructor() {
@@ -11,8 +21,14 @@ export class SaveFormsStore {
   }
 
   //   COMPUTED
+  get getEditApartment() {
+    return this.editApartment;
+  }
   // END :: COMPUTED
 
   //   ACTIONS
+  setEditApartment = (data: any) => {
+    this.editApartment = data;
+  };
   // END :: ACTIONS
 }

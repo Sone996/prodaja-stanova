@@ -14,12 +14,14 @@ const SingleApartment: FC = () => {
 
   const apartment: ISingleApartmentData = {
     id: 1,
-    labela: 1,
+    lamela: 1,
     square: 200,
     rooms: 5,
     flor: 0,
     balcony: 2,
     status: "Dostupan",
+    price: 135000,
+    orijentation: "Sever",
   };
 
   return (

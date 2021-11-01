@@ -84,8 +84,7 @@ const Users: FC = observer(() => {
     appStore.setModal("new-user-modal", true, null);
   };
   const singleView = (item: any) => {
-    console.log(item);
-    // history.push({ pathname: `/single-course/${item.id}` });
+    appStore.setModal("new-user-modal", true, item);
   };
 
   return (

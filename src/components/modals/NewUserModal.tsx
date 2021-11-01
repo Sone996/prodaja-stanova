@@ -1,6 +1,7 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { RootStore } from "../../clientStore";
 import Select from "react-select";
+import { observer } from "mobx-react-lite";
 
 const options = [
   { value: "admin", label: "Admin" },
@@ -8,7 +9,7 @@ const options = [
   { value: "salesman", label: "Prodavac" },
 ];
 
-const NewUserModal: FC = () => {
+const NewUserModal: FC = observer(() => {
   const { appStore } = RootStore();
   const [form, setForm] = useState({
     name: "",
@@ -30,13 +31,29 @@ const NewUserModal: FC = () => {
     appStore.closeModal();
   };
 
-  const completeCourse = () => {
+  const createUser = () => {
     console.log(form);
   };
+
+  const editUser = () => {
+    // id ide u url, a password ako je prazan trim?
+    console.log(form)
+  }
 
   const handleSelect = (val: any) => {
     setForm({ ...form, role: val.value });
   };
+
+  useEffect(() => {
+    if (appStore.getModal.data) {
+      setForm({
+        ...form,
+        name: appStore.getModal.data.name,
+        last_name: appStore.getModal.data.last_name,
+        role: appStore.getModal.data.role,
+      });
+    }
+  }, [appStore]);
 
   return (
     <div
@@ -74,6 +91,7 @@ const NewUserModal: FC = () => {
           <Select
             getOptionValue={(option) => option.value}
             getOptionLabel={(option) => option.label}
+            value={options[2]}
             options={options}
             onChange={(option) => {
               handleSelect(option);
@@ -99,15 +117,15 @@ const NewUserModal: FC = () => {
             Cancel
           </span>
           <span
-            onClick={completeCourse}
+            onClick={appStore.getModal.data ? editUser : createUser}
             className="bg-darkGreen py-2 px-4 rounded-lg cursor-pointer text-white"
           >
-            Potvrdi
+            {appStore.getModal.data ? 'Izmeni' : 'Potvrdi'}
           </span>
         </div>
       </div>
     </div>
   );
-};
+});
 
 export default NewUserModal;

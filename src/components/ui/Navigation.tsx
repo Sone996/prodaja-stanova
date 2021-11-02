@@ -1,7 +1,10 @@
 import { FC, useState } from "react";
 import NavigationDropdown from "./NavigationDropdown";
 
-const Navigation: FC<{ toggle: any }> = ({ toggle }) => {
+const Navigation: FC<{ toggle: any; activeTab: string }> = ({
+  toggle,
+  activeTab,
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const openMenu = () => {
@@ -14,19 +17,25 @@ const Navigation: FC<{ toggle: any }> = ({ toggle }) => {
         <span className="text-3xl">PRODAJA STANOVA</span>
         <span
           onClick={() => toggle("Stanovi")}
-          className="hover:text-lightBlue rounded-md p-3 mx-2"
+          className={`hover:text-lightBlue cursor-pointer rounded-md p-3 mx-2 ${
+            activeTab === "Stanovi" ? "text-lightBlue" : null
+          }`}
         >
           Stanovi
         </span>
         <span
           onClick={() => toggle("Klijenti")}
-          className="hover:text-lightBlue rounded-md p-3 mx-2"
+          className={`hover:text-lightBlue cursor-pointer rounded-md p-3 mx-2 ${
+            activeTab === "Klijenti" ? "text-lightBlue" : null
+          }`}
         >
           Klijenti
         </span>
         <span
           onClick={() => toggle("Korisnici")}
-          className="hover:text-lightBlue rounded-md p-3 mx-2"
+          className={`hover:text-lightBlue cursor-pointer rounded-md p-3 mx-2 ${
+            activeTab === "Korisnici" ? "text-lightBlue" : null
+          }`}
         >
           Korisnici
         </span>

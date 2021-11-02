@@ -1,6 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { FC } from "react";
 import { RootStore } from "../../clientStore";
+import ClientFilters from "../../components/filters/ClientFilters";
 import Scroll from "../../components/ui/Scroll";
 import SimpleTable from "../../components/ui/SimpleTable";
 
@@ -63,7 +64,7 @@ const Clients: FC = observer(() => {
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full bg-gray-200">
       <div className="flex justify-between w-full">
         <span className="text-2xl px-6 py-2">Klijenti</span>
         <span className="flex px-6 py-2 w-1/4">
@@ -74,6 +75,9 @@ const Clients: FC = observer(() => {
             +
           </button>
         </span>
+      </div>
+      <div className="flex items-center w-full justify-center">
+        <ClientFilters />
       </div>
       <div className="flex items-center justify-center h-full">
         <div className="relative h-full w-3/4">

@@ -52,14 +52,14 @@ const SimpleTable: FC<{ titles: any; model: any; singleView?: any }> = ({
                     onClick={() => singleView(item)}
                     className={
                       index % 2 === 0
-                        ? "bg-gray-100 hover:bg-darkGreen"
-                        : "bg-gray-300 hover:bg-darkGreen"
+                        ? "bg-gray-100 hover:bg-lightBlue"
+                        : "bg-gray-300 hover:bg-lightBlue"
                     }
                   >
                     {column.map((col, index) => (
                       <td
                         key={index}
-                        className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center"
+                        className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700 text-center"
                       >
                         {typeof item[column[index]] === "boolean"
                           ? item[column[index]] + ""

@@ -52,7 +52,7 @@ const AppLayout: FC = observer(() => {
         <></>
       )}
       {/* END :: MODALS */}
-      <Navigation toggle={taggleTabs} />
+      <Navigation toggle={taggleTabs} activeTab={activeTab} />
       <Switch>
         {/* <Route path="/profile/:id" component={Profile} /> */}
         <Route path="/profile" component={Profile} />

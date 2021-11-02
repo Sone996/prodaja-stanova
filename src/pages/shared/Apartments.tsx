@@ -2,6 +2,7 @@ import { FC } from "react";
 import Scroll from "../../components/ui/Scroll";
 import ApartmentCard from "../../components/ApartmentComponents/ApartmentCard";
 import { useHistory } from "react-router";
+import ApartmentsFilters from "../../components/filters/ApartmentsFilters";
 
 const Apartments: FC = () => {
   const history = useHistory();
@@ -23,6 +24,7 @@ const Apartments: FC = () => {
             </button>
           </div>
           <div className="container mx-auto">
+          <ApartmentsFilters />
             <div className="flex flex-wrap -mx-4">
               <ApartmentCard />
               <ApartmentCard />

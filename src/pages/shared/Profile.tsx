@@ -6,9 +6,9 @@ import { IProfileData } from "../../types/types";
 const oldData: IProfileData = {
   name: "Ime",
   last_name: "Prezime",
-  username: "medeniCar",
-  password: "medeni123",
-  repeatPassword: "medeni123",
+  username: "SoneCar",
+  password: "Sone123",
+  repeatPassword: "Sone123",
 };
 const Profile: FC = () => {
   const [isEdit, setIsEdit] = useState(false);

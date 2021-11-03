@@ -50,7 +50,7 @@ export interface IBasicClient {
   tel: string;
   pib_jmbg: string;
   adress: string;
-  date_of_visit: string;
+  date_of_visit: null | string;
   status: string;
   note: string;
 }

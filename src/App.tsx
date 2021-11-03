@@ -7,7 +7,8 @@ import {
   // Redirect,
 } from "react-router-dom";
 import "./App.scss";
-
+import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import Login from "./pages/shared/Login";
 import AppLayout from "./layouts/AppLayout";
 // import ProtectedRoute from "./services/ProtectedRoute";

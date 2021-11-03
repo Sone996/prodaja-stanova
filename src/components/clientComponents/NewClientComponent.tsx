@@ -1,5 +1,7 @@
 import { FC, useState } from "react";
 import Select from "react-select";
+import DatePicker from "react-datepicker";
+import { DateTime } from "luxon";
 import { IBasicClient } from "../../types/types";
 
 const defaultForm: IBasicClient = {
@@ -9,7 +11,7 @@ const defaultForm: IBasicClient = {
   tel: "",
   pib_jmbg: "",
   adress: "",
-  date_of_visit: "",
+  date_of_visit: null,
   status: "potential",
   note: "",
 };
@@ -23,6 +25,7 @@ const options = [
 
 const NewClientComponent: FC<{ cancel: any }> = ({ cancel }) => {
   const [form, setForm] = useState<IBasicClient>(defaultForm);
+  const [startDate, setStartDate] = useState<Date | null>(null);
 
   const inputHandler = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -39,6 +42,16 @@ const NewClientComponent: FC<{ cancel: any }> = ({ cancel }) => {
 
   const sendData = () => {
     console.log(form);
+  };
+
+  const setDate = (date: Date) => {
+    setStartDate(date);
+    setForm({
+      ...form,
+      date_of_visit: date
+        ? DateTime.fromJSDate(date).toFormat("yyyy-LL-dd")
+        : null,
+    });
   };
 
   return (
@@ -98,13 +111,14 @@ const NewClientComponent: FC<{ cancel: any }> = ({ cancel }) => {
         onChange={inputHandler}
       />
       <span>Datum Prve Posete</span>
-      <input
-        className="input"
-        type="text"
-        name="date_of_visit"
-        value={form.date_of_visit}
-        data-test="loginEmail"
-        onChange={inputHandler}
+      <DatePicker
+        className="w-3/4 border rounded py-2 border-gray-300 text-center text-gray-700"
+        selected={startDate}
+        dateFormat="dd.MM.yyyy"
+        isClearable
+        onChange={(date: Date) => {
+          setDate(date);
+        }}
       />
       <span>Napomena</span>
       <textarea

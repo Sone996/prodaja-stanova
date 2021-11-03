@@ -1,11 +1,11 @@
 import { observer } from "mobx-react-lite";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
 import Select from "react-select";
 import { RootStore } from "../../clientStore";
 import { ISelectOption } from "../../types/types";
 
-const defaultForm = {
+const defaultForm: any = {
   lamela: "",
   square: "",
   rooms: "",
@@ -14,6 +14,7 @@ const defaultForm = {
   balcony: "",
   price: "",
   status: "",
+  photo: "",
 };
 
 const statusOptions: ISelectOption[] = [
@@ -25,6 +26,7 @@ const statusOptions: ISelectOption[] = [
 const NewApartment: FC = observer(() => {
   const { saveFormsModule } = RootStore();
   const [form, setForm] = useState(defaultForm);
+  const ref = useRef<any>(null);
   const history = useHistory();
 
   const inputLoginHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,11 +55,49 @@ const NewApartment: FC = observer(() => {
     console.log("edit: ", form);
   };
 
+  const addImage = () => {
+    document.getElementById("selectedFile")!.click();
+  };
+
+  const getBase64 = (file: any) => {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setForm({
+        ...form,
+        photo: reader.result,
+      });
+    };
+    reader.onerror = (error) => {
+      console.log(error);
+    };
+  };
+
+  const uploadImage = () => {
+    let file = ref.current.files[0];
+    if (["image/jpeg", "image/jpg", "image/png"].indexOf(file.type) === -1) {
+      console.log("pogresan format");
+    } else if (file.size > 5242880) {
+      console.log("prevelik fajl");
+    } else {
+      getBase64(file);
+    }
+  };
+
+  const clearImage = () => {
+    console.log('clear')
+    setForm({
+      ...form,
+      photo: null,
+    });
+  };
+
   useEffect(() => {
     if (saveFormsModule.getEditApartment.price !== "") {
       console.log("imam podatke");
       console.log(saveFormsModule.getEditApartment);
       setForm({
+        ...form,
         lamela: saveFormsModule.getEditApartment.lamela,
         square: saveFormsModule.getEditApartment.square,
         rooms: saveFormsModule.getEditApartment.rooms,
@@ -68,6 +108,7 @@ const NewApartment: FC = observer(() => {
         status: saveFormsModule.getEditApartment.status,
       });
     }
+    // eslint-disable-next-line
   }, [saveFormsModule]);
 
   return (
@@ -163,6 +204,36 @@ const NewApartment: FC = observer(() => {
                 ? "Izmeni stan"
                 : "Dodaj Stan"}
             </button>
+          </div>
+        </div>
+        <div className="flex flex-col w-1/2 border rounded-md px-4 pb-2 pt-6">
+          <div className="flex flex-col justify-center items-center">
+            <div
+              className="lg:flex-shrink-0 h-64 w-96 bg-gray-100 bg-no-repeat bg-center bg-cover border"
+              style={{ backgroundImage: `url(${form.photo})` }}
+            ></div>
+            <div className="flex flex-row flex-shrink-0 mt-4 items-center">
+              <input
+                type="file"
+                ref={ref}
+                id="selectedFile"
+                style={{ display: "none" }}
+                onChange={uploadImage}
+              />
+              <input
+                type="button"
+                className="text-tiny uppercase bg-theme-buttonGray px-2 cursor-pointer py-1 rounded-md"
+                value="Dodaj fotografiju"
+                onClick={addImage}
+              />
+              <i
+                className="fa fa-times ml-1 text-xl inline-block text-theme-gray hover:text-theme-red cursor-pointer"
+                aria-hidden="true"
+                onClick={clearImage}
+              />
+            </div>
+            {/* <span v-if="imageFileSizeError" className="text-theme-red text-xs">Morate izabrati sliku manju od 5 MB</span>
+                    <span v-if="imageFileTypeError" className="text-theme-red text-xs">Morate izabrati sliku koja je tip jpg,jpeg ili png</span> */}
           </div>
         </div>
       </div>

@@ -7,8 +7,10 @@ const InputAndLabel: FC<IInputAndLabel> = ({ label, name, errors, type }) => {
     <div className="flex flex-col">
       <div className="flex">
         <label htmlFor="username">{label}</label>
-        {errors.errors && errors.touched ? (
-          <span className="ml-2 text-red">{errors.errors}</span>
+        {errors != null ? (
+          errors.errors && errors.touched ? (
+            <span className="ml-2 text-red">{errors.errors}</span>
+          ) : null
         ) : null}
       </div>
       <Field

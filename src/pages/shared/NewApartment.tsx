@@ -142,7 +142,7 @@ const NewApartment: FC = observer(() => {
             validationSchema={NewApartmentSchema}
           >
             {({ errors, touched, isValid, dirty, values, setFieldValue }) => (
-              <Form>
+              <Form autoComplete="off">
                 <InputAndLabel
                   label="Lamela"
                   name="lamela"

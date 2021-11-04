@@ -1,24 +1,15 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { RootStore } from "../../clientStore";
 import NewClientComponent from "../clientComponents/NewClientComponent";
 
 const AddNewClientModal: FC = () => {
   const { appStore } = RootStore();
-  const [form, setForm] = useState({
-    comment: "",
-    mark: "",
-    personId: 1,
-  });
+  // const [form, setForm] = useState({
+  //   comment: "",
+  //   mark: "",
+  //   personId: 1,
+  // });
 
-  // eslint-disable-next-line
-  const inputHandler = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setForm({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
-  };
 
   return (
     <div

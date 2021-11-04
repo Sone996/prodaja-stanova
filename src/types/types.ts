@@ -64,4 +64,17 @@ export interface IInputAndLabel {
   label: string;
   name: string;
   errors: any;
+  type: string;
+}
+
+export interface IApartment {
+  lamela: string | number,
+  square: string | number,
+  rooms: string | number,
+  flor: string | number,
+  orijentation: string | number,
+  balcony: string | number,
+  price: string | number,
+  status: string| number,
+  photo: any,
 }

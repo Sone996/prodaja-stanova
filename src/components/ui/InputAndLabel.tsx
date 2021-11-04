@@ -2,7 +2,7 @@ import { Field } from "formik";
 import { FC } from "react";
 import { IInputAndLabel } from "../../types/types";
 
-const InputAndLabel: FC<IInputAndLabel> = ({ label, name, errors }) => {
+const InputAndLabel: FC<IInputAndLabel> = ({ label, name, errors, type }) => {
   return (
     <div className="flex flex-col">
       <div className="flex">
@@ -13,7 +13,7 @@ const InputAndLabel: FC<IInputAndLabel> = ({ label, name, errors }) => {
       </div>
       <Field
         className="input"
-        type="text"
+        type={type}
         name={name}
         data-test={`data_${name}`}
       />

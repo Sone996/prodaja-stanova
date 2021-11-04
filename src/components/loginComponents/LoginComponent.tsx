@@ -10,7 +10,7 @@ const loginFormDefault: ILogin = {
   password: "",
 };
 
-const SignupSchema = Yup.object().shape({
+const LoginSchema = Yup.object().shape({
   username: Yup.string()
     .min(4, "Potrebno je 4 - 30 karaktera")
     .max(30, "Potrebno je 4 - 30 karaktera")
@@ -36,7 +36,7 @@ const LoginComponent: FC = () => {
       <Formik
         initialValues={loginFormDefault}
         onSubmit={(values) => loginSubmit(values)}
-        validationSchema={SignupSchema}
+        validationSchema={LoginSchema}
       >
         {({ errors, touched, isValid, dirty }) => (
           <Form>
@@ -44,11 +44,13 @@ const LoginComponent: FC = () => {
               label="Username"
               name="username"
               errors={{ errors: errors.username, touched: touched.username }}
+              type="text"
             />
             <InputAndLabel
               label="Password"
               name="password"
               errors={{ errors: errors.password, touched: touched.password }}
+              type="password"
             />
             <button
               disabled={!(isValid && dirty)}

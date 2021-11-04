@@ -1,19 +1,22 @@
 import { observer } from "mobx-react-lite";
 import { FC, useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
-import Select from "react-select";
 import { RootStore } from "../../clientStore";
-import { ISelectOption } from "../../types/types";
+import { IApartment, ISelectOption } from "../../types/types";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
+import InputAndLabel from "../../components/ui/InputAndLabel";
+import SelectAndLabel from "../../components/ui/SelectAndLabel";
 
-const defaultForm: any = {
+const defaultForm: IApartment = {
   lamela: "",
   square: "",
   rooms: "",
   flor: "",
-  orijentation: "",
+  orijentation: "N",
   balcony: "",
   price: "",
-  status: "",
+  status: "availabel",
   photo: "",
 };
 
@@ -23,36 +26,48 @@ const statusOptions: ISelectOption[] = [
   { value: "reserved", label: "Rezervisan" },
 ];
 
+const orijentationOptions: any[] = [
+  { value: "N", label: "Sever" },
+  { value: "S", label: "Jug" },
+  { value: "W", label: "Zapad" },
+  { value: "E", label: "Istok" },
+];
+
+const NewApartmentSchema = Yup.object().shape({
+  lamela: Yup.number()
+    .min(1, "Potrebno je 1 - 3 cifre")
+    .max(2, "Potrebno je 1 - 3 cifre")
+    .required("Polje je obavezno"),
+  square: Yup.number()
+    .min(1, "Potrebno je minimum 1 cifra")
+    .required("Polje je obavezno"),
+  rooms: Yup.number()
+    .min(1, "Potrebna je barem jedna soba")
+    .required("Polje je obavezno"),
+  flor: Yup.number().typeError("Uneti u ciframa").required("Polje je obavezno"),
+  balcony: Yup.number().required("Polje je obavezno"),
+  price: Yup.number().required("Polje je obavezno"),
+});
+
 const NewApartment: FC = observer(() => {
   const { saveFormsModule } = RootStore();
-  const [form, setForm] = useState(defaultForm);
+  const [photo, setPhoto] = useState<any>(null);
   const ref = useRef<any>(null);
   const history = useHistory();
 
-  const inputLoginHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const handleSelect = (val: ISelectOption | null) => {
-    if (val != null) {
-      setForm({
-        ...form,
-        status: val.value,
-      });
+  const handleAddApartment = (data: any) => {
+    if (photo) {
+      data.photo = photo;
     }
-  };
-
-  const handleAddApartment = () => {
-    console.log(form);
-    setForm(defaultForm);
+    console.log(data);
     history.push("/");
   };
 
-  const handleEditApartment = () => {
-    console.log("edit: ", form);
+  const handleEditApartment = (data: any) => {
+    if (photo) {
+      data.photo = photo;
+    }
+    console.log("edit: ", data);
   };
 
   const addImage = () => {
@@ -63,10 +78,7 @@ const NewApartment: FC = observer(() => {
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      setForm({
-        ...form,
-        photo: reader.result,
-      });
+      setPhoto(reader.result);
     };
     reader.onerror = (error) => {
       console.log(error);
@@ -85,28 +97,26 @@ const NewApartment: FC = observer(() => {
   };
 
   const clearImage = () => {
-    console.log('clear')
-    setForm({
-      ...form,
-      photo: null,
-    });
+    console.log("clear");
+    setPhoto(null);
   };
 
   useEffect(() => {
     if (saveFormsModule.getEditApartment.price !== "") {
       console.log("imam podatke");
       console.log(saveFormsModule.getEditApartment);
-      setForm({
-        ...form,
-        lamela: saveFormsModule.getEditApartment.lamela,
-        square: saveFormsModule.getEditApartment.square,
-        rooms: saveFormsModule.getEditApartment.rooms,
-        flor: saveFormsModule.getEditApartment.flor,
-        orijentation: saveFormsModule.getEditApartment.orijentation,
-        balcony: saveFormsModule.getEditApartment.balcony,
-        price: saveFormsModule.getEditApartment.price,
-        status: saveFormsModule.getEditApartment.status,
-      });
+      // const editForm = saveFormsModule.getEditApartment
+      // setForm({
+      //   ...form,
+      //   lamela: saveFormsModule.getEditApartment.lamela,
+      //   square: saveFormsModule.getEditApartment.square,
+      //   rooms: saveFormsModule.getEditApartment.rooms,
+      //   flor: saveFormsModule.getEditApartment.flor,
+      //   orijentation: saveFormsModule.getEditApartment.orijentation,
+      //   balcony: saveFormsModule.getEditApartment.balcony,
+      //   price: saveFormsModule.getEditApartment.price,
+      //   status: saveFormsModule.getEditApartment.status,
+      // });
     }
     // eslint-disable-next-line
   }, [saveFormsModule]);
@@ -118,99 +128,96 @@ const NewApartment: FC = observer(() => {
       </div>
       <div className="flex mt-2">
         <div className="flex flex-col w-1/2 border rounded-md px-4 pb-2">
-          <span>Lamela</span>
-          <input
-            className="input"
-            type="text"
-            name="lamela"
-            data-test="lamela"
-            value={form.lamela}
-            onChange={inputLoginHandler}
-          />
-          <span>Kvadratura</span>
-          <input
-            className="input"
-            type="number"
-            name="square"
-            data-test="square"
-            value={form.square}
-            onChange={inputLoginHandler}
-          />
-          <span>Broj soba</span>
-          <input
-            className="input"
-            type="number"
-            name="rooms"
-            data-test="rooms"
-            value={form.rooms}
-            onChange={inputLoginHandler}
-          />
-          <span>Sprat</span>
-          <input
-            className="input"
-            type="number"
-            name="flor"
-            data-test="flor"
-            value={form.flor}
-            onChange={inputLoginHandler}
-          />
-          <span>Orijentacija</span>
-          <input
-            className="input"
-            type="text"
-            name="orijentation"
-            data-test="orijentation"
-            value={form.orijentation}
-            onChange={inputLoginHandler}
-          />
-          <span>Broj terasa</span>
-          <input
-            className="input"
-            type="number"
-            name="balcony"
-            data-test="balcony"
-            value={form.balcony}
-            onChange={inputLoginHandler}
-          />
-          <span>Status</span>
-          <Select
-            getOptionValue={(option) => option.value}
-            getOptionLabel={(option) => option.label}
-            value={statusOptions[0]}
-            options={statusOptions}
-            onChange={(option: ISelectOption | null) => {
-              handleSelect(option);
+          <Formik
+            initialValues={
+              saveFormsModule.getEditApartment.price !== ""
+                ? saveFormsModule.getEditApartment
+                : defaultForm
+            }
+            onSubmit={(values) => {
+              saveFormsModule.getEditApartment.price !== ""
+                ? handleEditApartment(values)
+                : handleAddApartment(values);
             }}
-          />
-          <span>Cena</span>
-          <input
-            className="input"
-            type="number"
-            name="price"
-            data-test="price"
-            value={form.price}
-            onChange={inputLoginHandler}
-          />
-          <div className="flex justify-end mt-2">
-            <button
-              className="button bg-blue-500 w-1/3 text-white font-bold items-center"
-              onClick={
-                saveFormsModule.getEditApartment.price !== ""
-                  ? handleEditApartment
-                  : handleAddApartment
-              }
-            >
-              {saveFormsModule.getEditApartment.price !== ""
-                ? "Izmeni stan"
-                : "Dodaj Stan"}
-            </button>
-          </div>
+            validationSchema={NewApartmentSchema}
+          >
+            {({ errors, touched, isValid, dirty, values, setFieldValue }) => (
+              <Form>
+                <InputAndLabel
+                  label="Lamela"
+                  name="lamela"
+                  errors={{ errors: errors.lamela, touched: touched.lamela }}
+                  type="number"
+                />
+                <InputAndLabel
+                  label="Kvadratura"
+                  name="square"
+                  errors={{ errors: errors.square, touched: touched.square }}
+                  type="number"
+                />
+                <InputAndLabel
+                  label="Broj soba"
+                  name="rooms"
+                  errors={{ errors: errors.rooms, touched: touched.rooms }}
+                  type="number"
+                />
+                <InputAndLabel
+                  label="Sprat"
+                  name="flor"
+                  errors={{ errors: errors.flor, touched: touched.flor }}
+                  type="number"
+                />
+                <SelectAndLabel
+                  label="Orijentacija"
+                  value={values.orijentation}
+                  options={orijentationOptions}
+                  onChange={(value: any) => {
+                    setFieldValue("orijentation", value.value);
+                  }}
+                />
+                <InputAndLabel
+                  label="Broj terasa"
+                  name="balcony"
+                  errors={{ errors: errors.balcony, touched: touched.balcony }}
+                  type="number"
+                />
+                <SelectAndLabel
+                  label="Status"
+                  value={values.status}
+                  options={statusOptions}
+                  onChange={(value: any) => {
+                    setFieldValue("status", value.value);
+                  }}
+                />
+                <InputAndLabel
+                  label="Cena"
+                  name="price"
+                  errors={{ errors: errors.price, touched: touched.price }}
+                  type="number"
+                />
+                <div className="flex justify-end mt-2">
+                  <button
+                    className={`button bg-blue-500 w-1/3 text-white font-bold items-center ${
+                      !(isValid && dirty)
+                        ? "opacity-25 pointer-events-none"
+                        : null
+                    }`}
+                    type="submit"
+                  >
+                    {saveFormsModule.getEditApartment.price !== ""
+                      ? "Izmeni stan"
+                      : "Dodaj Stan"}
+                  </button>
+                </div>
+              </Form>
+            )}
+          </Formik>
         </div>
         <div className="flex flex-col w-1/2 border rounded-md px-4 pb-2 pt-6">
           <div className="flex flex-col justify-center items-center">
             <div
               className="lg:flex-shrink-0 h-64 w-96 bg-gray-100 bg-no-repeat bg-center bg-cover border"
-              style={{ backgroundImage: `url(${form.photo})` }}
+              style={{ backgroundImage: `url(${photo})` }}
             ></div>
             <div className="flex flex-row flex-shrink-0 mt-4 items-center">
               <input

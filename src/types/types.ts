@@ -59,3 +59,9 @@ export interface ISelectOption {
   value: string;
   label: string;
 }
+
+export interface IInputAndLabel {
+  label: string;
+  name: string;
+  errors: any;
+}

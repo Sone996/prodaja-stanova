@@ -7,7 +7,7 @@ module.exports = {
 				white: '#ffffff',
 				green: "#DFF2BF",  //bg-green
 				darkGreen: "#4F8A10", //text green
-				red: "#FFD2D2",  //bg-red
+				red: "#D32728",  //error messages
 				darkRed: "#D8000C", //text red
 				lightBlue: '#61dafb',
 			}

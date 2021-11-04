@@ -1,26 +1,31 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { LoginHook } from "../../customHooks/LoginHook";
 import { ILogin } from "../../types/types";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
+import InputAndLabel from "../ui/InputAndLabel";
 
 const loginFormDefault: ILogin = {
   username: "",
   password: "",
 };
 
-const LoginComponent: FC = () => {
-  const [form, setForm] = useState(loginFormDefault);
+const SignupSchema = Yup.object().shape({
+  username: Yup.string()
+    .min(4, "Potrebno je 4 - 30 karaktera")
+    .max(30, "Potrebno je 4 - 30 karaktera")
+    .required("Polje je obavezno"),
+  password: Yup.string()
+    .min(4, "Potrebno je 4 - 15 karaktera")
+    .max(15, "Potrebno je 4 - 15 karaktera")
+    .required("Polje je obavezno"),
+});
 
+const LoginComponent: FC = () => {
   const useLogin = LoginHook();
 
-  const inputLoginHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const loginSubmit = async () => {
-    useLogin.mutate(form);
+  const loginSubmit = async (data: ILogin) => {
+    useLogin.mutate(data);
   };
 
   return (
@@ -28,36 +33,35 @@ const LoginComponent: FC = () => {
       <div className="flex justify-center">
         <span className="text-3xl">Login</span>
       </div>
-      <div className="flex flex-col justify-center mt-8">
-        <span>Username</span>
-        <input
-          className="input"
-          type="text"
-          name="username"
-          value={form.username}
-          data-test="loginEmail"
-          onChange={inputLoginHandler}
-        />
-      </div>
-      <div className="flex flex-col justify-center mt-4">
-        <span>Password</span>
-        <input
-          className="input"
-          type="password"
-          name="password"
-          data-test="loginPassword"
-          value={form.password}
-          onChange={inputLoginHandler}
-        />
-      </div>
-      <div className="flex mt-4 justify-between">
-        <button
-          className="button bg-blue-500 w-full text-white"
-          onClick={loginSubmit}
-        >
-          Login
-        </button>
-      </div>
+      <Formik
+        initialValues={loginFormDefault}
+        onSubmit={(values) => loginSubmit(values)}
+        validationSchema={SignupSchema}
+      >
+        {({ errors, touched, isValid, dirty }) => (
+          <Form>
+            <InputAndLabel
+              label="Username"
+              name="username"
+              errors={{ errors: errors.username, touched: touched.username }}
+            />
+            <InputAndLabel
+              label="Password"
+              name="password"
+              errors={{ errors: errors.password, touched: touched.password }}
+            />
+            <button
+              disabled={!(isValid && dirty)}
+              type="submit"
+              className={`button bg-blue-500 w-full text-white mt-6 ${
+                !(isValid && dirty) ? "opacity-25 pointer-events-none" : null
+              }`}
+            >
+              Login
+            </button>
+          </Form>
+        )}
+      </Formik>
     </>
   );
 };

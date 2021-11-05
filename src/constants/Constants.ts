@@ -8,13 +8,13 @@ export const ROLES = {
   sale: "sale",
 };
 
-export const roleOptions = [
+export const roleOptions: ISelectOption[] = [
   { value: "admin", label: "Admin" },
   { value: "finance", label: "Finansije" },
   { value: "salesman", label: "Prodavac" },
 ];
 
-export const TypeOfClientOptions = [
+export const TypeOfClientOptions: ISelectOption[] = [
   { value: "fizicko", label: "Fizičko lice" },
   { value: "pravno", label: "Pravno lice" },
 ];

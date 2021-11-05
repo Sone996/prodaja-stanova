@@ -2,11 +2,12 @@ import { observer } from "mobx-react-lite";
 import { FC, useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
 import { RootStore } from "../../clientStore";
-import { IApartment, ISelectOption } from "../../types/types";
+import { IApartment } from "../../types/types";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import InputAndLabel from "../../components/ui/InputAndLabel";
 import SelectAndLabel from "../../components/ui/SelectAndLabel";
+import { orijentationOptions, statusOptions } from "../../constants/Constants";
 
 const defaultForm: IApartment = {
   lamela: "",
@@ -19,19 +20,6 @@ const defaultForm: IApartment = {
   status: "availabel",
   photo: "",
 };
-
-const statusOptions: ISelectOption[] = [
-  { value: "availabel", label: "Dostupan" },
-  { value: "sold", label: "Prodat" },
-  { value: "reserved", label: "Rezervisan" },
-];
-
-const orijentationOptions: ISelectOption[] = [
-  { value: "N", label: "Sever" },
-  { value: "S", label: "Jug" },
-  { value: "W", label: "Zapad" },
-  { value: "E", label: "Istok" },
-];
 
 const NewApartmentSchema = Yup.object().shape({
   lamela: Yup.number()

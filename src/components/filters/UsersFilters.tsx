@@ -1,11 +1,7 @@
 import { FC } from "react";
 import Select from "react-select";
+import { roleOptions } from "../../constants/Constants";
 
-const options = [
-  { value: "admin", label: "Admin" },
-  { value: "finance", label: "Finansije" },
-  { value: "salesman", label: "Prodavac" },
-];
 const UsersFilters: FC = () => {
   const handleSelect = (val: any) => {
     // setForm({ ...form, role: val.value });
@@ -19,7 +15,7 @@ const UsersFilters: FC = () => {
         getOptionLabel={(option) => option.label}
         className="w-1/6"
         placeholder="Sortiraj po"
-        options={options}
+        options={roleOptions}
         onChange={(option) => {
           handleSelect(option);
         }}
@@ -29,7 +25,7 @@ const UsersFilters: FC = () => {
         getOptionLabel={(option) => option.label}
         className="pl-6 w-1/6"
         placeholder="Rola"
-        options={options}
+        options={roleOptions}
         onChange={(option) => {
           handleSelect(option);
         }}

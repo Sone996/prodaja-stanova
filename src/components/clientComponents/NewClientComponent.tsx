@@ -6,6 +6,7 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import SelectAndLabel from "../ui/SelectAndLabel";
 import InputAndLabel from "../ui/InputAndLabel";
+import { TypeOfClientOptions } from "../../constants/Constants";
 
 const defaultForm: IBasicClient = {
   type: "fizicko",
@@ -19,12 +20,7 @@ const defaultForm: IBasicClient = {
   note: "",
 };
 
-const options = [
-  { value: "fizicko", label: "Fizičko lice" },
-  { value: "pravno", label: "Pravno lice" },
-];
-
-const LoginSchema = Yup.object().shape({
+const NewClientSchema = Yup.object().shape({
   name: Yup.string()
     .min(4, "Potrebno je 4 - 30 karaktera")
     .max(30, "Potrebno je 4 - 30 karaktera")
@@ -60,14 +56,14 @@ const NewClientComponent: FC<{ cancel: any }> = ({ cancel }) => {
       <Formik
         initialValues={defaultForm}
         onSubmit={(values) => sendData(values)}
-        validationSchema={LoginSchema}
+        validationSchema={NewClientSchema}
       >
         {({ errors, touched, isValid, dirty, values, setFieldValue }) => (
           <Form autoComplete="off">
             <SelectAndLabel
               label="Fizičko/pravno lice"
               value={values.type}
-              options={options}
+              options={TypeOfClientOptions}
               onChange={(value: any) => {
                 setFieldValue("type", value.value);
               }}

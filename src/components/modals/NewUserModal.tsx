@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import InputAndLabel from "../ui/InputAndLabel";
 import SelectAndLabel from "../ui/SelectAndLabel";
 import { INewUserModal } from "../../types/types";
+import { roleOptions } from "../../constants/Constants";
 
 const defaultForm: INewUserModal = {
   name: "",
@@ -14,13 +15,7 @@ const defaultForm: INewUserModal = {
   password: "",
 };
 
-const roleOptions = [
-  { value: "admin", label: "Admin" },
-  { value: "finance", label: "Finansije" },
-  { value: "salesman", label: "Prodavac" },
-];
-
-const LoginSchema = Yup.object().shape({
+const NewUserSchema = Yup.object().shape({
   name: Yup.string()
     .min(4, "Potrebno je 4 - 30 karaktera")
     .max(30, "Potrebno je 4 - 30 karaktera")
@@ -79,7 +74,7 @@ const NewUserModal: FC = observer(() => {
           onSubmit={(values) => {
             appStore.getModal.data ? editUser(values) : createUser(values);
           }}
-          validationSchema={LoginSchema}
+          validationSchema={NewUserSchema}
         >
           {({ errors, touched, isValid, dirty, values, setFieldValue }) => (
             <Form autoComplete="off">

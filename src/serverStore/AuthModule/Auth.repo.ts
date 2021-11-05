@@ -1,4 +1,5 @@
 import { api } from "../../api/Api";
+import { ILogin } from "../../types/types";
 const ROUTES = {
   LOGIN: "/user/login",
   REGISTER: "/register",
@@ -7,7 +8,7 @@ const ROUTES = {
 };
 
 class AuthRepo {
-  login(data: any) {
+  login(data: ILogin) {
     console.log(data)
     return api.post(ROUTES.LOGIN, data);
   }

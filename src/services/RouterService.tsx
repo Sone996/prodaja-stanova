@@ -16,7 +16,7 @@ export const useFetchActiveUser = () => {
   };
 
   return useQuery("activeUser", fetch, {
-    onSuccess: (val: any) => {
+    onSuccess: (val) => {
       //   dispatch({
       //     type: ActionTypes.SET_USER,
       //     payload: val,

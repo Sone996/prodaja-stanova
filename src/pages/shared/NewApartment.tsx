@@ -26,7 +26,7 @@ const statusOptions: ISelectOption[] = [
   { value: "reserved", label: "Rezervisan" },
 ];
 
-const orijentationOptions: any[] = [
+const orijentationOptions: ISelectOption[] = [
   { value: "N", label: "Sever" },
   { value: "S", label: "Jug" },
   { value: "W", label: "Zapad" },

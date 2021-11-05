@@ -68,13 +68,26 @@ export interface IInputAndLabel {
 }
 
 export interface IApartment {
-  lamela: string | number,
-  square: string | number,
-  rooms: string | number,
-  flor: string | number,
-  orijentation: string | number,
-  balcony: string | number,
-  price: string | number,
-  status: string| number,
-  photo: any,
+  lamela: string | number;
+  square: string | number;
+  rooms: string | number;
+  flor: string | number;
+  orijentation: string | number;
+  balcony: string | number;
+  price: string | number;
+  status: string | number;
+  photo: any;
+}
+
+export interface IModal {
+  name: string;
+  status: boolean;
+  data: any;
+}
+
+export interface INewUserModal {
+  name: string;
+  last_name: string;
+  role: string;
+  password: string;
 }

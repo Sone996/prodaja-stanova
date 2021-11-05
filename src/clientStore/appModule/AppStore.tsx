@@ -1,10 +1,11 @@
 import { makeAutoObservable, runInAction } from "mobx";
+import { IModal } from "../../types/types";
 
 export class AppStore {
   // STATE
   toggleModal: boolean = false;
   overlay: boolean = false;
-  modal: any = {
+  modal: IModal = {
     name: "",
     status: false,
     data: null,

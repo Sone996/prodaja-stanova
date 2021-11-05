@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import DatePicker from "react-datepicker";
 import { DateTime } from "luxon";
 import { IBasicClient } from "../../types/types";
@@ -31,8 +31,7 @@ const LoginSchema = Yup.object().shape({
     .required("Polje je obavezno"),
   email: Yup.string().email("Porešan format").required("Polje je obavezno"),
   tel: Yup.number()
-    .min(8, "Potrebno je 8 - 9 cifara")
-    .max(9, "Potrebno je 8 - 9 cifara")
+    .min(8, "Potrebno je minimum 9 cifara")
     .required("Polje je obavezno"),
   pib_jmbg: Yup.number().required("Polje je obavezno"),
   adress: Yup.string()
@@ -45,13 +44,14 @@ const LoginSchema = Yup.object().shape({
 // STATUS SE AUTOMATSKI STAVLJE JER OVDE NEMA DODAVANJA UGOVORA
 
 const NewClientComponent: FC<{ cancel: any }> = ({ cancel }) => {
-  const [startDate, setStartDate] = useState<Date | null>(null);
+  var satrtData: Date | null = null
 
-  const sendData = (data: any) => {
+  const sendData = (data: IBasicClient) => {
     console.log(data);
   };
 
   const setDate = (date: Date) => {
+    satrtData = date;
     return date ? DateTime.fromJSDate(date).toFormat("yyyy-LL-dd") : null;
   };
 
@@ -120,7 +120,7 @@ const NewClientComponent: FC<{ cancel: any }> = ({ cancel }) => {
             <span>Datum Prve posete</span>
             <DatePicker
               className="w-3/4 border rounded py-2 border-gray-300 text-center text-gray-700"
-              selected={startDate}
+              selected={satrtData}
               dateFormat="dd.MM.yyyy"
               isClearable
               onChange={(date: Date) => {

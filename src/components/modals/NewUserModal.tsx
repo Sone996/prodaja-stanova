@@ -5,8 +5,9 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import InputAndLabel from "../ui/InputAndLabel";
 import SelectAndLabel from "../ui/SelectAndLabel";
+import { INewUserModal } from "../../types/types";
 
-const defaultForm = {
+const defaultForm: INewUserModal = {
   name: "",
   last_name: "",
   role: "salesman",
@@ -42,17 +43,13 @@ const NewUserModal: FC = observer(() => {
     appStore.closeModal();
   };
 
-  const createUser = (values: any) => {
+  const createUser = (values: INewUserModal) => {
     console.log(values);
   };
 
-  const editUser = (values: any) => {
+  const editUser = (values: INewUserModal) => {
     // id ide u url, a password ako je prazan trim?
     console.log(values);
-  };
-
-  const handleSelect = (val: any) => {
-    setForm({ ...form, role: val.value });
   };
 
   useEffect(() => {

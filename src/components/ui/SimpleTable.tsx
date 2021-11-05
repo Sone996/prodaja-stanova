@@ -13,7 +13,7 @@ const modelCol = (model: Array<{}>, setColumn: any) => {
   setColumn(colName);
 };
 
-const SimpleTable: FC<{ titles: any; model: any; singleView?: any }> = ({
+const SimpleTable: FC<{ titles: string[]; model: {}[]; singleView?: any }> = ({
   titles,
   model,
   singleView,

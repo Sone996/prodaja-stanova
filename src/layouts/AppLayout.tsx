@@ -30,8 +30,6 @@ const AppLayout: FC = observer(() => {
         return <AddNewClientModal />;
       case "new-user-modal":
         return <NewUserModal />;
-      // case "rate-course":
-      //   return <RateModal />;
       default:
         break;
     }

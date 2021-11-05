@@ -1,9 +1,10 @@
 import { authRepo } from "./Auth.repo";
 import { SHA512 } from "crypto-js";
 import { TOKEN_LS_NAME } from "../../constants/Constants";
+import { ILogin } from "../../types/types";
 
 class AuthService {
-  async login(data: any) {
+  async login(data: ILogin) {
     try {
       data.password = SHA512(data.password).toString();
       const res = await authRepo.login(data);

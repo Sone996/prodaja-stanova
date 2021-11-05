@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
+import { IProfileData } from "../../types/types";
 
-const EditProfileData: FC<{ oldData: any }> = ({ oldData }) => {
+const EditProfileData: FC<{ oldData: IProfileData }> = ({ oldData }) => {
   const [form, setForm] = useState(oldData);
   const inputLoginHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setForm({

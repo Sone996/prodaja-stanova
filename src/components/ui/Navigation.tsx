@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import NavigationDropdown from "./NavigationDropdown";
 
-const Navigation: FC<{ toggle: any; activeTab: string }> = ({
+const Navigation: FC<{ toggle: (val: string) => void; activeTab: string }> = ({
   toggle,
   activeTab,
 }) => {

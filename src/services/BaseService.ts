@@ -7,8 +7,8 @@ export const notificationMsg = (response: any, codeKey: any | null) => {
     }
     return SUCCESS_CODES[codeKey];
   }
-  if (response && response.response && response.response.data.errors) {
-    return ERROR_CODES[response.response.data.errors];
+  if (response && response.response && response.response.data.error) {
+    return ERROR_CODES[response.response.data.error];
   } else {
     return "Something's Wrong!";
   }

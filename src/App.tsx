@@ -11,13 +11,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import Login from "./pages/shared/Login";
 import AppLayout from "./layouts/AppLayout";
-// import ProtectedRoute from "./services/ProtectedRoute";
+import ProtectedRoute from "./services/ProtectedRoute";
 
 function App() {
   const queryCLient = new QueryClient({
     defaultOptions: {
       queries: {
         refetchOnWindowFocus: false,
+        retry: 0,
       },
     },
   });
@@ -30,14 +31,7 @@ function App() {
             <Route exact path="/login">
               <Login />
             </Route>
-            {/* prvi je u slucaju da nemam back */}
-            <Route path="/">
-              <AppLayout />
-            </Route>
-            {/* <ProtectedRoute path="*" component={AppLayout}></ProtectedRoute>
-            <Route path="*" exact>
-              <Redirect to={{ pathname: "/login" }} />
-            </Route> */}
+            <ProtectedRoute path="*" component={AppLayout}></ProtectedRoute>
           </Switch>
         </Router>
         <ReactQueryDevtools initialIsOpen={false} />

@@ -1,6 +1,9 @@
 import { FC, useEffect, useRef } from "react";
 import g from "gsap";
 import { useHistory } from "react-router-dom";
+import { useMutation } from "react-query";
+import { TOKEN_LS_NAME } from "../../constants/Constants";
+import { authService } from "../../serverStore/AuthModule/Auth.service";
 
 const NavigationDropdown: FC<{ status: boolean; email: string }> = ({
   status,
@@ -65,9 +68,17 @@ const NavigationDropdown: FC<{ status: boolean; email: string }> = ({
   const goToProfile = () => {
     history.push("/profile");
   };
+
   const handleLogOut = () => {
-    console.log("logout");
+    logoutMutation.mutate();
   };
+
+  const logoutMutation = useMutation(() => authService.logout(), {
+    onSuccess: () => {
+      localStorage.removeItem(TOKEN_LS_NAME);
+      history.push("/login");
+    },
+  });
 
   useEffect(() => {
     if (status) {
@@ -78,9 +89,7 @@ const NavigationDropdown: FC<{ status: boolean; email: string }> = ({
         closeMenu();
       }
     };
-
     document.addEventListener("click", checkIfClickedOutside);
-
     return () => {
       document.removeEventListener("click", checkIfClickedOutside);
     };

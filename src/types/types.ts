@@ -87,8 +87,18 @@ export interface IModal {
 }
 
 export interface INewUserModal {
-  name: string;
+  id?: number;
+  first_name: string;
   last_name: string;
   role: string;
+  username: string;
   password: string;
+}
+
+export interface IUserForEdit {
+  id: number;
+  first_name: string;
+  last_name: string;
+  role: string;
+  username: string;
 }

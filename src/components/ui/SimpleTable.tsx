@@ -20,6 +20,7 @@ const SimpleTable: FC<{ titles: string[]; model: {}[]; singleView?: any }> = ({
 }) => {
   const [column, setColumn] = useState([]);
 
+  // console.log(model)
   useEffect(() => {
     if (model.length > 0) {
       modelCol(model, setColumn);

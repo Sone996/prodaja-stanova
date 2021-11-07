@@ -1,19 +1,18 @@
 import { api } from "../../api/Api";
-import { ILogin } from "../../types/types";
+import { ILogin, IRegister } from "../../types/types";
 const ROUTES = {
   LOGIN: "/user/login",
-  REGISTER: "/register",
+  REGISTER: "/user/register",
   FETCH_ACCOUNT: "/user/session",
   LOGOUT: "/logout",
 };
 
 class AuthRepo {
   login(data: ILogin) {
-    console.log(data)
     return api.post(ROUTES.LOGIN, data);
   }
 
-  register(data: any) {
+  register(data: IRegister) {
     return api.post(ROUTES.REGISTER, data);
   }
 

@@ -1,8 +1,10 @@
 import { FC } from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { IRegister } from "../../types/types";
+import { ILogin, IRegister } from "../../types/types";
 import InputAndLabel from "../ui/InputAndLabel";
+import { RegisterHook } from "../../customHooks/RegisterHook";
+import { LoginHook } from "../../customHooks/LoginHook";
 
 const registerFormTemplate: IRegister = {
   first_name: "",
@@ -25,39 +27,16 @@ const RegisterSchema = Yup.object().shape({
 });
 
 const RegisterComponent: FC = () => {
-  //   const [loginForm, setLoginForm] = useState(loginFormDefault);
-  //   const useLogin = LoginHook();
-
-  //   const registerMutation = useMutation(
-  //     (val: any) => authService.register(val),
-  //     {
-  //       onMutate: () => {
-  //         dispatch({
-  //           type: ActionTypes.SET_LOADER,
-  //           payload: true,
-  //         });
-  //       },
-  //       onError: (err: any) => {
-  //         setRegisterForm(registerFormTemplate);
-  //         dispatch({
-  //           type: ActionTypes.SET_LOADER,
-  //           payload: false,
-  //         });
-  //         errorMsg(notificationMsg(err, null));
-  //       },
-  //       onSuccess: (response: any) => {
-  //         dispatch({
-  //           type: ActionTypes.SET_LOADER,
-  //           payload: false,
-  //         });
-  //         useLogin.mutate(loginForm);
-  //       },
-  //     }
-  //   );
+  const useLogin = LoginHook();
+  const useRegister = RegisterHook();
 
   const registerAction = (data: any) => {
-    console.log(data);
-    // registerMutation.mutate(registerForm);
+    let logindata: ILogin = {
+      username: data.username,
+      password: data.password,
+    };
+    useRegister.mutate(data);
+    useRegister.isSuccess && useLogin.mutate(logindata);
   };
 
   return (
@@ -71,7 +50,7 @@ const RegisterComponent: FC = () => {
           onSubmit={(values) => registerAction(values)}
           validationSchema={RegisterSchema}
         >
-          {({ errors, touched, isValid, dirty, values, setFieldValue }) => (
+          {({ errors, touched, isValid, dirty }) => (
             <Form autoComplete="off">
               <InputAndLabel
                 label="Ime"
@@ -124,55 +103,6 @@ const RegisterComponent: FC = () => {
           )}
         </Formik>
       </div>
-      {/* <div className="flex flex-col justify-center mt-4">
-        <span>First Name</span>
-        <input
-          className="input"
-          type="text"
-          name="name"
-          autoComplete="off"
-          value={registerForm.name}
-          onChange={inputRegisterHandler}
-        />
-      </div>
-      <div className="flex flex-col justify-center mt-4">
-        <span>Last Name</span>
-        <input
-          className="input"
-          type="text"
-          name="surname"
-          autoComplete="off"
-          value={registerForm.surname}
-          onChange={inputRegisterHandler}
-        />
-      </div>
-      <div className="flex flex-col justify-center mt-4">
-        <span>Email</span>
-        <input
-          className="input"
-          type="text"
-          name="email"
-          autoComplete="off"
-          value={registerForm.email}
-          onChange={inputRegisterHandler}
-        />
-      </div>
-      <div className="flex flex-col justify-center mt-4">
-        <span>Password</span>
-        <input
-          className="input"
-          type="password"
-          name="password"
-          autoComplete="new-password"
-          value={registerForm.password}
-          onChange={inputRegisterHandler}
-        />
-      </div>
-      <div className="flex mt-4 justify-between">
-        <div className="button bg-darkGreen w-full" onClick={registerAction}>
-          Register
-        </div>
-      </div> */}
     </>
   );
 };

@@ -2,7 +2,6 @@ import { FC, memo } from "react";
 import { useQueryClient } from "react-query";
 import { Route } from "react-router-dom";
 import { ILoggedUser } from "../types/types";
-// import { AppContext } from "../Context/AppProvider";
 import { useFetchActiveUser } from "./RouterService";
 
 export const ProtectedRoute: FC<any> = ({ component: Component, ...rest }) => {
@@ -13,8 +12,6 @@ export const ProtectedRoute: FC<any> = ({ component: Component, ...rest }) => {
   if (!loggedUser) {
     return null;
   }
-
-  console.log("active account: ", loggedUser);
 
   return <Route {...rest} render={(props) => <Component {...props} />} />;
 };

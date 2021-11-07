@@ -4,79 +4,10 @@ import { RootStore } from "../../clientStore";
 import UsersFilters from "../../components/filters/UsersFilters";
 import Scroll from "../../components/ui/Scroll";
 import SimpleTable from "../../components/ui/SimpleTable";
+import FetchUseresHook from "../../customHooks/FetchUsersHook";
+import { IUserForEdit } from "../../types/types";
 
-const data = [
-  {
-    id: 1,
-    name: "test",
-    last_name: "test",
-    role: "prodavac",
-    user_name: "Sone",
-  },
-  {
-    id: 1,
-    name: "test",
-    last_name: "test",
-    role: "prodavac",
-    user_name: "Sone",
-  },
-  {
-    id: 1,
-    name: "test",
-    last_name: "test",
-    role: "prodavac",
-    user_name: "Sone",
-  },
-  {
-    id: 1,
-    name: "test",
-    last_name: "test",
-    role: "prodavac",
-    user_name: "Sone",
-  },
-  {
-    id: 1,
-    name: "test",
-    last_name: "test",
-    role: "prodavac",
-    user_name: "Sone",
-  },
-  {
-    id: 1,
-    name: "test",
-    last_name: "test",
-    role: "prodavac",
-    user_name: "Sone",
-  },
-  {
-    id: 1,
-    name: "test",
-    last_name: "test",
-    role: "prodavac",
-    user_name: "Sone",
-  },
-  {
-    id: 1,
-    name: "test",
-    last_name: "test",
-    role: "prodavac",
-    user_name: "Sone",
-  },
-  {
-    id: 1,
-    name: "test",
-    last_name: "test",
-    role: "prodavac",
-    user_name: "Sone",
-  },
-  {
-    id: 1,
-    name: "test",
-    last_name: "test",
-    role: "prodavac",
-    user_name: "Sone",
-  },
-];
+
 const titles = ["Id", "Ime", "Prezime", "Rola", "Korisničko ime"];
 
 const Users: FC = observer(() => {
@@ -84,9 +15,11 @@ const Users: FC = observer(() => {
   const addUser = () => {
     appStore.setModal("new-user-modal", true, null);
   };
-  const singleView = (item: any) => {
+  const singleView = (item: IUserForEdit) => {
     appStore.setModal("new-user-modal", true, item);
   };
+
+  let users = FetchUseresHook();
 
   return (
     <div className="flex flex-col h-full w-full bg-gray-200">
@@ -106,9 +39,19 @@ const Users: FC = observer(() => {
       </div>
       <div className="flex justify-center h-full">
         <div className="relative h-full w-3/4">
-          <Scroll>
-            <SimpleTable singleView={singleView} model={data} titles={titles} />
-          </Scroll>
+          {users.isLoading ? (
+            <div>loading</div>
+          ) : users.isError ? (
+            <div>{users.error.message}</div>
+          ) : (
+            <Scroll>
+              <SimpleTable
+                singleView={singleView}
+                model={users.data.data}
+                titles={titles}
+              />
+            </Scroll>
+          )}
         </div>
       </div>
     </div>

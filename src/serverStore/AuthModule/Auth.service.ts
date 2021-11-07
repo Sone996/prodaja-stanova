@@ -1,7 +1,7 @@
 import { authRepo } from "./Auth.repo";
 import { SHA512 } from "crypto-js";
 import { TOKEN_LS_NAME } from "../../constants/Constants";
-import { ILogin } from "../../types/types";
+import { ILogin, IRegister } from "../../types/types";
 
 class AuthService {
   async login(data: ILogin) {
@@ -15,7 +15,7 @@ class AuthService {
     }
   }
 
-  register(data: any) {
+  register(data: IRegister) {
     data.password = SHA512(data.password).toString();
     return authRepo.register(data);
   }

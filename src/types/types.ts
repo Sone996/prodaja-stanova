@@ -34,7 +34,7 @@ export interface IProfileData {
 
 export interface ISingleApartmentData {
   id: number;
-  lamela: number;
+  lamella: number | string;
   square: number;
   rooms: number;
   flor: number;
@@ -69,15 +69,35 @@ export interface IInputAndLabel {
 }
 
 export interface IApartment {
-  lamela: string | number;
-  square: string | number;
-  rooms: string | number;
-  flor: string | number;
-  orijentation: string | number;
-  balcony: string | number;
-  price: string | number;
-  status: string | number;
-  photo: any;
+  balconies: string;
+  date_of_creation?: Date;
+  date_of_update?: Date;
+  deleted?: boolean;
+  floor: number | string;
+  id: number | string;
+  lamella: string;
+  orientation: string;
+  photo: string | null;
+  price: number | string;
+  rooms: number | string;
+  square_footage: number | string;
+  status: string;
+}
+
+export interface IApartmenttt {
+  balconies: string;
+  date_of_creation?: Date;
+  date_of_update?: Date;
+  deleted?: boolean;
+  floor: number | string;
+  id?: number | string;
+  lamella: string;
+  orientation: string;
+  photo: string | null;
+  price: number | string;
+  rooms: number | string;
+  square_footage: number | string;
+  status: string;
 }
 
 export interface IModal {

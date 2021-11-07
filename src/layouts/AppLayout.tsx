@@ -54,8 +54,8 @@ const AppLayout: FC = observer(() => {
       <Switch>
         {/* <Route path="/profile/:id" component={Profile} /> */}
         <Route path="/profile" component={Profile} />
-        {/* <Route path="/apartment/:id" component={SingleApartment} /> */}
-        <Route path="/apartment" component={SingleApartment} />
+        <Route path="/apartment/:id" component={SingleApartment} />
+        {/* <Route path="/apartment" component={SingleApartment} /> */}
         <Route path="/new-apartment" component={NewApartment} />
         <Route path="/">
           {activeTab === "Stanovi" ? (

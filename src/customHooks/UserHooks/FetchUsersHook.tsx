@@ -1,8 +1,8 @@
 import { AxiosError } from "axios";
 import { useQuery } from "react-query";
-import { usersService } from "../serverStore/UsersModule/Users.service";
-import { notificationMsg } from "../services/BaseService";
-import { errorMsg } from "../services/MessageDisplayHandler";
+import { usersService } from "../../serverStore/UsersModule/Users.service";
+import { notificationMsg } from "../../services/BaseService";
+import { errorMsg } from "../../services/MessageDisplayHandler";
 
 const FetchUseresHook = () => {
   const parseUsers = (data: any) => {

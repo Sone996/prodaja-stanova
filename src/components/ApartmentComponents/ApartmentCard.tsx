@@ -1,13 +1,14 @@
 import { FC } from "react";
 import { useHistory } from "react-router";
+import { IApartmenttt } from "../../types/types";
 
-const ApartmentCard: FC = () => {
+const ApartmentCard: FC<{ props: IApartmenttt }> = ({ props }) => {
+  const { id, lamella, square_footage, rooms, floor, balconies, price, photo } =
+    props;
   const history = useHistory();
 
   const singleApartment = () => {
-    console.log("single");
-    // history.push({ pathname: `/apartment/${item.id}` });
-    history.push({ pathname: `/apartment` });
+    history.push({ pathname: `/apartment/${id}` });
   };
 
   return (
@@ -22,6 +23,12 @@ const ApartmentCard: FC = () => {
             src="https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
             alt=""
           />
+          {/* img in progress */}
+          {/* <img
+            className="absolute inset-0 h-full w-full object-cover"
+            src={photo ? photo : "https://dchba.org/wp-content/uploads/2020/06/house-placeholder.png"}
+            alt="img"
+          /> */}
         </div>
         <div className="p-4">
           <span className="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs bg-darkGreen bg-opacity-50">
@@ -30,18 +37,18 @@ const ApartmentCard: FC = () => {
 
           <div className="flex">
             <div className="flex flex-col w-1/2">
-              <span className="my-1">id: 1</span>
-              <span className="my-1">labela: 1</span>
-              <span className="my-1">Kvadratura: 200</span>
+              <span className="my-1">id: {id}</span>
+              <span className="my-1">labela: {lamella}</span>
+              <span className="my-1">Kvadratura: {square_footage}</span>
             </div>
             <div className="flex flex-col w-1/2">
-              <span className="my-1">br. soba: 5</span>
-              <span className="my-1">sprat: 0</span>
-              <span className="my-1">terase: 2</span>
+              <span className="my-1">br. soba: {rooms}</span>
+              <span className="my-1">sprat: {floor}</span>
+              <span className="my-1">terase: {balconies}</span>
             </div>
           </div>
           <div className="flex justify-end">
-            <span className="text-lg font-bold text-darkGreen">135 000€</span>
+            <span className="text-lg font-bold text-darkGreen">{price}€</span>
           </div>
         </div>
       </span>

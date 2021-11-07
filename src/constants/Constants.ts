@@ -20,14 +20,14 @@ export const TypeOfClientOptions: ISelectOption[] = [
 ];
 
 export const statusOptions: ISelectOption[] = [
-  { value: "availabel", label: "Dostupan" },
+  { value: "available", label: "Dostupan" },
   { value: "sold", label: "Prodat" },
   { value: "reserved", label: "Rezervisan" },
 ];
 
 export const orijentationOptions: ISelectOption[] = [
-  { value: "N", label: "Sever" },
-  { value: "S", label: "Jug" },
-  { value: "W", label: "Zapad" },
-  { value: "E", label: "Istok" },
+  { value: "north", label: "Sever" },
+  { value: "south", label: "Jug" },
+  { value: "west", label: "Zapad" },
+  { value: "east", label: "Istok" },
 ];

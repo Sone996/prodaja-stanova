@@ -7,9 +7,9 @@ import InputAndLabel from "../ui/InputAndLabel";
 import SelectAndLabel from "../ui/SelectAndLabel";
 import { INewUserModal } from "../../types/types";
 import { roleOptions } from "../../constants/Constants";
-import { NewUserHook } from "../../customHooks/NewUserHook";
-import { EditUserHook } from "../../customHooks/EditUserHook";
-import { DeleteUserHook } from "../../customHooks/DeleteUserHook";
+import { NewUserHook } from "../../customHooks/UserHooks/NewUserHook";
+import { EditUserHook } from "../../customHooks/UserHooks/EditUserHook";
+import { DeleteUserHook } from "../../customHooks/UserHooks/DeleteUserHook";
 
 const defaultForm: INewUserModal = {
   first_name: "",

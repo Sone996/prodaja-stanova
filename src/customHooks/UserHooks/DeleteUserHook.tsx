@@ -1,9 +1,9 @@
 import { AxiosError } from "axios";
 import { useMutation, useQueryClient } from "react-query";
-import { RootStore } from "../clientStore";
-import { usersService } from "../serverStore/UsersModule/Users.service";
-import { notificationMsg } from "../services/BaseService";
-import { errorMsg, successMsg } from "../services/MessageDisplayHandler";
+import { RootStore } from "../../clientStore";
+import { usersService } from "../../serverStore/UsersModule/Users.service";
+import { notificationMsg } from "../../services/BaseService";
+import { errorMsg, successMsg } from "../../services/MessageDisplayHandler";
 
 export function DeleteUserHook() {
   const queryClient = useQueryClient();

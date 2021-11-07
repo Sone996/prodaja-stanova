@@ -4,7 +4,7 @@ import { RootStore } from "../../clientStore";
 import UsersFilters from "../../components/filters/UsersFilters";
 import Scroll from "../../components/ui/Scroll";
 import SimpleTable from "../../components/ui/SimpleTable";
-import FetchUseresHook from "../../customHooks/FetchUsersHook";
+import FetchUseresHook from "../../customHooks/UserHooks/FetchUsersHook";
 import { IUserForEdit } from "../../types/types";
 
 

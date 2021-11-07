@@ -26,4 +26,7 @@ export const SUCCESS_CODES: iCodes = {
   USER_CREATED: "Korisnik uspešno kreiran",
   USER_EDITED: "Korisnik uspešno izmenjen",
   USER_DELETED: "Korisnik uspešno obrisan",
+  APARTMENT_CREATED: "Stan  uspešno kreiran",
+  APARTMENT_EDITED: "Stan uspešno izmenjen",
+  APARTMENT_DELETED: "Stan  uspešno obrisan",
 };

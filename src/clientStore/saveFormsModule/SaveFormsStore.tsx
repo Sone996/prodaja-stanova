@@ -1,18 +1,21 @@
 import { makeAutoObservable } from "mobx";
+import { IApartmenttt } from "../../types/types";
 
 // ovaj modul sluzi za cuvanje podataka u slucaju pormene taba
 
 export class SaveFormsStore {
   // STATE
-  editApartment = {
-    lamela: "",
-    square: "",
+  editApartment: IApartmenttt = {
+    id: "",
+    lamella: "",
+    square_footage: "",
     rooms: "",
-    flor: "",
-    orijentation: "",
-    balcony: "",
+    floor: "",
+    orientation: "",
+    balconies: "",
     price: "",
     status: "",
+    photo: null,
   };
   // END :: STATE
 

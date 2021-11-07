@@ -1,39 +1,40 @@
 import { observer } from "mobx-react-lite";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { useHistory } from "react-router";
 import { RootStore } from "../../clientStore";
-import { IApartment } from "../../types/types";
+import { IApartmenttt } from "../../types/types";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import InputAndLabel from "../../components/ui/InputAndLabel";
 import SelectAndLabel from "../../components/ui/SelectAndLabel";
 import { orijentationOptions, statusOptions } from "../../constants/Constants";
+import { NewApartmentHook } from "../../customHooks/apartmentHooks/AddNewApartmentHook";
+import { EditApartmentHook } from "../../customHooks/apartmentHooks/EditApartmentHook";
 
-const defaultForm: IApartment = {
-  lamela: "",
-  square: "",
-  rooms: "",
-  flor: "",
-  orijentation: "N",
-  balcony: "",
+const defaultForm: IApartmenttt = {
+  balconies: "",
+  floor: "",
+  lamella: "",
+  orientation: "",
+  photo: null,
   price: "",
-  status: "availabel",
-  photo: "",
+  rooms: "",
+  square_footage: "",
+  status: "",
 };
 
 const NewApartmentSchema = Yup.object().shape({
-  lamela: Yup.number()
-    .min(1, "Potrebno je 1 - 3 cifre")
-    .max(2, "Potrebno je 1 - 3 cifre")
-    .required("Polje je obavezno"),
-  square: Yup.number()
+  lamella: Yup.string().required("Polje je obavezno"),
+  square_footage: Yup.number()
     .min(1, "Potrebno je minimum 1 cifra")
     .required("Polje je obavezno"),
   rooms: Yup.number()
     .min(1, "Potrebna je barem jedna soba")
     .required("Polje je obavezno"),
-  flor: Yup.number().typeError("Uneti u ciframa").required("Polje je obavezno"),
-  balcony: Yup.number().required("Polje je obavezno"),
+  floor: Yup.number()
+    .typeError("Uneti u ciframa")
+    .required("Polje je obavezno"),
+  balconies: Yup.number().required("Polje je obavezno"),
   price: Yup.number().required("Polje je obavezno"),
 });
 
@@ -42,12 +43,14 @@ const NewApartment: FC = observer(() => {
   const [photo, setPhoto] = useState<any>(null);
   const ref = useRef<any>(null);
   const history = useHistory();
+  const newApartment = NewApartmentHook();
+  const editApartment = EditApartmentHook();
 
   const handleAddApartment = (data: any) => {
     if (photo) {
       data.photo = photo;
     }
-    console.log(data);
+    newApartment.mutate(data);
     history.push("/");
   };
 
@@ -55,7 +58,9 @@ const NewApartment: FC = observer(() => {
     if (photo) {
       data.photo = photo;
     }
-    console.log("edit: ", data);
+    console.log("editujem");
+    editApartment.mutate(data);
+    // history.push("/");
   };
 
   const addImage = () => {
@@ -89,26 +94,6 @@ const NewApartment: FC = observer(() => {
     setPhoto(null);
   };
 
-  useEffect(() => {
-    if (saveFormsModule.getEditApartment.price !== "") {
-      console.log("imam podatke");
-      console.log(saveFormsModule.getEditApartment);
-      // const editForm = saveFormsModule.getEditApartment
-      // setForm({
-      //   ...form,
-      //   lamela: saveFormsModule.getEditApartment.lamela,
-      //   square: saveFormsModule.getEditApartment.square,
-      //   rooms: saveFormsModule.getEditApartment.rooms,
-      //   flor: saveFormsModule.getEditApartment.flor,
-      //   orijentation: saveFormsModule.getEditApartment.orijentation,
-      //   balcony: saveFormsModule.getEditApartment.balcony,
-      //   price: saveFormsModule.getEditApartment.price,
-      //   status: saveFormsModule.getEditApartment.status,
-      // });
-    }
-    // eslint-disable-next-line
-  }, [saveFormsModule]);
-
   return (
     <div className="flex flex-col w-full h-full px-4 py-2">
       <div className="flex">
@@ -133,14 +118,17 @@ const NewApartment: FC = observer(() => {
               <Form autoComplete="off">
                 <InputAndLabel
                   label="Lamela"
-                  name="lamela"
-                  errors={{ errors: errors.lamela, touched: touched.lamela }}
-                  type="number"
+                  name="lamella"
+                  errors={{ errors: errors.lamella, touched: touched.lamella }}
+                  type="string"
                 />
                 <InputAndLabel
                   label="Kvadratura"
-                  name="square"
-                  errors={{ errors: errors.square, touched: touched.square }}
+                  name="square_footage"
+                  errors={{
+                    errors: errors.square_footage,
+                    touched: touched.square_footage,
+                  }}
                   type="number"
                 />
                 <InputAndLabel
@@ -151,22 +139,25 @@ const NewApartment: FC = observer(() => {
                 />
                 <InputAndLabel
                   label="Sprat"
-                  name="flor"
-                  errors={{ errors: errors.flor, touched: touched.flor }}
+                  name="floor"
+                  errors={{ errors: errors.floor, touched: touched.floor }}
                   type="number"
                 />
                 <SelectAndLabel
                   label="Orijentacija"
-                  value={values.orijentation}
+                  value={values.orientation}
                   options={orijentationOptions}
                   onChange={(value: any) => {
-                    setFieldValue("orijentation", value.value);
+                    setFieldValue("orientation", value.value);
                   }}
                 />
                 <InputAndLabel
                   label="Broj terasa"
-                  name="balcony"
-                  errors={{ errors: errors.balcony, touched: touched.balcony }}
+                  name="balconies"
+                  errors={{
+                    errors: errors.balconies,
+                    touched: touched.balconies,
+                  }}
                   type="number"
                 />
                 <SelectAndLabel

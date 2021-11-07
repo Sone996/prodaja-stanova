@@ -4,6 +4,7 @@ import { RootStore } from "../../clientStore";
 import ClientFilters from "../../components/filters/ClientFilters";
 import Scroll from "../../components/ui/Scroll";
 import SimpleTable from "../../components/ui/SimpleTable";
+import FetchClientsHook from "../../customHooks/ClientHooks/FetchClientHook";
 
 const data = [
   {
@@ -53,6 +54,7 @@ const titles = ["Id", "Ime", "Prezime", "Rola", "Korisničko ime"];
 
 const Clients: FC = observer(() => {
   const { appStore } = RootStore();
+  const clients = FetchClientsHook();
 
   const singleView = (item: any) => {
     console.log(item);
@@ -81,9 +83,19 @@ const Clients: FC = observer(() => {
       </div>
       <div className="flex items-center justify-center h-full">
         <div className="relative h-full w-3/4">
-          <Scroll>
-            <SimpleTable singleView={singleView} model={data} titles={titles} />
-          </Scroll>
+          {clients.isLoading ? (
+            <div>loading</div>
+          ) : clients.isError ? (
+            <div>{clients.error.message}</div>
+          ) : (
+            <Scroll>
+              <SimpleTable
+                singleView={singleView}
+                model={data}
+                titles={titles}
+              />
+            </Scroll>
+          )}
         </div>
       </div>
     </div>

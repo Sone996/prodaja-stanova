@@ -1,10 +1,12 @@
 import { FC, useState } from "react";
+import { useQueryClient } from "react-query";
 import NavigationDropdown from "./NavigationDropdown";
 
 const Navigation: FC<{ toggle: (val: string) => void; activeTab: string }> = ({
   toggle,
   activeTab,
 }) => {
+  const loggedUser: any = useQueryClient().getQueryData("activeUser");
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const openMenu = () => {
@@ -43,7 +45,11 @@ const Navigation: FC<{ toggle: (val: string) => void; activeTab: string }> = ({
         <span onClick={openMenu} className="cursor-pointer text-right">
           IME I PREZIME
           <div className="relative bottom-0 right-0">
-            <NavigationDropdown status={isMenuOpen} email={"admin"} />
+            <NavigationDropdown
+              status={isMenuOpen}
+              email={"admin"}
+              loggedUser={loggedUser.username}
+            />
           </div>
         </span>
       </div>

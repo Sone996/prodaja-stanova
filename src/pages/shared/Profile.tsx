@@ -1,16 +1,10 @@
 import { FC, useState } from "react";
 import ProfileData from "../../components/profileComponents/ProfileData";
 import EditProfileData from "../../components/profileComponents/EditProfileData";
-import { IProfileData } from "../../types/types";
+import { useQueryClient } from "react-query";
 
-const oldData: IProfileData = {
-  name: "Ime",
-  last_name: "Prezime",
-  username: "SoneCar",
-  password: "Sone123",
-  repeatPassword: "Sone123",
-};
 const Profile: FC = () => {
+  const loggedUser: any = useQueryClient().getQueryData("activeUser");
   const [isEdit, setIsEdit] = useState(false);
 
   const toggleEdit = () => {
@@ -24,9 +18,9 @@ const Profile: FC = () => {
       </div>
       <div className="border rounded-md w-1/2 ml-6 px-6 py-2">
         {isEdit ? (
-          <EditProfileData oldData={oldData} />
+          <EditProfileData oldData={loggedUser} />
         ) : (
-          <ProfileData data={oldData} />
+          <ProfileData data={loggedUser} />
         )}
         <div className="flex justify-end mt-2">
           <button

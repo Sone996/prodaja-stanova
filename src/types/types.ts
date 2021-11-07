@@ -18,8 +18,10 @@ export interface ILoggedUser {
   deleted: boolean;
   email: string;
   id: number;
-  name: string;
+  first_name: string;
+  last_name: string;
   password: string;
+  username: string;
   role: string;
   "session-id": string;
 }

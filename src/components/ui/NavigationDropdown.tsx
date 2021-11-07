@@ -5,10 +5,11 @@ import { useMutation } from "react-query";
 import { TOKEN_LS_NAME } from "../../constants/Constants";
 import { authService } from "../../serverStore/AuthModule/Auth.service";
 
-const NavigationDropdown: FC<{ status: boolean; email: string }> = ({
-  status,
-  email,
-}) => {
+const NavigationDropdown: FC<{
+  status: boolean;
+  email: string;
+  loggedUser: string;
+}> = ({ status, email, loggedUser }) => {
   const history = useHistory();
   const ref: any = useRef();
 
@@ -67,6 +68,7 @@ const NavigationDropdown: FC<{ status: boolean; email: string }> = ({
 
   const goToProfile = () => {
     history.push("/profile");
+    closeMenu();
   };
 
   const handleLogOut = () => {
@@ -97,18 +99,18 @@ const NavigationDropdown: FC<{ status: boolean; email: string }> = ({
 
   return (
     <div
-      className="absolute -bottom-1 right-0 transform translate-y-36 bg-gray-400
+      className="absolute -bottom-1 right-0 transform translate-y-36 bg-gray-200
             flex flex-col z-10 accountOptions rounded-md w-64"
       ref={ref}
     >
-      <div className="flex flex-col text-sm py-2 px-10 border-b border-lightGray">
+      <div className="flex flex-col text-sm py-2 px-10 border-b border-white">
         <div className="flex">
-          <span className="mr-2">Signed in as</span>
-          <span className="font-medium">{email}</span>
+          {/* <span className="mr-2">Signed in as</span> */}
+          <span className="font-medium">{loggedUser}</span>
         </div>
       </div>
-      <div className="border-b border-lightGray pb-3">
-        <div className="flex py-2 pl-3 items-center hover:bg-lightGray cursor-pointer">
+      <div className="border-b border-white pb-3">
+        <div className="flex pt-2 pl-3 items-center hover:bg-lightGray cursor-pointer">
           <span
             className="hover:text-lightBlue cursor-pointer text-right"
             onClick={goToProfile}

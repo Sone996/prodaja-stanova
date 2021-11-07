@@ -1,12 +1,12 @@
 import { FC } from "react";
-import { IProfileData } from "../../types/types";
+import { ILoggedUser } from "../../types/types";
 
-const ProfileData: FC<{ data: IProfileData }> = ({ data }) => {
+const ProfileData: FC<{ data: ILoggedUser }> = ({ data }) => {
   return (
     <div className="flex flex-col text-xl text-gray-700">
       <div className="flex mb-2">
         <span className="mr-1">Ime:</span>
-        <span className="font-semibold">{data.name}</span>
+        <span className="font-semibold">{data.first_name}</span>
       </div>
       <div className="flex mb-2">
         <span className="mr-1">Prezime:</span>

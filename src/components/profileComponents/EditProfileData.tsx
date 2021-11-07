@@ -1,85 +1,104 @@
 import { FC, useState } from "react";
-import { IProfileData } from "../../types/types";
+import { ILoggedUser } from "../../types/types";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
+import InputAndLabel from "../ui/InputAndLabel";
+import { EditUserHook } from "../../customHooks/UserHooks/EditUserHook";
 
-const EditProfileData: FC<{ oldData: IProfileData }> = ({ oldData }) => {
-  const [form, setForm] = useState(oldData);
-  const inputLoginHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
+const ProfileSchema = Yup.object().shape({
+  first_name: Yup.string()
+    .min(4, "Potrebno je 4 - 30 karaktera")
+    .max(30, "Potrebno je 4 - 30 karaktera")
+    .required("Polje je obavezno"),
+  last_name: Yup.string()
+    .min(4, "Potrebno je 4 - 30 karaktera")
+    .max(30, "Potrebno je 4 - 30 karaktera")
+    .required("Polje je obavezno"),
+  username: Yup.string()
+    .min(4, "Potrebno je 4 - 30 karaktera")
+    .max(30, "Potrebno je 4 - 30 karaktera")
+    .required("Polje je obavezno"),
+  password: Yup.string()
+    .min(4, "Potrebno je 4 - 15 karaktera")
+    .max(15, "Potrebno je 4 - 15 karaktera")
+    .required("Polje je obavezno"),
+});
+
+const EditProfileData: FC<{ oldData: ILoggedUser }> = ({ oldData }) => {
+  const editUser = EditUserHook();
+  const defaultForm = {
+    first_name: oldData.first_name,
+    last_name: oldData.last_name,
+    username: oldData.username,
+    password: "",
+    id: oldData.id,
+    role: oldData.role,
   };
-  const sendData = () => {
-    console.log("form");
+
+  const sendData = (data: any) => {
+    editUser.mutate(data);
   };
 
   return (
-    <>
-      <div className="flex flex-col justify-center mt-2">
-        <span>Ime</span>
-        <input
-          className="input"
-          type="text"
-          name="name"
-          value={form.name}
-          data-test="editName"
-          onChange={inputLoginHandler}
-        />
-      </div>
-      <div className="flex flex-col justify-center mt-2">
-        <span>Prezime</span>
-        <input
-          className="input"
-          type="text"
-          name="lastName"
-          value={form.last_name}
-          data-test="editLastName"
-          onChange={inputLoginHandler}
-        />
-      </div>
-      <div className="flex flex-col justify-center mt-2">
-        <span>Korisničko ime</span>
-        <input
-          className="input"
-          type="text"
-          autoComplete="off"
-          name="username"
-          value={form.username}
-          data-test="editUsername"
-          onChange={inputLoginHandler}
-        />
-      </div>
-      <div className="flex flex-col justify-center mt-2">
-        <span>Lozinka</span>
-        <input
-          className="input"
-          type="password"
-          name="password"
-          value={form.password}
-          data-test="password"
-          onChange={inputLoginHandler}
-        />
-        <div className="flex flex-col justify-center mt-2">
-          <span>Ponovi lozinku</span>
-          <input
-            className="input"
-            type="password"
-            name="repeatPassword"
-            value={form.repeatPassword}
-            data-test="repeatPassword"
-            onChange={inputLoginHandler}
-          />
-        </div>
-        <div className="flex justify-end mt-2">
-          <button
-            className="button bg-blue-500 w-1/3 text-white"
-            onClick={sendData}
-          >
-            Pošalji
-          </button>
-        </div>
-      </div>
-    </>
+    <div className="flex flex-col justify-center">
+      <Formik
+        initialValues={defaultForm}
+        onSubmit={(values) => sendData(values)}
+        validationSchema={ProfileSchema}
+      >
+        {({ errors, touched, isValid, dirty }) => (
+          <Form>
+            <InputAndLabel
+              label="Ime"
+              name="first_name"
+              errors={{
+                errors: errors.first_name,
+                touched: touched.first_name,
+              }}
+              type="text"
+            />
+            <InputAndLabel
+              label="Prezime"
+              name="last_name"
+              errors={{
+                errors: errors.last_name,
+                touched: touched.last_name,
+              }}
+              type="text"
+            />
+            <InputAndLabel
+              label="Korisničko ime"
+              name="username"
+              errors={{
+                errors: errors.username,
+                touched: touched.username,
+              }}
+              type="text"
+            />
+            <InputAndLabel
+              label="Lozinka"
+              name="password"
+              errors={{
+                errors: errors.password,
+                touched: touched.password,
+              }}
+              type="password"
+            />
+            <div className="flex justify-end mt-2">
+              <button
+                disabled={!(isValid && dirty)}
+                type="submit"
+                className={`button bg-blue-500 w-1/3 text-white mt-6 ${
+                  !(isValid && dirty) ? "opacity-25 pointer-events-none" : null
+                }`}
+              >
+                Pošalji
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 };
 

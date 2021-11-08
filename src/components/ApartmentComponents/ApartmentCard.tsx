@@ -20,15 +20,13 @@ const ApartmentCard: FC<{ props: IApartmenttt }> = ({ props }) => {
         <div className="relative pb-48 overflow-hidden">
           <img
             className="absolute inset-0 h-full w-full object-cover"
-            src="https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-            alt=""
-          />
-          {/* img in progress */}
-          {/* <img
-            className="absolute inset-0 h-full w-full object-cover"
-            src={photo ? photo : "https://dchba.org/wp-content/uploads/2020/06/house-placeholder.png"}
+            src={
+              photo
+                ? photo.substring(1)
+                : "https://dchba.org/wp-content/uploads/2020/06/house-placeholder.png"
+            }
             alt="img"
-          /> */}
+          />
         </div>
         <div className="p-4">
           <span className="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs bg-darkGreen bg-opacity-50">

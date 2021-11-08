@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { ILoggedUser } from "../../types/types";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";

@@ -50,12 +50,12 @@ export interface IBasicClient {
   type: string;
   name: string;
   email: string;
-  tel: string;
+  phone: string;
   pib_jmbg: string;
-  adress: string;
-  date_of_visit: null | string;
-  status: string;
-  note: string;
+  address: string;
+  // date_of_visit: null | string;
+  // status: string;
+  // note: string;
 }
 
 export interface ISelectOption {

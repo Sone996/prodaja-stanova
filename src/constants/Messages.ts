@@ -29,4 +29,7 @@ export const SUCCESS_CODES: iCodes = {
   APARTMENT_CREATED: "Stan  uspešno kreiran",
   APARTMENT_EDITED: "Stan uspešno izmenjen",
   APARTMENT_DELETED: "Stan  uspešno obrisan",
+  CLIENT_CREATED: "Klijent uspešno kreiran",
+  CLIENT_EDITED: "Klijent uspešno izmenjen",
+  CLIENT_DELETED: "Klijent uspešno obrisan",
 };

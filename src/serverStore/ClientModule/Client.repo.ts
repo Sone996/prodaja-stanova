@@ -10,19 +10,20 @@ class ClientsRepo {
     return api.get(ROUTES.CLIENTS);
   }
 
-//   newClient(data: INewClientModal) {
-//     return api.post(ROUTES.CLIENTS, data);
-//   }
+  newClient(data: any) {
+    console.log(data);
+    return api.post(ROUTES.CLIENTS, data);
+  }
 
-//   editClient(data: any) {
-//     const URL = `${ROUTES.CLIENTS}/${data.id}`;
-//     return api.patch(URL, data.data);
-//   }
+  //   editClient(data: any) {
+  //     const URL = `${ROUTES.CLIENTS}/${data.id}`;
+  //     return api.patch(URL, data.data);
+  //   }
 
-//   deleteClient(id: number) {
-//     const URL = `${ROUTES.CLIENTS}/${id}`;
-//     return api.delete(URL);
-//   }
+  //   deleteClient(id: number) {
+  //     const URL = `${ROUTES.CLIENTS}/${id}`;
+  //     return api.delete(URL);
+  //   }
 }
 
 export const clientsRepo = new ClientsRepo();

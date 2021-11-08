@@ -5,20 +5,18 @@ class CLientService {
     return clientsRepo.fetchCLients();
   }
 
-  //   newUser(data: INewUserModal) {
-  //     data.password = SHA512(data.password).toString();
-  //     return clientsRepo.newUser(data);
-  //   }
+  newClient(data: any) {
+    return clientsRepo.newClient(data);
+  }
 
-  //   editUser(data: INewUserModal) {
-  //     data.password = SHA512(data.password).toString();
+  //   editCLient(data: any) {
   //     return clientsRepo.editUser({
   //       id: data.id,
   //       data: omit(data, ["id"]),
   //     });
   //   }
 
-  //   deleteUser(id: number) {
+  //   deleteCLient(id: number) {
   //     return clientsRepo.deleteUser(id);
   //   }
 }

@@ -1,23 +1,21 @@
 import { FC } from "react";
-import DatePicker from "react-datepicker";
-import { DateTime } from "luxon";
+// import DatePicker from "react-datepicker";
+// import { DateTime } from "luxon";
 import { IBasicClient } from "../../types/types";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import SelectAndLabel from "../ui/SelectAndLabel";
 import InputAndLabel from "../ui/InputAndLabel";
 import { TypeOfClientOptions } from "../../constants/Constants";
+import { NewClientHook } from "../../customHooks/ClientHooks/CreateClientHook";
 
 const defaultForm: IBasicClient = {
-  type: "fizicko",
+  type: "individual",
   name: "",
   email: "",
-  tel: "",
+  phone: "",
   pib_jmbg: "",
-  adress: "",
-  date_of_visit: null,
-  status: "potential",
-  note: "",
+  address: "",
 };
 
 const NewClientSchema = Yup.object().shape({
@@ -26,30 +24,29 @@ const NewClientSchema = Yup.object().shape({
     .max(30, "Potrebno je 4 - 30 karaktera")
     .required("Polje je obavezno"),
   email: Yup.string().email("Porešan format").required("Polje je obavezno"),
-  tel: Yup.number()
+  phone: Yup.number()
     .min(8, "Potrebno je minimum 9 cifara")
     .required("Polje je obavezno"),
   pib_jmbg: Yup.number().required("Polje je obavezno"),
-  adress: Yup.string()
-    .min(4, "Potrebno je 4 - 15 karaktera")
-    .max(15, "Potrebno je 4 - 15 karaktera")
+  address: Yup.string()
+    .min(4, "Potrebno je minimum 4 karaktera")
     .required("Polje je obavezno"),
-  // date_of_visit: Yup.string().required("Polje je obavezno"),
 });
 
-// STATUS SE AUTOMATSKI STAVLJE JER OVDE NEMA DODAVANJA UGOVORA
 
 const NewClientComponent: FC<{ cancel: any }> = ({ cancel }) => {
-  var satrtData: Date | null = null
+  const createClient = NewClientHook();
+  // var satrtData: Date | null = null;
 
   const sendData = (data: IBasicClient) => {
-    console.log(data);
+    createClient.mutate(data);
+    cancel();
   };
 
-  const setDate = (date: Date) => {
-    satrtData = date;
-    return date ? DateTime.fromJSDate(date).toFormat("yyyy-LL-dd") : null;
-  };
+  // const setDate = (date: Date) => {
+  //   satrtData = date;
+  //   return date ? DateTime.fromJSDate(date).toFormat("yyyy-LL-dd") : null;
+  // };
 
   return (
     <div className="flex flex-col">
@@ -87,13 +84,13 @@ const NewClientComponent: FC<{ cancel: any }> = ({ cancel }) => {
               type="text"
             />
             <InputAndLabel
-              label="Br. telefona"
-              name="tel"
+              label="Br. phoneefona"
+              name="phone"
               errors={{
-                errors: errors.tel,
-                touched: touched.tel,
+                errors: errors.phone,
+                touched: touched.phone,
               }}
-              type="number"
+              type="text"
             />
             <InputAndLabel
               label="PIB / JMBG"
@@ -102,19 +99,19 @@ const NewClientComponent: FC<{ cancel: any }> = ({ cancel }) => {
                 errors: errors.pib_jmbg,
                 touched: touched.pib_jmbg,
               }}
-              type="number"
+              type="text"
             />
             <InputAndLabel
               label="Adresa"
-              name="adress"
+              name="address"
               errors={{
-                errors: errors.adress,
-                touched: touched.adress,
+                errors: errors.address,
+                touched: touched.address,
               }}
               type="text"
             />
-            <span>Datum Prve posete</span>
-            <DatePicker
+            {/* <span>Datum Prve posete</span> */}
+            {/* <DatePicker
               className="w-3/4 border rounded py-2 border-gray-300 text-center text-gray-700"
               selected={satrtData}
               dateFormat="dd.MM.yyyy"
@@ -122,14 +119,14 @@ const NewClientComponent: FC<{ cancel: any }> = ({ cancel }) => {
               onChange={(date: Date) => {
                 setFieldValue("date_of_visit", setDate(date));
               }}
-            />
-            <InputAndLabel
+            /> */}
+            {/* <InputAndLabel
               label="Napomena"
               name="note"
               errors={null}
               type="text"
-            />
-            <div className="flex items-center justify-between w-full px-8 mt-2">
+            /> */}
+            <div className="flex items-center justify-between w-full px-8 mt-4">
               <span
                 onClick={cancel}
                 className="bg-darkRed py-2 px-4 rounded-lg cursor-pointer text-white"

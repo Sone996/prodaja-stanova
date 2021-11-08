@@ -15,8 +15,8 @@ export const roleOptions: ISelectOption[] = [
 ];
 
 export const TypeOfClientOptions: ISelectOption[] = [
-  { value: "fizicko", label: "Fizičko lice" },
-  { value: "pravno", label: "Pravno lice" },
+  { value: "individual", label: "Fizičko lice" },
+  { value: "legal_entity", label: "Pravno lice" },
 ];
 
 export const statusOptions: ISelectOption[] = [

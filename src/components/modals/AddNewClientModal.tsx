@@ -4,12 +4,6 @@ import NewClientComponent from "../clientComponents/NewClientComponent";
 
 const AddNewClientModal: FC = () => {
   const { appStore } = RootStore();
-  // const [form, setForm] = useState({
-  //   comment: "",
-  //   mark: "",
-  //   personId: 1,
-  // });
-
 
   return (
     <div

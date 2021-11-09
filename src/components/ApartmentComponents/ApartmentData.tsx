@@ -1,5 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { FC } from "react";
+import { useQueryClient } from "react-query";
 import { useHistory } from "react-router";
 import { RootStore } from "../../clientStore";
 import { IApartmenttt } from "../../types/types";
@@ -16,6 +17,7 @@ const ApartmentData: FC<{ data: IApartmenttt }> = observer(({ data }) => {
     price,
     status,
   } = data;
+  const loggedUser: any = useQueryClient().getQueryData("activeUser");
   const { saveFormsModule } = RootStore();
   const history = useHistory();
   const editData = () => {
@@ -63,12 +65,14 @@ const ApartmentData: FC<{ data: IApartmenttt }> = observer(({ data }) => {
         <span className="flex items-center px-2 py-1 font-semibold uppercase rounded-md tracking-wide text-xs bg-darkGreen text-white bg-opacity-50">
           {statusParser(status)}
         </span>
-        <button
-          className="button bg-blue-500 w-1/4 text-white"
-          onClick={editData}
-        >
-          Edit
-        </button>
+        {loggedUser.role === "admin" && (
+          <button
+            className="button bg-blue-500 w-1/4 text-white"
+            onClick={editData}
+          >
+            Edit
+          </button>
+        )}
       </div>
     </>
   );

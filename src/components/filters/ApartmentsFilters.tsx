@@ -4,9 +4,8 @@ import { RootStore } from "../../clientStore";
 import { statusOptions } from "../../constants/Constants";
 import Select from "react-select";
 
-const filtersDefault = {
-  square_footage: "",
-  status: "",
+const defaultValue = (options: any, value: any) => {
+  return options ? options.find((option: any) => option.value === value) : "";
 };
 
 const ApartmentsFilters: FC = observer(() => {
@@ -52,9 +51,8 @@ const ApartmentsFilters: FC = observer(() => {
         onChange={inputLoginHandler}
       />
       <Select
-        getOptionValue={(option) => option.value}
-        getOptionLabel={(option) => option.label}
         isClearable
+        value={defaultValue(statusOptions, form.status)}
         className="mx-2 w-1/4"
         placeholder="Status"
         options={statusOptions}
@@ -62,47 +60,6 @@ const ApartmentsFilters: FC = observer(() => {
           handleSelect(option);
         }}
       />
-
-      {/* <Formik
-        initialValues={
-          filtersModule.getApartmentFilters.status ||
-          filtersModule.getApartmentFilters.square_footage
-            ? filtersModule.getApartmentFilters
-            : filtersDefault
-        }
-        onSubmit={(values) => setFilters(values)}
-      >
-        {({ values, setFieldValue }) => (
-          <Form style={{ width: "620px" }}>
-            <div className="flex justify-between">
-              <InputAndLabel
-                label="Kvadratura"
-                name="square_footage"
-                errors={null}
-                type="text"
-              />
-              <SelectAndLabel
-                style={{ width: "300px" }}
-                label="Status"
-                value={values.status}
-                options={statusOptions}
-                onChange={(value: any) => {
-                  setFieldValue("status", value.value);
-                }}
-              />
-              {/* <div className="flex justify-end mt-2"> */}
-      {/* <button
-        className="button bg-blue-500 w-1/3 text-white font-bold items-center"
-        type="submit"
-      >
-        Pretraži
-      </button> */}
-      {/* </div> */}
-      {/*  </div>
-          </Form>
-        )}
-      </Formik> */}
-
       <button
         className="button bg-blue-500 w-1/4 text-white font-bold items-center"
         onClick={setFilters}

@@ -25,14 +25,16 @@ const Navigation: FC<{ toggle: (val: string) => void; activeTab: string }> = ({
         >
           Stanovi
         </span>
-        <span
-          onClick={() => toggle("Klijenti")}
-          className={`hover:text-lightBlue cursor-pointer rounded-md p-3 mx-2 ${
-            activeTab === "Klijenti" ? "text-lightBlue" : null
-          }`}
-        >
-          Klijenti
-        </span>
+        {loggedUser.role === "admin" && (
+          <span
+            onClick={() => toggle("Klijenti")}
+            className={`hover:text-lightBlue cursor-pointer rounded-md p-3 mx-2 ${
+              activeTab === "Klijenti" ? "text-lightBlue" : null
+            }`}
+          >
+            Klijenti
+          </span>
+        )}
         <span
           onClick={() => toggle("Korisnici")}
           className={`hover:text-lightBlue cursor-pointer rounded-md p-3 mx-2 ${

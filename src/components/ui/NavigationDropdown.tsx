@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef } from "react";
 import g from "gsap";
 import { useHistory } from "react-router-dom";
-import { useMutation } from "react-query";
+import { useQueryClient, useMutation } from "react-query";
 import { TOKEN_LS_NAME } from "../../constants/Constants";
 import { authService } from "../../serverStore/AuthModule/Auth.service";
 
@@ -9,6 +9,7 @@ const NavigationDropdown: FC<{
   status: boolean;
   loggedUser: string;
 }> = ({ status, loggedUser }) => {
+  const queryClient = useQueryClient();
   const history = useHistory();
   const ref: any = useRef();
 
@@ -76,6 +77,7 @@ const NavigationDropdown: FC<{
 
   const logoutMutation = useMutation(() => authService.logout(), {
     onSuccess: () => {
+      queryClient.removeQueries("activeUser");
       localStorage.removeItem(TOKEN_LS_NAME);
       history.push("/login");
     },

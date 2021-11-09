@@ -7,11 +7,13 @@ import FetchApartmentsHook from "../../customHooks/apartmentHooks/FetchApartment
 import { IApartmenttt } from "../../types/types";
 import { observer } from "mobx-react-lite";
 import { RootStore } from "../../clientStore";
+import { useQueryClient } from "react-query";
 
 const Apartments: FC = observer(() => {
+  const loggedUser: any = useQueryClient().getQueryData("activeUser");
   const { filtersModule } = RootStore();
   const history = useHistory();
-  var apartments = FetchApartmentsHook(filtersModule.getApartmentFilters);
+  const apartments = FetchApartmentsHook(filtersModule.getApartmentFilters);
 
   const addApartment = () => {
     history.push("/new-apartment");
@@ -38,14 +40,16 @@ const Apartments: FC = observer(() => {
     <div className="relative h-full w-full">
       <Scroll>
         <div className="antialiased bg-gray-200 text-gray-900 font-sans p-6">
-          <div className="flex py-1 w-full justify-end">
-            <button
-              className="button bg-blue-500 w-1/6 text-white text-2xl font-bold items-center"
-              onClick={addApartment}
-            >
-              +
-            </button>
-          </div>
+          {loggedUser.role === "admin" && (
+            <div className="flex py-1 w-full justify-end">
+              <button
+                className="button bg-blue-500 w-1/6 text-white text-2xl font-bold items-center"
+                onClick={addApartment}
+              >
+                +
+              </button>
+            </div>
+          )}
           <div className="container mx-auto">
             <ApartmentsFilters />
             <div className="flex flex-wrap -mx-4">

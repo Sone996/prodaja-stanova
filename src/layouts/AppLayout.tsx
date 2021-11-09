@@ -11,6 +11,7 @@ import NewApartment from "../pages/shared/NewApartment";
 import { RootStore } from "../clientStore";
 import AddNewClientModal from "../components/modals/AddNewClientModal";
 import NewUserModal from "../components/modals/NewUserModal";
+import SingleClient from "../pages/shared/SingleClient";
 
 const AppLayout: FC = observer(() => {
   const { appStore } = RootStore();
@@ -52,11 +53,10 @@ const AppLayout: FC = observer(() => {
       {/* END :: MODALS */}
       <Navigation toggle={taggleTabs} activeTab={activeTab} />
       <Switch>
-        {/* <Route path="/profile/:id" component={Profile} /> */}
         <Route path="/profile" component={Profile} />
         <Route path="/apartment/:id" component={SingleApartment} />
-        {/* <Route path="/apartment" component={SingleApartment} /> */}
         <Route path="/new-apartment" component={NewApartment} />
+        <Route path="/client/:id" component={SingleClient} />
         <Route path="/">
           {activeTab === "Stanovi" ? (
             <Apartmans />

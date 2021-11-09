@@ -25,6 +25,11 @@ class ClientsRepo {
     return api.post(ROUTES.CLIENTS, data);
   }
 
+  fetchSingleClient(id: number | string) {
+    const URL = `${ROUTES.CLIENTS}/${id}`;
+    return api.get(URL);
+  }
+
   //   editClient(data: any) {
   //     const URL = `${ROUTES.CLIENTS}/${data.id}`;
   //     return api.patch(URL, data.data);

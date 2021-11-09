@@ -13,7 +13,7 @@ const ApartmentGalery: FC<{ images: string }> = ({ images }) => {
               <img
                 key={index}
                 className="p-4"
-                src={image.substring(1)}
+                src={image}
                 alt="img"
               />
             ))

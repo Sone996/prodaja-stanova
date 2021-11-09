@@ -31,7 +31,7 @@ const ApartmentCard: FC<{ props: IApartmenttt }> = ({ props }) => {
             className="absolute inset-0 h-full w-full object-cover"
             src={
               photo
-                ? photo.substring(1)
+                ? photo
                 : "https://dchba.org/wp-content/uploads/2020/06/house-placeholder.png"
             }
             alt="img"

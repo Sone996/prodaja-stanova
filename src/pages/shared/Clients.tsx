@@ -5,16 +5,18 @@ import useFetchClientsHook from "../../customHooks/ClientHooks/useFetchClientHoo
 import Scroll from "../../components/ui/Scroll";
 import SimpleTable from "../../components/ui/SimpleTable";
 import ClientFilters from "../../components/filters/ClientFilters";
+import { useHistory } from "react-router";
 
 const titles = ["Id", "Ime/Naziv", "Tip", "Telefon", "E-mail", "Adresa"];
 
 const Clients: FC = observer(() => {
   const { appStore, filtersModule } = RootStore();
   const clients = useFetchClientsHook(filtersModule.getClientFilters);
+  const history = useHistory();
 
   const singleView = (item: any) => {
     console.log(item);
-    // history.push({ pathname: `/single-course/${item.id}` });
+    history.push({ pathname: `/client/${item.id}` });
   };
 
   const addClient = () => {

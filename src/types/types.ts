@@ -55,6 +55,19 @@ export interface IBasicClient {
   address: string;
 }
 
+export interface IFullClient {
+  id: string;
+  type: string;
+  name: string;
+  email: string;
+  phone: string;
+  pib_jmbg: string;
+  address: string;
+  date_of_creation: Date;
+  date_of_update: Date;
+  deleted: boolean;
+}
+
 export interface ISelectOption {
   value: string;
   label: string;

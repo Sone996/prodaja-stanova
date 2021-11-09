@@ -13,6 +13,10 @@ class CLientService {
     return clientsRepo.newClient(data);
   }
 
+  fetchSingleClient(id: string | number) {
+    return clientsRepo.fetchSingleClient(id);
+  }
+
   //   editCLient(data: any) {
   //     return clientsRepo.editUser({
   //       id: data.id,

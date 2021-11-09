@@ -4,7 +4,7 @@ import { RootStore } from "../../clientStore";
 import UsersFilters from "../../components/filters/UsersFilters";
 import Scroll from "../../components/ui/Scroll";
 import SimpleTable from "../../components/ui/SimpleTable";
-import FetchUseresHook from "../../customHooks/UserHooks/FetchUsersHook";
+import useFetchUseresHook from "../../customHooks/UserHooks/useFetchUsersHook";
 import { IUserForEdit } from "../../types/types";
 
 
@@ -19,7 +19,7 @@ const Users: FC = observer(() => {
     appStore.setModal("new-user-modal", true, item);
   };
 
-  let users = FetchUseresHook();
+  let users = useFetchUseresHook();
 
   return (
     <div className="flex flex-col h-full w-full bg-gray-200">

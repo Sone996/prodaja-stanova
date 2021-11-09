@@ -5,7 +5,7 @@ import { notificationMsg } from "../../services/BaseService";
 import { errorMsg, successMsg } from "../../services/MessageDisplayHandler";
 import { IBasicClient } from "../../types/types";
 
-export function NewClientHook() {
+export function useNewClientHook() {
     const queryClient = useQueryClient();
 
   return useMutation((val: IBasicClient) => clientService.newClient(val), {

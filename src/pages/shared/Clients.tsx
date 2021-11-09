@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { FC } from "react";
 import { RootStore } from "../../clientStore";
-import FetchClientsHook from "../../customHooks/ClientHooks/FetchClientHook";
+import useFetchClientsHook from "../../customHooks/ClientHooks/useFetchClientHook";
 import Scroll from "../../components/ui/Scroll";
 import SimpleTable from "../../components/ui/SimpleTable";
 import ClientFilters from "../../components/filters/ClientFilters";
@@ -10,7 +10,7 @@ const titles = ["Id", "Ime/Naziv", "Tip", "Telefon", "E-mail", "Adresa"];
 
 const Clients: FC = observer(() => {
   const { appStore, filtersModule } = RootStore();
-  const clients = FetchClientsHook(filtersModule.getClientFilters);
+  const clients = useFetchClientsHook(filtersModule.getClientFilters);
 
   const singleView = (item: any) => {
     console.log(item);

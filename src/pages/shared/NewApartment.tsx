@@ -8,8 +8,8 @@ import * as Yup from "yup";
 import InputAndLabel from "../../components/ui/InputAndLabel";
 import SelectAndLabel from "../../components/ui/SelectAndLabel";
 import { orijentationOptions, statusOptions } from "../../constants/Constants";
-import { NewApartmentHook } from "../../customHooks/apartmentHooks/AddNewApartmentHook";
-import { EditApartmentHook } from "../../customHooks/apartmentHooks/EditApartmentHook";
+import { useAddNewApartmentHook } from "../../customHooks/apartmentHooks/useAddNewApartmentHook";
+import { useEditApartmentHook } from "../../customHooks/apartmentHooks/useEditApartmentHook";
 
 const defaultForm: IApartmenttt = {
   balconies: "",
@@ -43,8 +43,8 @@ const NewApartment: FC = observer(() => {
   const [photo, setPhoto] = useState<any>(null);
   const ref = useRef<any>(null);
   const history = useHistory();
-  const newApartment = NewApartmentHook();
-  const editApartment = EditApartmentHook();
+  const newApartment = useAddNewApartmentHook();
+  const editApartment = useEditApartmentHook();
 
   const handleAddApartment = (data: any) => {
     if (photo) {

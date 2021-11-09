@@ -5,7 +5,7 @@ import { notificationMsg } from "../../services/BaseService";
 import { errorMsg } from "../../services/MessageDisplayHandler";
 import { IBasicClient, IClientFilters } from "../../types/types";
 
-const FetchClientsHook = (filters: IClientFilters) => {
+const useFetchClientsHook = (filters: IClientFilters) => {
   const parseClients = (data: any) => {
     let users = data.data;
     users.forEach((user: IBasicClient, i: number) => {
@@ -41,4 +41,4 @@ const FetchClientsHook = (filters: IClientFilters) => {
   });
 };
 
-export default FetchClientsHook;
+export default useFetchClientsHook;

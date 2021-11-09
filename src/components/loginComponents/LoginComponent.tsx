@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { LoginHook } from "../../customHooks/LoginHook";
+import { useLoginHook } from "../../customHooks/useLoginHook";
 import { ILogin } from "../../types/types";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
@@ -22,7 +22,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 const LoginComponent: FC = () => {
-  const useLogin = LoginHook();
+  const useLogin = useLoginHook();
 
   const loginSubmit = async (data: ILogin) => {
     useLogin.mutate(data);

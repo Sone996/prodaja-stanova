@@ -3,7 +3,7 @@ import Scroll from "../../components/ui/Scroll";
 import ApartmentCard from "../../components/ApartmentComponents/ApartmentCard";
 import { useHistory } from "react-router";
 import ApartmentsFilters from "../../components/filters/ApartmentsFilters";
-import FetchApartmentsHook from "../../customHooks/apartmentHooks/FetchApartmentsHook";
+import useFetchApartmentsHook from "../../customHooks/apartmentHooks/useFetchApartmentsHook";
 import { IApartmenttt } from "../../types/types";
 import { observer } from "mobx-react-lite";
 import { RootStore } from "../../clientStore";
@@ -13,7 +13,7 @@ const Apartments: FC = observer(() => {
   const loggedUser: any = useQueryClient().getQueryData("activeUser");
   const { filtersModule } = RootStore();
   const history = useHistory();
-  const apartments = FetchApartmentsHook(filtersModule.getApartmentFilters);
+  const apartments = useFetchApartmentsHook(filtersModule.getApartmentFilters);
 
   const addApartment = () => {
     history.push("/new-apartment");

@@ -4,14 +4,13 @@ import { RootStore } from "../../clientStore";
 import { usersService } from "../../serverStore/UsersModule/Users.service";
 import { notificationMsg } from "../../services/BaseService";
 import { errorMsg, successMsg } from "../../services/MessageDisplayHandler";
-import { INewUserModal } from "../../types/types";
 
-export function EditUserHook() {
+export function useDeleteUserHook() {
   const queryClient = useQueryClient();
   const { appStore } = RootStore();
-  return useMutation((val: INewUserModal) => usersService.editUser(val), {
+  return useMutation((val: number) => usersService.deleteUser(val), {
     onSuccess: (response) => {
-      successMsg(notificationMsg(response, "USER_EDITED"));
+      successMsg(notificationMsg(response, "USER_DELETED"));
       queryClient.invalidateQueries("users");
       appStore.closeModal();
     },

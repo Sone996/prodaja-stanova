@@ -1,23 +1,19 @@
 import { AxiosError } from "axios";
 import { useMutation } from "react-query";
-import { useHistory } from "react-router-dom";
 import { authService } from "../serverStore/AuthModule/Auth.service";
 import { notificationMsg } from "../services/BaseService";
 import { errorMsg, successMsg } from "../services/MessageDisplayHandler";
-import { ILogin } from "../types/types";
+import { IRegister } from "../types/types";
 
-export function LoginHook() {
-  const history = useHistory();
-
-  return useMutation((val: ILogin) => authService.login(val), {
-    onSuccess: (response) => {
-      successMsg(notificationMsg(response, "lOGIN_SUCCESS"));
-      history.push("/");
-    },
+export function useRegisterHook() {
+  return useMutation((val: IRegister) => authService.register(val), {
     onError: (err: AxiosError) => {
       if (err && err.response) {
         errorMsg(notificationMsg(err, null));
       }
+    },
+    onSuccess: (response) => {
+      successMsg(notificationMsg(response, "REGISTER_SUCCESS"));
     },
   });
 }

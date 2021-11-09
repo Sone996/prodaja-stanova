@@ -5,7 +5,7 @@ import { notificationMsg } from "../../services/BaseService";
 import { errorMsg, successMsg } from "../../services/MessageDisplayHandler";
 import { IApartmenttt } from "../../types/types";
 
-export function EditApartmentHook() {
+export function useEditApartmentHook() {
   return useMutation(
     (val: IApartmenttt) => apartmentService.editApartment(val),
     {

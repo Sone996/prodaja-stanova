@@ -6,7 +6,7 @@ import { notificationMsg } from "../../services/BaseService";
 import { errorMsg, successMsg } from "../../services/MessageDisplayHandler";
 import { INewUserModal } from "../../types/types";
 
-export function NewUserHook() {
+export function useNewUserHook() {
   const queryClient = useQueryClient();
   const { appStore } = RootStore();
   return useMutation((val: INewUserModal) => usersService.newUser(val), {

@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import SelectAndLabel from "../ui/SelectAndLabel";
 import InputAndLabel from "../ui/InputAndLabel";
 import { TypeOfClientOptions } from "../../constants/Constants";
-import { NewClientHook } from "../../customHooks/ClientHooks/CreateClientHook";
+import { useNewClientHook } from "../../customHooks/ClientHooks/useCreateClientHook";
 
 const defaultForm: IBasicClient = {
   type: "individual",
@@ -35,7 +35,7 @@ const NewClientSchema = Yup.object().shape({
 
 
 const NewClientComponent: FC<{ cancel: any }> = ({ cancel }) => {
-  const createClient = NewClientHook();
+  const createClient = useNewClientHook();
   // var satrtData: Date | null = null;
 
   const sendData = (data: IBasicClient) => {

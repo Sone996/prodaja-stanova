@@ -7,9 +7,9 @@ import InputAndLabel from "../ui/InputAndLabel";
 import SelectAndLabel from "../ui/SelectAndLabel";
 import { INewUserModal } from "../../types/types";
 import { roleOptions } from "../../constants/Constants";
-import { NewUserHook } from "../../customHooks/UserHooks/NewUserHook";
-import { EditUserHook } from "../../customHooks/UserHooks/EditUserHook";
-import { DeleteUserHook } from "../../customHooks/UserHooks/DeleteUserHook";
+import { useNewUserHook } from "../../customHooks/UserHooks/useNewUserHook";
+import { useEditUserHook } from "../../customHooks/UserHooks/useEditUserHook";
+import { useDeleteUserHook } from "../../customHooks/UserHooks/useDeleteUserHook";
 
 const defaultForm: INewUserModal = {
   first_name: "",
@@ -39,9 +39,9 @@ const NewUserSchema = Yup.object().shape({
 });
 
 const NewUserModal: FC = observer(() => {
-  const newUser = NewUserHook();
-  const editUser = EditUserHook();
-  const deleteUser = DeleteUserHook();
+  const newUser = useNewUserHook();
+  const editUser = useEditUserHook();
+  const deleteUser = useDeleteUserHook();
   const { appStore } = RootStore();
   const [form, setForm] = useState(defaultForm);
 

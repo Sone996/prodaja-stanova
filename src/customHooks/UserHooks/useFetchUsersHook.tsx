@@ -4,7 +4,7 @@ import { usersService } from "../../serverStore/UsersModule/Users.service";
 import { notificationMsg } from "../../services/BaseService";
 import { errorMsg } from "../../services/MessageDisplayHandler";
 
-const FetchUseresHook = () => {
+const useFetchUseresHook = () => {
   const parseUsers = (data: any) => {
     let users = data.data;
     users.forEach((user: {}, i: number) => {
@@ -36,4 +36,4 @@ const FetchUseresHook = () => {
   });
 };
 
-export default FetchUseresHook;
+export default useFetchUseresHook;

@@ -3,7 +3,7 @@ import { ILoggedUser } from "../../types/types";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import InputAndLabel from "../ui/InputAndLabel";
-import { EditUserHook } from "../../customHooks/UserHooks/EditUserHook";
+import { useEditUserHook } from "../../customHooks/UserHooks/useEditUserHook";
 
 const ProfileSchema = Yup.object().shape({
   first_name: Yup.string()
@@ -25,7 +25,7 @@ const ProfileSchema = Yup.object().shape({
 });
 
 const EditProfileData: FC<{ oldData: ILoggedUser }> = ({ oldData }) => {
-  const editUser = EditUserHook();
+  const editUser = useEditUserHook();
   const defaultForm = {
     first_name: oldData.first_name,
     last_name: oldData.last_name,

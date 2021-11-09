@@ -3,8 +3,8 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { ILogin, IRegister } from "../../types/types";
 import InputAndLabel from "../ui/InputAndLabel";
-import { RegisterHook } from "../../customHooks/RegisterHook";
-import { LoginHook } from "../../customHooks/LoginHook";
+import { useRegisterHook } from "../../customHooks/useRegisterHook";
+import { useLoginHook } from "../../customHooks/useLoginHook";
 
 const registerFormTemplate: IRegister = {
   first_name: "",
@@ -27,8 +27,8 @@ const RegisterSchema = Yup.object().shape({
 });
 
 const RegisterComponent: FC = () => {
-  const useLogin = LoginHook();
-  const useRegister = RegisterHook();
+  const useLogin = useLoginHook();
+  const useRegister = useRegisterHook();
 
   const registerAction = (data: any) => {
     let logindata: ILogin = {

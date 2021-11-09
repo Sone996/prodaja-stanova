@@ -1,18 +1,38 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import Scroll from "../../components/ui/Scroll";
 import ApartmentCard from "../../components/ApartmentComponents/ApartmentCard";
 import { useHistory } from "react-router";
 import ApartmentsFilters from "../../components/filters/ApartmentsFilters";
 import FetchApartmentsHook from "../../customHooks/apartmentHooks/FetchApartmentsHook";
 import { IApartmenttt } from "../../types/types";
+import { observer } from "mobx-react-lite";
+import { RootStore } from "../../clientStore";
 
-const Apartments: FC = () => {
+const Apartments: FC = observer(() => {
+  const { filtersModule } = RootStore();
   const history = useHistory();
-  const apartments = FetchApartmentsHook();
+  var apartments = FetchApartmentsHook(filtersModule.getApartmentFilters);
 
   const addApartment = () => {
     history.push("/new-apartment");
   };
+
+  // SORT
+  useEffect(() => {
+    if (apartments.isSuccess && apartments.data) {
+      if (filtersModule.getApartmentSortByPrice) {
+        apartments.data.sort((a: any, b: any) =>
+          a.price > b.price ? 1 : b.price > a.price ? -1 : 0
+        );
+      }
+      if (!filtersModule.getApartmentSortByPrice) {
+        apartments.data.sort((a: any, b: any) =>
+          b.price > a.price ? 1 : a.price > b.price ? -1 : 0
+        );
+      }
+    }
+  }, [filtersModule.getApartmentSortByPrice, apartments.data]);
+  // END :: SORT
 
   return (
     <div className="relative h-full w-full">
@@ -35,7 +55,12 @@ const Apartments: FC = () => {
                 <div>{apartments.error.message}</div>
               ) : (
                 apartments.data.map((apartment: IApartmenttt) => {
-                  return <ApartmentCard key={apartment.id} props={{...apartment}}/>;
+                  return (
+                    <ApartmentCard
+                      key={apartment.id}
+                      props={{ ...apartment }}
+                    />
+                  );
                 })
               )}
             </div>
@@ -44,6 +69,6 @@ const Apartments: FC = () => {
       </Scroll>
     </div>
   );
-};
+});
 
 export default Apartments;

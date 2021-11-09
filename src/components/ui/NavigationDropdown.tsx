@@ -7,9 +7,8 @@ import { authService } from "../../serverStore/AuthModule/Auth.service";
 
 const NavigationDropdown: FC<{
   status: boolean;
-  email: string;
   loggedUser: string;
-}> = ({ status, email, loggedUser }) => {
+}> = ({ status, loggedUser }) => {
   const history = useHistory();
   const ref: any = useRef();
 
@@ -95,6 +94,7 @@ const NavigationDropdown: FC<{
     return () => {
       document.removeEventListener("click", checkIfClickedOutside);
     };
+    // eslint-disable-next-line
   }, [status]);
 
   return (

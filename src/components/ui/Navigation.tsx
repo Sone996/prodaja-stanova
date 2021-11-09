@@ -47,7 +47,6 @@ const Navigation: FC<{ toggle: (val: string) => void; activeTab: string }> = ({
           <div className="relative bottom-0 right-0">
             <NavigationDropdown
               status={isMenuOpen}
-              email={"admin"}
               loggedUser={loggedUser.username}
             />
           </div>

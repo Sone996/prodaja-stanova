@@ -4,14 +4,16 @@ import { apartmentService } from "../../serverStore/ApartmentModule/Apartment.se
 import { notificationMsg } from "../../services/BaseService";
 import { errorMsg } from "../../services/MessageDisplayHandler";
 
-const FetchApartmentsHook = () => {
-
+const FetchApartmentsHook = (filters: {
+  status: null | string;
+  square_footage: null | string;
+}) => {
   const fetchApartments = async () => {
-    const res = await apartmentService.fetchApartments();
+    const res = await apartmentService.fetchApartments(filters);
     return res.data;
   };
 
-  return useQuery("apartments", fetchApartments, {
+  return useQuery(["apartments", filters], fetchApartments, {
     onError: (err: AxiosError) => {
       errorMsg(notificationMsg(err, null));
     },

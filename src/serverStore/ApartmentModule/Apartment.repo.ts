@@ -1,11 +1,25 @@
 import { api } from "../../api/Api";
+import queryString from "query-string";
 const ROUTES = {
   APARTMENTS: "/apartment",
 };
 
 class ApartmentRepo {
-  fetchApartments() {
-    return api.get(ROUTES.APARTMENTS);
+  fetchApartments(
+    filters: {
+      status: null | string;
+      square_footage: null | string;
+    } | null
+  ) {
+    if (filters === null) {
+      return api.get(ROUTES.APARTMENTS);
+    }
+    const query = queryString.stringify(filters, {
+      skipNull: true,
+      skipEmptyString: true,
+    });
+    const URL = `${ROUTES.APARTMENTS}?${query}`;
+    return api.get(URL);
   }
 
   fetchSingleApartment(id: string) {

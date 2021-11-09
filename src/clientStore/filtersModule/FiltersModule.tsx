@@ -1,10 +1,15 @@
 import { makeAutoObservable } from "mobx";
+import { IClientFilters } from "../../types/types";
 
 export class FiltersStore {
   // STATE
   apartmentFilters: { status: string; square_footage: string } = {
     status: "",
     square_footage: "",
+  };
+  clientFilters: IClientFilters = {
+    type: "",
+    id: "",
   };
   apartmentSortByPrice = false;
   // END :: STATE
@@ -20,6 +25,9 @@ export class FiltersStore {
   get getApartmentSortByPrice() {
     return this.apartmentSortByPrice;
   }
+  get getClientFilters() {
+    return this.clientFilters;
+  }
   // END :: COMPUTED
 
   //   ACTIONS
@@ -28,6 +36,9 @@ export class FiltersStore {
   };
   setApartmentSortByPrice = (data: any) => {
     this.apartmentSortByPrice = data;
+  };
+  setClientFilters = (data: any) => {
+    this.clientFilters = data;
   };
   // END :: ACTIONS
 }

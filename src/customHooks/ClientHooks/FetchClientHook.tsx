@@ -3,29 +3,33 @@ import { useQuery } from "react-query";
 import { clientService } from "../../serverStore/ClientModule/Client.service";
 import { notificationMsg } from "../../services/BaseService";
 import { errorMsg } from "../../services/MessageDisplayHandler";
+import { IBasicClient, IClientFilters } from "../../types/types";
 
-const FetchClientsHook = () => {
+const FetchClientsHook = (filters: IClientFilters) => {
   const parseClients = (data: any) => {
     let users = data.data;
-    console.log(users)
-    // users.forEach((user: {}, i: number) => {
-    //   users[i] = {
-    //     id: users[i].id,
-    //     first_name: users[i].first_name,
-    //     last_name: users[i].last_name,
-    //     role: users[i].role,
-    //     username: users[i].username,
-    //   };
-    // });
-    // return users.data;
+    users.forEach((user: IBasicClient, i: number) => {
+      user.type === "individual"
+        ? (user.type = "Fizičko lice")
+        : (user.type = "Pravno lice");
+      users[i] = {
+        id: users[i].id,
+        name: users[i].name,
+        type: users[i].type,
+        phone: users[i].phone,
+        email: users[i].email,
+        address: users[i].address,
+      };
+    });
+    return users.data;
   };
 
   const fetchCLients = async () => {
-    const res = await clientService.fetchUsers();
+    const res = await clientService.fetchClients(filters);
     return res;
   };
 
-  return useQuery("clients", fetchCLients, {
+  return useQuery(["clients", filters], fetchCLients, {
     onError: (err: AxiosError) => {
       if (err && err.response) {
         errorMsg(notificationMsg(err, null));

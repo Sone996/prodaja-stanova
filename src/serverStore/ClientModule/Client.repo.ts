@@ -1,4 +1,6 @@
 import { api } from "../../api/Api";
+import queryString from "query-string";
+import { IClientFilters } from "../../types/types";
 // import { INewClientModal } from "../../types/types";
 
 const ROUTES = {
@@ -6,8 +8,16 @@ const ROUTES = {
 };
 
 class ClientsRepo {
-  fetchCLients() {
-    return api.get(ROUTES.CLIENTS);
+  fetchCLients(filters: IClientFilters | null) {
+    if (filters === null) {
+      return api.get(ROUTES.CLIENTS);
+    }
+    const query = queryString.stringify(filters, {
+      skipNull: true,
+      skipEmptyString: true,
+    });
+    const URL = `${ROUTES.CLIENTS}?${query}`;
+    return api.get(URL);
   }
 
   newClient(data: any) {

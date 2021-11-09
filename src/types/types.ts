@@ -53,9 +53,6 @@ export interface IBasicClient {
   phone: string;
   pib_jmbg: string;
   address: string;
-  // date_of_visit: null | string;
-  // status: string;
-  // note: string;
 }
 
 export interface ISelectOption {
@@ -123,4 +120,9 @@ export interface IUserForEdit {
   last_name: string;
   role: string;
   username: string;
+}
+
+export interface IClientFilters {
+  id: string;
+  type: string;
 }

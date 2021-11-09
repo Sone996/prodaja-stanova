@@ -1,35 +1,58 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Select from "react-select";
-import { roleOptions } from "../../constants/Constants";
+import { RootStore } from "../../clientStore";
+import { TypeOfClientOptions } from "../../constants/Constants";
+
+const defaultValue = (options: any, value: any) => {
+  return options ? options.find((option: any) => option.value === value) : "";
+};
 
 const ClientFilters: FC = () => {
+  const { filtersModule } = RootStore();
+  const [form, setForm] = useState(filtersModule.getClientFilters);
+
+  const inputLoginHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   const handleSelect = (val: any) => {
-    // setForm({ ...form, role: val.value });
-    console.log(val);
+    setForm({ ...form, type: val === null ? "" : val.value });
+  };
+
+  const setFilters = () => {
+    filtersModule.setClientFilters(form);
   };
 
   return (
-    <div className="flex w-3/4 py-2">
+    <div className="flex py-2 w-3/4 justify-between">
+      <input
+        type="text"
+        autoComplete="off"
+        className="input"
+        name="id"
+        placeholder="Id..."
+        value={form.id}
+        onChange={inputLoginHandler}
+      />
       <Select
-        getOptionValue={(option) => option.value}
-        getOptionLabel={(option) => option.label}
-        className="w-1/4"
-        placeholder="Sortiraj po"
-        options={roleOptions}
+        isClearable
+        value={defaultValue(TypeOfClientOptions, form.type)}
+        className="mx-2 w-1/4"
+        placeholder="Tip..."
+        options={TypeOfClientOptions}
         onChange={(option) => {
           handleSelect(option);
         }}
       />
-      <Select
-        getOptionValue={(option) => option.value}
-        getOptionLabel={(option) => option.label}
-        className="pl-6 w-1/4"
-        placeholder="Rola"
-        options={roleOptions}
-        onChange={(option) => {
-          handleSelect(option);
-        }}
-      />
+      <button
+        className="button bg-blue-500 w-1/4 text-white font-bold items-center"
+        onClick={setFilters}
+      >
+        Pretraži
+      </button>
     </div>
   );
 };

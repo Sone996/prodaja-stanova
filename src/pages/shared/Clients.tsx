@@ -1,60 +1,16 @@
 import { observer } from "mobx-react-lite";
 import { FC } from "react";
 import { RootStore } from "../../clientStore";
-import ClientFilters from "../../components/filters/ClientFilters";
+import FetchClientsHook from "../../customHooks/ClientHooks/FetchClientHook";
 import Scroll from "../../components/ui/Scroll";
 import SimpleTable from "../../components/ui/SimpleTable";
-import FetchClientsHook from "../../customHooks/ClientHooks/FetchClientHook";
+import ClientFilters from "../../components/filters/ClientFilters";
 
-const data = [
-  {
-    id: 1,
-    name: "test",
-    last_name: "test",
-    role: "prodavac",
-    user_name: "Sone",
-  },
-  {
-    id: 1,
-    name: "test",
-    last_name: "test",
-    role: "prodavac",
-    user_name: "Sone",
-  },
-  {
-    id: 1,
-    name: "test",
-    last_name: "test",
-    role: "prodavac",
-    user_name: "Sone",
-  },
-  {
-    id: 1,
-    name: "test",
-    last_name: "test",
-    role: "prodavac",
-    user_name: "Sone",
-  },
-  {
-    id: 1,
-    name: "test",
-    last_name: "test",
-    role: "prodavac",
-    user_name: "Sone",
-  },
-  {
-    id: 1,
-    name: "test",
-    last_name: "test",
-    role: "prodavac",
-    user_name: "Sone",
-  },
-];
-const titles = ["Id", "Ime", "Prezime", "Rola", "Korisničko ime"];
+const titles = ["Id", "Ime/Naziv", "Tip", "Telefon", "E-mail", "Adresa"];
 
 const Clients: FC = observer(() => {
-  const { appStore } = RootStore();
-  const clients = FetchClientsHook();
+  const { appStore, filtersModule } = RootStore();
+  const clients = FetchClientsHook(filtersModule.getClientFilters);
 
   const singleView = (item: any) => {
     console.log(item);
@@ -91,7 +47,7 @@ const Clients: FC = observer(() => {
             <Scroll>
               <SimpleTable
                 singleView={singleView}
-                model={data}
+                model={clients.data.data}
                 titles={titles}
               />
             </Scroll>

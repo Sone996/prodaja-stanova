@@ -1,8 +1,12 @@
+import { IClientFilters } from "../../types/types";
 import { clientsRepo } from "./Client.repo";
 
 class CLientService {
-  fetchUsers() {
-    return clientsRepo.fetchCLients();
+  fetchClients(filters: IClientFilters) {
+    if (filters.id === null && filters.type === null) {
+      return clientsRepo.fetchCLients(null);
+    }
+    return clientsRepo.fetchCLients(filters);
   }
 
   newClient(data: any) {

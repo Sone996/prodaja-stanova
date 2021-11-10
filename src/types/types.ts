@@ -139,3 +139,12 @@ export interface IClientFilters {
   id: string;
   type: string;
 }
+
+export interface IPreContract {
+  apartment_id: number | string;
+  customer_id: number;
+  data: {
+    payment_method: string;
+    note: string;
+  };
+}

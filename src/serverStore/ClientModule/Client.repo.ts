@@ -21,7 +21,6 @@ class ClientsRepo {
   }
 
   newClient(data: any) {
-    console.log(data);
     return api.post(ROUTES.CLIENTS, data);
   }
 

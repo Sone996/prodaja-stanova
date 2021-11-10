@@ -31,3 +31,16 @@ export const orijentationOptions: ISelectOption[] = [
   { value: "west", label: "Zapad" },
   { value: "east", label: "Istok" },
 ];
+
+export const CustomerApartmentStatus: ISelectOption[] = [
+  { value: "potential", label: "Potencijalni" },
+  { value: "reserved", label: "Rezervisao" },
+  { value: "purchased", label: "Kupio" },
+];
+
+export const PaymentMethodEnum: ISelectOption[] = [
+  { value: "cash", label: "Keš" },
+  { value: "credit", label: "Kredit" },
+  { value: "on_installment", label: "Na rate" },
+  { value: "participation", label: "Sa učešćem" },
+];

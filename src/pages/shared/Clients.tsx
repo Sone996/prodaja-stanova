@@ -15,7 +15,6 @@ const Clients: FC = observer(() => {
   const history = useHistory();
 
   const singleView = (item: any) => {
-    console.log(item);
     history.push({ pathname: `/client/${item.id}` });
   };
 

@@ -18,6 +18,9 @@ export const ERROR_CODES: iCodes = {
   ERR_USER_CANT_EDIT: "Korisnik ne može biti izmenjen",
   ERR_DUPLICATED_USERNAME: "Duplo korisničko ime",
   ERR_BAD_CONTRACT_ID: "Pogrešan Id ugovora",
+  ERR_PRICE_NOT_APPROVED: "Cena nije odobrena",
+  ERR_BAD_ROLE_FOR_APPROVING: "Ova rola nema prava da odobri ugovor",
+  ERR_APARTMENT_NOT_AVAILABLE: "Stan nije dostupan",
 };
 
 export const SUCCESS_CODES: iCodes = {
@@ -32,4 +35,5 @@ export const SUCCESS_CODES: iCodes = {
   CLIENT_CREATED: "Klijent uspešno kreiran",
   CLIENT_EDITED: "Klijent uspešno izmenjen",
   CLIENT_DELETED: "Klijent uspešno obrisan",
+  PRE_CONTRACT_MADE: 'Predugovor je kreiran',
 };

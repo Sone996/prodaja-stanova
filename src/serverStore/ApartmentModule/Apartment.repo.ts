@@ -32,9 +32,7 @@ class ApartmentRepo {
   }
 
   editApartment(data: any) {
-    console.log(data);
     const URL = `${ROUTES.APARTMENTS}/${data.id}`;
-    console.log(URL);
     return api.patch(URL, data.data);
   }
 }

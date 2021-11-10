@@ -12,6 +12,8 @@ import { RootStore } from "../clientStore";
 import AddNewClientModal from "../components/modals/AddNewClientModal";
 import NewUserModal from "../components/modals/NewUserModal";
 import SingleClient from "../pages/shared/SingleClient";
+import ChooseExistingClientModal from "../components/modals/ChooseExistingClientModal";
+import AddContractModal from "../components/modals/AddContractModal";
 
 const AppLayout: FC = observer(() => {
   const { appStore } = RootStore();
@@ -31,6 +33,10 @@ const AppLayout: FC = observer(() => {
         return <AddNewClientModal />;
       case "new-user-modal":
         return <NewUserModal />;
+      case "choose-existing-client-modal":
+        return <ChooseExistingClientModal />;
+      case "add-contract-modal":
+        return <AddContractModal />;
       default:
         break;
     }

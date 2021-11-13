@@ -17,6 +17,11 @@ export class SaveFormsStore {
     status: "",
     photo: null,
   };
+  idsForContract: any = {
+    apartment_id: null,
+    contract_id: null,
+    client_id: null,
+  };
   // END :: STATE
 
   constructor() {
@@ -27,11 +32,17 @@ export class SaveFormsStore {
   get getEditApartment() {
     return this.editApartment;
   }
+  get getIdsForContract() {
+    return this.idsForContract;
+  }
   // END :: COMPUTED
 
   //   ACTIONS
   setEditApartment = (data: any) => {
     this.editApartment = data;
+  };
+  setIdsForContract = (data: any) => {
+    this.idsForContract = data;
   };
   // END :: ACTIONS
 }

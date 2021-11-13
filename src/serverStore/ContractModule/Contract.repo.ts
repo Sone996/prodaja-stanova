@@ -21,6 +21,17 @@ class ContractRepo {
     const URL = `${ROUTES.CLIENTS}/${id}${ROUTES.APARTMENT}`;
     return api.get(URL);
   }
+
+  fetchContract(data: any) {
+    const URL = `${ROUTES.CLIENTS}/${data.clientId}${ROUTES.APARTMENT}/${data.apartmentId}${ROUTES.CONTRACT}/${data.contractId}`;
+    return api.get(URL);
+  }
+
+  editContract(data: any) {
+    console.log(data);
+    const URL = `${ROUTES.CLIENTS}/${data.clientId}${ROUTES.APARTMENT}/${data.apartmentId}${ROUTES.CONTRACT}/${data.contractId}`;
+    return api.patch(URL, data.data);
+  }
 }
 
 export const contractRepo = new ContractRepo();

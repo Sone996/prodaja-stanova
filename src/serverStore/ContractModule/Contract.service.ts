@@ -12,11 +12,38 @@ class ContractService {
   }
 
   fetchContractsForApartment(id: string) {
-      return contractRepo.fetchContractsForApartment(id);
+    return contractRepo.fetchContractsForApartment(id);
   }
 
   fetchContractsForClient(id: string) {
     return contractRepo.fetchContractsForClient(id);
+  }
+
+  fetchContract(data: any) {
+    return contractRepo.fetchContract({
+      apartmentId: data.apartment_id,
+      clientId: data.client_id,
+      contractId: data.contract_id,
+    });
+  }
+
+  editContract(data: any) {
+    return contractRepo.editContract({
+      apartmentId: data.apartment.id,
+      clientId: data.customer.id,
+      contractId: data.id,
+      data: omit(data, [
+        "apartment",
+        "contract_number",
+        "customer",
+        "date_of_creation",
+        "date_of_update",
+        "deleted",
+        "first_visit",
+        "id",
+        "user",
+      ]),
+    });
   }
 }
 

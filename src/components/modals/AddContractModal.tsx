@@ -8,22 +8,6 @@ import { useQueryClient } from "react-query";
 import { IApartment, IPreContract } from "../../types/types";
 import { usePreContractHook } from "../../customHooks/contractHooks/usePreContractHook";
 
-// u sustini pred ugovor, nista se ne salje sem id-a kroz url
-// const defaultForm = {
-//   apartment_id: 1, //iz url
-//   user_id: 1, // iz sesije
-//   customer_id: 1, //iz url
-//   payment_method: "cash", // automatski je cash
-//   first_visit: "2021-11-10", // automatski danasnji dan
-//   status: "reserved", //automatski potential (potential, reserved)
-//   approved_by: 1, // u patch-u automatski finance
-//   approved: true, // u patch-u se menja
-//   signed: true, // menja se u patchu
-//   note: "smth", // klasika
-//   contract_number: 1, // atomatski
-//   price: 150000, // automatski cena stana, u patchu se menja
-// };
-
 const AddContractModal: FC = () => {
   const apartment: IApartment | undefined =
     useQueryClient().getQueryData("apartment");

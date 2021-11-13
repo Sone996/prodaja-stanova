@@ -7,10 +7,11 @@ import { DateTime } from "luxon";
 
 const useFetchContracyByClient = (id: string) => {
   const parseContacts = (data: any) => {
-    console.log(data);
     data.forEach((user: {}, i: number) => {
       data[i] = {
-        id: data[i].apartment.id,
+        apartment_id: data[i].apartment.id,
+        client_id: data[i].customer.id,
+        contract_id: data[i].id,
         contract_number: data[i].contract_number,
         approved: data[i].approved,
         status: data[i].status,
@@ -27,12 +28,12 @@ const useFetchContracyByClient = (id: string) => {
     return res.data;
   };
 
-  return useQuery(["contracts_by_client", id], fetchContracts, {
+  return useQuery("contractsByClient", fetchContracts, {
     onError: (err: AxiosError) => {
       errorMsg(notificationMsg(err, null));
     },
     onSettled: (val: any) => {
-      console.log(val);
+      // console.log(val)
       parseContacts(val);
     },
   });

@@ -1,11 +1,15 @@
+import { observer } from "mobx-react-lite";
 import { FC } from "react";
 import { useHistory } from "react-router-dom";
+import { RootStore } from "../../clientStore";
 import useFetchContracyByClient from "../../customHooks/contractHooks/useFetchContractsByClient";
 import Scroll from "../ui/Scroll";
 import SimpleTable from "../ui/SimpleTable";
 
 const titles = [
   "Id Stana",
+  "Id korisnika",
+  "Id Ugovora",
   "Broj ugovora",
   "Odobren",
   "Status",
@@ -13,16 +17,21 @@ const titles = [
   "Datum kreiranja",
 ];
 
-const SingleClientContracts: FC = () => {
+const SingleClientContracts: FC = observer(() => {
+  const { saveFormsModule } = RootStore();
   const history = useHistory();
   let x = history.location.pathname.split("/");
   let id = x[x.length - 1];
   const contracts = useFetchContracyByClient(id);
 
+  // eslint-disable-next-line
   const singleView = (item: any) => {
-    console.log(item);
-    // history.push({ pathname: `/single-course/${item.id}` });
-    //dodaj logiku za postavljanje ponude!!!!!!!
+    saveFormsModule.setIdsForContract({
+      apartment_id: item.apartment_id,
+      contract_id: item.contract_id,
+      client_id: item.client_id,
+    });
+    history.push({ pathname: `/contract` });
   };
 
   return (
@@ -39,7 +48,6 @@ const SingleClientContracts: FC = () => {
           ) : contracts.data.length === 0 ? (
             <span>Nema ponuda</span>
           ) : (
-            // <span>ddddd</span>
             <Scroll>
               <SimpleTable
                 singleView={singleView}
@@ -52,6 +60,6 @@ const SingleClientContracts: FC = () => {
       </div>
     </div>
   );
-};
+});
 
 export default SingleClientContracts;

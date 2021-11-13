@@ -35,5 +35,6 @@ export const SUCCESS_CODES: iCodes = {
   CLIENT_CREATED: "Klijent uspešno kreiran",
   CLIENT_EDITED: "Klijent uspešno izmenjen",
   CLIENT_DELETED: "Klijent uspešno obrisan",
-  PRE_CONTRACT_MADE: 'Predugovor je kreiran',
+  PRE_CONTRACT_MADE: "Predugovor je kreiran",
+  CONTRACT_CREATED: "Ugovor je uspešno napravljen",
 };

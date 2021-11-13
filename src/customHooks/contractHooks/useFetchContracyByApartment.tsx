@@ -9,11 +9,15 @@ const useFetchContracyByApartment = (id: string) => {
   const parseContacts = (data: any) => {
     data.forEach((user: {}, i: number) => {
       data[i] = {
-        id: data[i].customer.id,
+        apartment_id: data[i].apartment.id,
+        client_id: data[i].customer.id,
+        contract_id: data[i].id,
         name: data[i].customer.name,
         email: data[i].customer.email,
         phone: data[i].customer.phone,
-        date_of_creation: DateTime.fromJSDate(new Date(data[i].date_of_creation)).toFormat("yyyy-LL-dd")
+        date_of_creation: DateTime.fromJSDate(
+          new Date(data[i].date_of_creation)
+        ).toFormat("yyyy-LL-dd"),
       };
     });
     return data;
@@ -23,7 +27,7 @@ const useFetchContracyByApartment = (id: string) => {
     return res.data;
   };
 
-  return useQuery(["contracts_by_apartment", id], fetchContracts, {
+  return useQuery("contractsByApartment", fetchContracts, {
     onError: (err: AxiosError) => {
       errorMsg(notificationMsg(err, null));
     },

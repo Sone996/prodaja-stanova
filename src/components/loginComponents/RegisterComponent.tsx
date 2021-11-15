@@ -30,7 +30,8 @@ const RegisterComponent: FC = () => {
   const useLogin = useLoginHook();
   const useRegister = useRegisterHook();
 
-  const registerAction = (data: any) => {
+  const registerAction = (data: IRegister) => {
+    console.log(data)
     let logindata: ILogin = {
       username: data.username,
       password: data.password,

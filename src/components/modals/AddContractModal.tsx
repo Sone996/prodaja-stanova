@@ -18,7 +18,7 @@ const AddContractModal: FC = () => {
     note: "",
   };
 
-  const addContract = (values: any) => {
+  const addContract = (values: { payment_method: string; note: string }) => {
     let form: IPreContract = {
       apartment_id: apartment ? apartment.id : 0,
       customer_id: appStore.getModal.data,

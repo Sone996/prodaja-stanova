@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { IApartmenttt } from "../../types/types";
+import { IApartmenttt, IIdsForContract } from "../../types/types";
 
 // ovaj modul sluzi za cuvanje podataka u slucaju pormene taba
 
@@ -17,7 +17,7 @@ export class SaveFormsStore {
     status: "",
     photo: null,
   };
-  idsForContract: any = {
+  idsForContract: IIdsForContract = {
     apartment_id: null,
     contract_id: null,
     client_id: null,
@@ -38,10 +38,11 @@ export class SaveFormsStore {
   // END :: COMPUTED
 
   //   ACTIONS
-  setEditApartment = (data: any) => {
+  setEditApartment = (data: IApartmenttt) => {
+    console.log(data);
     this.editApartment = data;
   };
-  setIdsForContract = (data: any) => {
+  setIdsForContract = (data: IIdsForContract) => {
     this.idsForContract = data;
   };
   // END :: ACTIONS

@@ -16,17 +16,6 @@ class CLientService {
   fetchSingleClient(id: string | number) {
     return clientsRepo.fetchSingleClient(id);
   }
-
-  //   editCLient(data: any) {
-  //     return clientsRepo.editUser({
-  //       id: data.id,
-  //       data: omit(data, ["id"]),
-  //     });
-  //   }
-
-  //   deleteCLient(id: number) {
-  //     return clientsRepo.deleteUser(id);
-  //   }
 }
 
 export const clientService = new CLientService();

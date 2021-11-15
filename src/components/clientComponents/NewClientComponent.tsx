@@ -35,6 +35,7 @@ const NewClientSchema = Yup.object().shape({
 
 
 const NewClientComponent: FC<{ cancel: any }> = ({ cancel }) => {
+
   const createClient = useNewClientHook();
   // var satrtData: Date | null = null;
 

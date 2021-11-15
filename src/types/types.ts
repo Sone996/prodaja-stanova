@@ -148,3 +148,52 @@ export interface IPreContract {
     note: string;
   };
 }
+
+export interface IIdsForContract {
+  apartment_id: number | string | null;
+  contract_id: number | string | null;
+  client_id: number | string | null;
+}
+
+export interface ILoggedUser {
+  date_of_creation: string;
+  date_of_update: string;
+  deleted: boolean;
+  first_name: string;
+  id: number;
+  last_name: string;
+  password: string;
+  role: string;
+  "session-id": string;
+  username: string;
+}
+
+export interface IPotentialBuyers {
+  apartment_id: number;
+  client_id: number;
+  contract_id: number;
+  date_of_creation: string;
+  email: string;
+  name: string;
+  phone: string;
+}
+
+export interface ISingleCLientContracts {
+  apartment_id: number;
+  approved: boolean;
+  client_id: number;
+  contract_id: number;
+  contract_number: string;
+  date_of_creation: string;
+  signed: boolean;
+  status: string;
+}
+
+export interface IChooseExistingClientModal {
+  address: string;
+  email: string;
+  id: number;
+  name: string;
+  phone: string;
+  type: string;
+}

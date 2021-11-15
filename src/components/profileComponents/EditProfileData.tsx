@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ILoggedUser } from "../../types/types";
+import { ILoggedUser, INewUserModal } from "../../types/types";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import InputAndLabel from "../ui/InputAndLabel";
@@ -18,10 +18,7 @@ const ProfileSchema = Yup.object().shape({
     .min(4, "Potrebno je 4 - 30 karaktera")
     .max(30, "Potrebno je 4 - 30 karaktera")
     .required("Polje je obavezno"),
-  password: Yup.string()
-    .min(4, "Potrebno je 4 - 15 karaktera")
-    .max(15, "Potrebno je 4 - 15 karaktera")
-    .required("Polje je obavezno"),
+  password: Yup.string().required("Polje je obavezno"),
 });
 
 const EditProfileData: FC<{ oldData: ILoggedUser }> = ({ oldData }) => {
@@ -35,7 +32,7 @@ const EditProfileData: FC<{ oldData: ILoggedUser }> = ({ oldData }) => {
     role: oldData.role,
   };
 
-  const sendData = (data: any) => {
+  const sendData = (data: INewUserModal) => {
     editUser.mutate(data);
   };
 

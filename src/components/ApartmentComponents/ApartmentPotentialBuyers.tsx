@@ -3,6 +3,7 @@ import { FC } from "react";
 import { useHistory } from "react-router";
 import { RootStore } from "../../clientStore";
 import useFetchContracyByApartment from "../../customHooks/contractHooks/useFetchContracyByApartment";
+import { IPotentialBuyers } from "../../types/types";
 import Scroll from "../ui/Scroll";
 import SimpleTable from "../ui/SimpleTable";
 
@@ -24,7 +25,8 @@ const ApartmentPotentialBuyers: FC = observer(() => {
   const contracts = useFetchContracyByApartment(id);
 
   // eslint-disable-next-line
-  const singleView = (item: any) => {
+  const singleView = (item: IPotentialBuyers) => {
+    console.log(item)
     saveFormsModule.setIdsForContract({
       apartment_id: item.apartment_id,
       contract_id: item.contract_id,

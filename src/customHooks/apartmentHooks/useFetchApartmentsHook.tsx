@@ -17,9 +17,6 @@ const useFetchApartmentsHook = (filters: {
     onError: (err: AxiosError) => {
       errorMsg(notificationMsg(err, null));
     },
-    onSettled: (val: any) => {
-      //   parseApartments(val);
-    },
   });
 };
 

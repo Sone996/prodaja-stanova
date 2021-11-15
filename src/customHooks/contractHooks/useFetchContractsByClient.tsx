@@ -33,7 +33,6 @@ const useFetchContracyByClient = (id: string) => {
       errorMsg(notificationMsg(err, null));
     },
     onSettled: (val: any) => {
-      // console.log(val)
       parseContacts(val);
     },
   });

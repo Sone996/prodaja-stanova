@@ -28,16 +28,6 @@ class ClientsRepo {
     const URL = `${ROUTES.CLIENTS}/${id}`;
     return api.get(URL);
   }
-
-  //   editClient(data: any) {
-  //     const URL = `${ROUTES.CLIENTS}/${data.id}`;
-  //     return api.patch(URL, data.data);
-  //   }
-
-  //   deleteClient(id: number) {
-  //     const URL = `${ROUTES.CLIENTS}/${id}`;
-  //     return api.delete(URL);
-  //   }
 }
 
 export const clientsRepo = new ClientsRepo();

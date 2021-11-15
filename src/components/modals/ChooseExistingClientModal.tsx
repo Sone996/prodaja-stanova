@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { RootStore } from "../../clientStore";
 import useFetchClientsHook from "../../customHooks/ClientHooks/useFetchClientHook";
+import { IChooseExistingClientModal } from "../../types/types";
 import Scroll from "../ui/Scroll";
 import SimpleTable from "../ui/SimpleTable";
 
@@ -10,7 +11,7 @@ const ChooseExistingClientModal: FC = () => {
   const { appStore } = RootStore();
   const clients = useFetchClientsHook(null);
 
-  const singleView = (item: any) => {
+  const singleView = (item: IChooseExistingClientModal) => {
     appStore.setModal("add-contract-modal", true, item.id);
   };
 

@@ -1,14 +1,17 @@
 import { FC } from "react";
 import Select from "react-select";
+import { ISelectOption } from "../../types/types";
 
-const defaultValue = (options: any, value: any) => {
-  return options ? options.find((option: any) => option.value === value) : "";
+const defaultValue = (options: ISelectOption[], value: string) => {
+  return options
+    ? options.find((option: ISelectOption) => option.value === value)
+    : "";
 };
 
 const SelectAndLabel: FC<any> = ({ label, onChange, options, value }) => {
   return (
     <div>
-        <span>{label}</span>
+      <span>{label}</span>
       <Select
         value={defaultValue(options, value)}
         onChange={(value) => {

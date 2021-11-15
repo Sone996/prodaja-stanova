@@ -31,13 +31,13 @@ export class FiltersStore {
   // END :: COMPUTED
 
   //   ACTIONS
-  setApartmentFilters = (data: any) => {
+  setApartmentFilters = (data: { status: string; square_footage: string }) => {
     this.apartmentFilters = data;
   };
-  setApartmentSortByPrice = (data: any) => {
+  setApartmentSortByPrice = (data: boolean) => {
     this.apartmentSortByPrice = data;
   };
-  setClientFilters = (data: any) => {
+  setClientFilters = (data: IClientFilters) => {
     this.clientFilters = data;
   };
   // END :: ACTIONS

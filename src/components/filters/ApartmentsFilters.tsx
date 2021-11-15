@@ -3,9 +3,12 @@ import { FC, useState } from "react";
 import { RootStore } from "../../clientStore";
 import { statusOptions } from "../../constants/Constants";
 import Select from "react-select";
+import { ISelectOption } from "../../types/types";
 
-const defaultValue = (options: any, value: any) => {
-  return options ? options.find((option: any) => option.value === value) : "";
+const defaultValue = (options: ISelectOption[], value: string) => {
+  return options
+    ? options.find((option: ISelectOption) => option.value === value)
+    : "";
 };
 
 const ApartmentsFilters: FC = observer(() => {
@@ -26,6 +29,7 @@ const ApartmentsFilters: FC = observer(() => {
   };
 
   const handleSelect = (val: any) => {
+    console.log(val)
     setForm({ ...form, status: val === null ? "" : val.value });
   };
 

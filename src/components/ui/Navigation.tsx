@@ -1,12 +1,14 @@
 import { FC, useState } from "react";
 import { useQueryClient } from "react-query";
+import { ILoggedUser } from "../../types/types";
 import NavigationDropdown from "./NavigationDropdown";
 
 const Navigation: FC<{ toggle: (val: string) => void; activeTab: string }> = ({
   toggle,
   activeTab,
 }) => {
-  const loggedUser: any = useQueryClient().getQueryData("activeUser");
+  const loggedUser: ILoggedUser | undefined =
+    useQueryClient().getQueryData("activeUser");
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const openMenu = () => {
@@ -25,7 +27,7 @@ const Navigation: FC<{ toggle: (val: string) => void; activeTab: string }> = ({
         >
           Stanovi
         </span>
-        {loggedUser.role === "admin" && (
+        {loggedUser?.role === "admin" && (
           <span
             onClick={() => toggle("Klijenti")}
             className={`hover:text-lightBlue cursor-pointer rounded-md p-3 mx-2 ${
@@ -49,7 +51,7 @@ const Navigation: FC<{ toggle: (val: string) => void; activeTab: string }> = ({
           <div className="relative bottom-0 right-0">
             <NavigationDropdown
               status={isMenuOpen}
-              loggedUser={loggedUser.username}
+              loggedUser={loggedUser!.username}
             />
           </div>
         </span>

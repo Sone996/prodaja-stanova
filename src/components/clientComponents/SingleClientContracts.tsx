@@ -3,6 +3,7 @@ import { FC } from "react";
 import { useHistory } from "react-router-dom";
 import { RootStore } from "../../clientStore";
 import useFetchContracyByClient from "../../customHooks/contractHooks/useFetchContractsByClient";
+import { ISingleCLientContracts } from "../../types/types";
 import Scroll from "../ui/Scroll";
 import SimpleTable from "../ui/SimpleTable";
 
@@ -25,7 +26,8 @@ const SingleClientContracts: FC = observer(() => {
   const contracts = useFetchContracyByClient(id);
 
   // eslint-disable-next-line
-  const singleView = (item: any) => {
+  const singleView = (item: ISingleCLientContracts) => {
+    console.log(item)
     saveFormsModule.setIdsForContract({
       apartment_id: item.apartment_id,
       contract_id: item.contract_id,

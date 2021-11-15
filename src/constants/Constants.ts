@@ -38,6 +38,11 @@ export const CustomerApartmentStatus: ISelectOption[] = [
   { value: "purchased", label: "Kupio" },
 ];
 
+export const CustomerContractOptions: ISelectOption[] = [
+  { value: "potential", label: "Potencijalni" },
+  { value: "reserved", label: "Rezervisao" },
+];
+
 export const PaymentMethodEnum: ISelectOption[] = [
   { value: "cash", label: "Keš" },
   { value: "credit", label: "Kredit" },

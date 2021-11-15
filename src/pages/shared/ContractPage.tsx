@@ -1,31 +1,34 @@
 import { FC } from "react";
+import { observer } from "mobx-react-lite";
+import { RootStore } from "../../clientStore";
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import InputAndLabel from "../../components/ui/InputAndLabel";
 import SelectAndLabel from "../../components/ui/SelectAndLabel";
 import {
-  CustomerApartmentStatus,
+  CustomerContractOptions,
   PaymentMethodEnum,
 } from "../../constants/Constants";
 import useFetchContract from "../../customHooks/contractHooks/useFetchContract";
-import { observer } from "mobx-react-lite";
-import { RootStore } from "../../clientStore";
 import { useEditContractHook } from "../../customHooks/contractHooks/UseEditContractHook";
+import { useQueryClient } from "react-query";
+import { IEditContract, ILoggedUser } from "../../types/types";
 
 const ProfileSchema = Yup.object().shape({
   price: Yup.string().required("Polje je obavezno"),
 });
 
 const ContractPage: FC = observer(() => {
+  const loggedUser: ILoggedUser | undefined =
+    useQueryClient().getQueryData("activeUser");
   const { saveFormsModule } = RootStore();
   const contract = useFetchContract(saveFormsModule.getIdsForContract);
   const makeContract = useEditContractHook();
 
-  const sendData = (data: any) => {
+  const sendData = (data: IEditContract) => {
     makeContract.mutate(data);
   };
 
-  //   dodaj validaciju obrisi komentare i stavi tipove, i posle prodaje vrati se korak nazad
   return (
     <div className="flex flex-col w-full p-4 text-gray-700">
       <div className="felx w-full mb-4 text-2xl">Detalji ugovora</div>
@@ -41,7 +44,7 @@ const ContractPage: FC = observer(() => {
             validationSchema={ProfileSchema}
           >
             {({ errors, touched, isValid, dirty, values, setFieldValue }) => (
-              <Form>
+              <Form autoComplete="off">
                 <SelectAndLabel
                   label="Način plaćanja"
                   value={values.payment_method}
@@ -53,18 +56,24 @@ const ContractPage: FC = observer(() => {
                 <SelectAndLabel
                   label="Status"
                   value={values.status}
-                  options={CustomerApartmentStatus}
+                  options={CustomerContractOptions}
                   onChange={(value: any) => {
                     setFieldValue("status", value.value);
                   }}
                 />
                 <div className="felx my-2">
-                  <label>
-                    <Field type="checkbox" name="approved" />
-                    {`${
-                      values.approved === true ? "Odobreno" : "Nije odobreno"
-                    }`}
-                  </label>
+                  {loggedUser?.role === "admin" ? (
+                    <span>
+                      {values.approved === true ? "Odobreno" : "Nije odobreno"}
+                    </span>
+                  ) : (
+                    <label>
+                      <Field type="checkbox" name="approved" />
+                      {`${
+                        values.approved === true ? "Odobreno" : "Nije odobreno"
+                      }`}
+                    </label>
+                  )}
                 </div>
                 <div className="flex my-2">
                   <label>

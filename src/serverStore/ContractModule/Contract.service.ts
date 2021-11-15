@@ -1,5 +1,5 @@
 import { omit } from "lodash";
-import { IPreContract } from "../../types/types";
+import { IEditContract, IPreContract } from "../../types/types";
 import { contractRepo } from "./Contract.repo";
 
 class ContractService {
@@ -27,7 +27,26 @@ class ContractService {
     });
   }
 
-  editContract(data: any) {
+  editContract(data: IEditContract) {
+    if (data.user.role === "admin") {
+      return contractRepo.editContract({
+        apartmentId: data.apartment.id,
+        clientId: data.customer.id,
+        contractId: data.id,
+        data: omit(data, [
+          "apartment",
+          "contract_number",
+          "customer",
+          "date_of_creation",
+          "date_of_update",
+          "deleted",
+          "first_visit",
+          "id",
+          "user",
+          "approved",
+        ]),
+      });
+    }
     return contractRepo.editContract({
       apartmentId: data.apartment.id,
       clientId: data.customer.id,

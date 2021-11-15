@@ -26,7 +26,6 @@ const ApartmentPotentialBuyers: FC = observer(() => {
 
   // eslint-disable-next-line
   const singleView = (item: IPotentialBuyers) => {
-    console.log(item)
     saveFormsModule.setIdsForContract({
       apartment_id: item.apartment_id,
       contract_id: item.contract_id,
@@ -37,7 +36,6 @@ const ApartmentPotentialBuyers: FC = observer(() => {
 
   const addNewBuyer = () => {
     appStore.setModal("add-new-client-modal", true, null);
-    console.log("add new buyer");
   };
 
   const chooseBuyer = () => {

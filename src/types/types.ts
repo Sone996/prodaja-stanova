@@ -197,3 +197,33 @@ export interface IChooseExistingClientModal {
   phone: string;
   type: string;
 }
+
+export interface IFullUser {
+  date_of_creation: Date;
+  date_of_update: Date;
+  deleted: boolean;
+  first_name: string;
+  id: number;
+  last_name: string;
+  password: string;
+  role: string;
+  username: string;
+}
+
+export interface IEditContract {
+  apartment: IApartmenttt;
+  approved: boolean;
+  contract_number: string;
+  customer: IFullClient;
+  date_of_creation: Date;
+  date_of_update: Date;
+  deleted: boolean;
+  first_visit: string;
+  id: number;
+  note: string;
+  payment_method: string;
+  price: number;
+  signed: boolean;
+  status: string;
+  user: IFullUser;
+}

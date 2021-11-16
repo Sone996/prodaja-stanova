@@ -4,8 +4,11 @@ import { INewUserModal } from "../../types/types";
 import { usersRepo } from "./Users.repo";
 
 class UsersService {
-  fetchUsers() {
-    return usersRepo.fetchUsers();
+  fetchUsers(filters: { id: string | null; role: string | null }) {
+    if (filters.id === null && filters.role === null) {
+      return usersRepo.fetchUsers(null);
+    }
+    return usersRepo.fetchUsers(filters);
   }
 
   newUser(data: INewUserModal) {

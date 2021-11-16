@@ -1,4 +1,5 @@
 import { api } from "../../api/Api";
+import queryString from "query-string";
 import { INewUserModal } from "../../types/types";
 
 const ROUTES = {
@@ -6,8 +7,16 @@ const ROUTES = {
 };
 
 class UsersRepo {
-  fetchUsers() {
-    return api.get(ROUTES.USER);
+  fetchUsers(filters: { id: string | null; role: string | null } | null) {
+    if (filters === null) {
+      return api.get(ROUTES.USER);
+    }
+    const query = queryString.stringify(filters, {
+      skipNull: true,
+      skipEmptyString: true,
+    });
+    const URL = `${ROUTES.USER}?${query}`;
+    return api.get(URL);
   }
 
   newUser(data: INewUserModal) {

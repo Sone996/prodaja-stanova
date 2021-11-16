@@ -11,7 +11,7 @@ import { IUserForEdit } from "../../types/types";
 const titles = ["Id", "Ime", "Prezime", "Rola", "Korisničko ime"];
 
 const Users: FC = observer(() => {
-  const { appStore } = RootStore();
+  const { appStore, filtersModule } = RootStore();
   const addUser = () => {
     appStore.setModal("new-user-modal", true, null);
   };
@@ -19,7 +19,7 @@ const Users: FC = observer(() => {
     appStore.setModal("new-user-modal", true, item);
   };
 
-  let users = useFetchUseresHook();
+  let users = useFetchUseresHook(filtersModule.getUserFilters);
 
   return (
     <div className="flex flex-col h-full w-full bg-gray-200">

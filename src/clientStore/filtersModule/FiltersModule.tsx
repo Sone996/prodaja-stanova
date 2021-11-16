@@ -1,14 +1,22 @@
 import { makeAutoObservable } from "mobx";
-import { IClientFilters } from "../../types/types";
+import {
+  IApartmentFilters,
+  IClientFilters,
+  IUserFilters,
+} from "../../types/types";
 
 export class FiltersStore {
   // STATE
-  apartmentFilters: { status: string; square_footage: string } = {
+  apartmentFilters: IApartmentFilters = {
     status: "",
     square_footage: "",
   };
   clientFilters: IClientFilters = {
     type: "",
+    id: "",
+  };
+  userFilters: IUserFilters = {
+    role: "",
     id: "",
   };
   apartmentSortByPrice = false;
@@ -28,6 +36,10 @@ export class FiltersStore {
   get getClientFilters() {
     return this.clientFilters;
   }
+
+  get getUserFilters() {
+    return this.userFilters;
+  }
   // END :: COMPUTED
 
   //   ACTIONS
@@ -39,6 +51,9 @@ export class FiltersStore {
   };
   setClientFilters = (data: IClientFilters) => {
     this.clientFilters = data;
+  };
+  setUserFilters = (data: IUserFilters) => {
+    this.userFilters = data;
   };
   // END :: ACTIONS
 }

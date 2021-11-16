@@ -2,17 +2,15 @@ import { omit } from "lodash";
 import { apartmentRepo } from "./Apartment.repo";
 
 class ApartmentService {
-
-
-
-  fetchApartments(filters: any) {
+  fetchApartments(filters: {
+    status: null | string;
+    square_footage: null | string;
+  }) {
     if (filters.status === null && filters.square_footage === null) {
       return apartmentRepo.fetchApartments(null);
     }
     return apartmentRepo.fetchApartments(filters);
   }
-
-
 
   fetchSingleApartment(id: string) {
     return apartmentRepo.fetchSingleApartment(id);

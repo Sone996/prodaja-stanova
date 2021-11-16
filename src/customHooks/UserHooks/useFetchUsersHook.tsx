@@ -4,7 +4,10 @@ import { usersService } from "../../serverStore/UsersModule/Users.service";
 import { notificationMsg } from "../../services/BaseService";
 import { errorMsg } from "../../services/MessageDisplayHandler";
 
-const useFetchUseresHook = () => {
+const useFetchUseresHook = (filters: {
+  id: string | null;
+  role: string | null;
+}) => {
   const parseUsers = (data: any) => {
     let users = data.data;
     users.forEach((user: {}, i: number) => {
@@ -20,11 +23,11 @@ const useFetchUseresHook = () => {
   };
 
   const fetchUsers = async () => {
-    const res = await usersService.fetchUsers();
+    const res = await usersService.fetchUsers(filters);
     return res;
   };
 
-  return useQuery("users", fetchUsers, {
+  return useQuery(["users", filters], fetchUsers, {
     onError: (err: AxiosError) => {
       if (err && err.response) {
         errorMsg(notificationMsg(err, null));

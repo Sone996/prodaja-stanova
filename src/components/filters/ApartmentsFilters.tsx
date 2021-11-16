@@ -29,7 +29,6 @@ const ApartmentsFilters: FC = observer(() => {
   };
 
   const handleSelect = (val: any) => {
-    console.log(val)
     setForm({ ...form, status: val === null ? "" : val.value });
   };
 

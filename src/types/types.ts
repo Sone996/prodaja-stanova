@@ -135,9 +135,19 @@ export interface IUserForEdit {
   username: string;
 }
 
+export interface IApartmentFilters {
+  status: string;
+  square_footage: string;
+}
+
 export interface IClientFilters {
   id: string;
   type: string;
+}
+
+export interface IUserFilters {
+  id: string;
+  role: string;
 }
 
 export interface IPreContract {

@@ -24,7 +24,6 @@ const ApartmentPotentialBuyers: FC = observer(() => {
   let id = x[x.length - 1];
   const contracts = useFetchContracyByApartment(id);
 
-  // eslint-disable-next-line
   const singleView = (item: IPotentialBuyers) => {
     saveFormsModule.setIdsForContract({
       apartment_id: item.apartment_id,

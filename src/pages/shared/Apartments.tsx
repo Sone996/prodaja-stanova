@@ -33,6 +33,7 @@ const Apartments: FC = observer(() => {
         );
       }
     }
+    // eslint-disable-next-line
   }, [filtersModule.getApartmentSortByPrice, apartments.data]);
   // END :: SORT
 

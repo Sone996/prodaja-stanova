@@ -97,7 +97,7 @@ const NotFinishedSalesReport: FC = () => {
           ) : report.isError ? (
             <div>{report.error.message}</div>
           ) : report.data.length === 0 ? (
-            <div className="flex justify-center text-xl">nema podataka za ove parametre</div>
+            <div className="flex justify-center text-xl">Nema podataka za ove parametre</div>
           ) : (
             <Scroll>
               <SimpleTable

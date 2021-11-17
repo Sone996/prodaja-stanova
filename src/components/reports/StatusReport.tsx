@@ -28,10 +28,10 @@ const StatusReport: FC = () => {
   return (
     <div className="flex flex-col">
       <div className="flex items-center pl-6 py-2">
-        <span className="text-2xl">Izvetšaj o broju stanova po statusima</span>
+        <span className="text-2xl">Izveštaj o broju stanova po statusima</span>
       </div>
       <div className="flex w-1/2 border ml-6 px-6 py-2 items-center">
-          <span className="mr-4">Datum od-do:</span>
+        <span className="mr-4">Datum od-do:</span>
         <DatePicker
           className="border rounded py-2 border-gray-300 text-center text-gray-700"
           selectsRange={true}

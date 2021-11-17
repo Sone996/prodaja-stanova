@@ -29,7 +29,7 @@ const SoledApartmentsReport: FC = () => {
     <div className="flex flex-col">
       <div className="flex items-center pl-6 py-2">
         <span className="text-2xl">
-          Izvestaj o broju prodatih stanova za period i razlika predvidjene i
+          Izveštaj o broju prodatih stanova za period i razlika predvidjene i
           dogovorene cene
         </span>
       </div>

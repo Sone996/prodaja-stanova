@@ -25,7 +25,6 @@ const SingleClientContracts: FC = observer(() => {
   let id = x[x.length - 1];
   const contracts = useFetchContracyByClient(id);
 
-  // eslint-disable-next-line
   const singleView = (item: ISingleCLientContracts) => {
     console.log(item)
     saveFormsModule.setIdsForContract({

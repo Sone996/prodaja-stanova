@@ -62,7 +62,7 @@ const FinishedSalesReport: FC = () => {
     <div className="flex flex-col h-screen w-full">
       <div className="flex justify-between w-full">
         <span className="text-2xl px-6 py-2">
-          Izveštaj o ostvarenim kupovinama jednog klijenta za period
+        Izveštaj o ostvarenim kupovinama jednog klijenta za period
         </span>
       </div>
       <div className="flex items-center w-full justify-center">
@@ -104,7 +104,7 @@ const FinishedSalesReport: FC = () => {
             <div>{report.error.message}</div>
           ) : report.data.lenght === 0 ? (
             <div className="flex justify-center text-xl">
-              nema podataka za ove parametre
+              Nema podataka za ove parametre
             </div>
           ) : (
             <Scroll>

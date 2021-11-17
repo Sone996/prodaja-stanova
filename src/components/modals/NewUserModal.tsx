@@ -107,7 +107,7 @@ const NewUserModal: FC = observer(() => {
                 type="text"
               />
               <InputAndLabel
-                label="Prezim"
+                label="Prezime"
                 name="last_name"
                 errors={{
                   errors: errors.last_name,

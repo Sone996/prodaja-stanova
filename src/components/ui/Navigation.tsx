@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { useQueryClient } from "react-query";
+import { useHistory } from "react-router";
 import { ILoggedUser } from "../../types/types";
 import NavigationDropdown from "./NavigationDropdown";
 
@@ -10,9 +11,15 @@ const Navigation: FC<{ toggle: (val: string) => void; activeTab: string }> = ({
   const loggedUser: ILoggedUser | undefined =
     useQueryClient().getQueryData("activeUser");
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const history = useHistory();
 
   const openMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const openReports = () => {
+    toggle("Izveštaji");
+    history.push("/reports");
   };
 
   return (
@@ -45,7 +52,14 @@ const Navigation: FC<{ toggle: (val: string) => void; activeTab: string }> = ({
         >
           Korisnici
         </span>
-
+        <span
+          onClick={openReports}
+          className={`hover:text-lightBlue cursor-pointer rounded-md p-3 mx-2 ${
+            activeTab === "Izveštaji" ? "text-lightBlue" : null
+          }`}
+        >
+          Izveštaji
+        </span>
         <span onClick={openMenu} className="cursor-pointer text-right">
           IME I PREZIME
           <div className="relative bottom-0 right-0">

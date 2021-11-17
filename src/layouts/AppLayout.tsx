@@ -15,6 +15,7 @@ import SingleClient from "../pages/shared/SingleClient";
 import ChooseExistingClientModal from "../components/modals/ChooseExistingClientModal";
 import AddContractModal from "../components/modals/AddContractModal";
 import ContractPage from "../pages/shared/ContractPage";
+import ReportsPage from "../pages/shared/ReportsPage";
 
 const AppLayout: FC = observer(() => {
   const { appStore } = RootStore();
@@ -65,6 +66,7 @@ const AppLayout: FC = observer(() => {
         <Route path="/new-apartment" component={NewApartment} />
         <Route path="/client/:id" component={SingleClient} />
         <Route path="/contract" component={ContractPage} />
+        <Route path="/reports" component={ReportsPage} />
         <Route path="/">
           {activeTab === "Stanovi" ? (
             <Apartmans />

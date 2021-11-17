@@ -13,7 +13,7 @@ export const ERROR_CODES: iCodes = {
   ERR_BAD_CUSTOMER_ID: "Pogrešan Id klijenta",
   ERR_BAD_APARTMENT_ID: "Pogrešan Id stana",
   ERR_CONTRACT_ALREADY_EXISTS: "Ugovor već postoji",
-  ERR_BAD_PASSWORD_CONFIRMATION: "Loyinke se ne poklapaju",
+  ERR_BAD_PASSWORD_CONFIRMATION: "Lozinke se ne poklapaju",
   ERR_USERNAME_ALREADY_EXISTS: "Korisničko ime već postoji",
   ERR_USER_CANT_EDIT: "Korisnik ne može biti izmenjen",
   ERR_DUPLICATED_USERNAME: "Duplo korisničko ime",

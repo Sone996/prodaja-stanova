@@ -1,15 +1,13 @@
 import { FC } from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { ILogin, IRegister } from "../../types/types";
+import { IRegister } from "../../types/types";
 import InputAndLabel from "../ui/InputAndLabel";
 import { useRegisterHook } from "../../customHooks/useRegisterHook";
-import { useLoginHook } from "../../customHooks/useLoginHook";
 
 const registerFormTemplate: IRegister = {
   first_name: "",
   last_name: "",
-  role: "salesman",
   username: "",
   password: "",
   password_confirm: "",
@@ -26,18 +24,12 @@ const RegisterSchema = Yup.object().shape({
   ),
 });
 
-const RegisterComponent: FC = () => {
-  const useLogin = useLoginHook();
+const RegisterComponent: FC<{toggleForm: () => void}> = ({toggleForm}) => {
   const useRegister = useRegisterHook();
 
   const registerAction = (data: IRegister) => {
-    console.log(data)
-    let logindata: ILogin = {
-      username: data.username,
-      password: data.password,
-    };
     useRegister.mutate(data);
-    useRegister.isSuccess && useLogin.mutate(logindata);
+    toggleForm();
   };
 
   return (

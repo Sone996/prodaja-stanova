@@ -10,12 +10,14 @@ import { RootStore } from "../../clientStore";
 import { useQueryClient } from "react-query";
 
 const Apartments: FC = observer(() => {
+  const { saveFormsModule } = RootStore();
   const loggedUser: any = useQueryClient().getQueryData("activeUser");
   const { filtersModule } = RootStore();
   const history = useHistory();
   const apartments = useFetchApartmentsHook(filtersModule.getApartmentFilters);
 
   const addApartment = () => {
+    saveFormsModule.setEditApartmentDefault();
     history.push("/new-apartment");
   };
 

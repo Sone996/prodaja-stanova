@@ -18,7 +18,7 @@ const Profile: FC = () => {
       </div>
       <div className="border rounded-md w-1/2 ml-6 px-6 py-2">
         {isEdit ? (
-          <EditProfileData oldData={loggedUser} />
+          <EditProfileData oldData={loggedUser} toggleEdit={toggleEdit} />
         ) : (
           <ProfileData data={loggedUser} />
         )}

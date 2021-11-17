@@ -6,7 +6,6 @@ export interface ILogin {
 export interface IRegister {
   first_name: string;
   last_name: string;
-  role: string;
   username: string;
   password: string;
   password_confirm: string;
@@ -125,6 +124,7 @@ export interface INewUserModal {
   role: string;
   username: string;
   password: string;
+  password_confirm?: string;
 }
 
 export interface IUserForEdit {

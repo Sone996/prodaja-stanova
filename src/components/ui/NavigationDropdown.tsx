@@ -101,13 +101,12 @@ const NavigationDropdown: FC<{
 
   return (
     <div
-      className="absolute -bottom-1 right-0 transform translate-y-36 bg-gray-200
+      className="absolute -bottom-1 right-0 transform translate-y-36 bg-gray-400
             flex flex-col z-10 accountOptions rounded-md w-64"
       ref={ref}
     >
       <div className="flex flex-col text-sm py-2 px-10 border-b border-white">
         <div className="flex">
-          {/* <span className="mr-2">Signed in as</span> */}
           <span className="font-medium">{loggedUser}</span>
         </div>
       </div>

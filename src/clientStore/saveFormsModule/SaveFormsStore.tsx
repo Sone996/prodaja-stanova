@@ -39,11 +39,25 @@ export class SaveFormsStore {
 
   //   ACTIONS
   setEditApartment = (data: IApartmenttt) => {
-    console.log(data);
     this.editApartment = data;
   };
   setIdsForContract = (data: IIdsForContract) => {
     this.idsForContract = data;
+  };
+
+  setEditApartmentDefault = () => {
+    this.editApartment = {
+      id: "",
+      lamella: "",
+      square_footage: "",
+      rooms: "",
+      floor: "",
+      orientation: "",
+      balconies: "",
+      price: "",
+      status: "",
+      photo: null,
+    };
   };
   // END :: ACTIONS
 }

@@ -21,19 +21,24 @@ const ProfileSchema = Yup.object().shape({
   password: Yup.string().required("Polje je obavezno"),
 });
 
-const EditProfileData: FC<{ oldData: ILoggedUser }> = ({ oldData }) => {
+const EditProfileData: FC<{ oldData: ILoggedUser; toggleEdit: () => void }> = ({
+  oldData,
+  toggleEdit,
+}) => {
   const editUser = useEditUserHook();
   const defaultForm = {
     first_name: oldData.first_name,
     last_name: oldData.last_name,
     username: oldData.username,
     password: "",
+    password_confirm: "",
     id: oldData.id,
     role: oldData.role,
   };
 
   const sendData = (data: INewUserModal) => {
     editUser.mutate(data);
+    toggleEdit();
   };
 
   return (
@@ -75,6 +80,15 @@ const EditProfileData: FC<{ oldData: ILoggedUser }> = ({ oldData }) => {
             <InputAndLabel
               label="Lozinka"
               name="password"
+              errors={{
+                errors: errors.password,
+                touched: touched.password,
+              }}
+              type="password"
+            />
+            <InputAndLabel
+              label="Ponovi lozinku"
+              name="password_confirm"
               errors={{
                 errors: errors.password,
                 touched: touched.password,

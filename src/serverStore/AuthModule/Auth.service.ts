@@ -17,6 +17,7 @@ class AuthService {
 
   register(data: IRegister) {
     data.password = SHA512(data.password).toString();
+    data.password_confirm = SHA512(data.password_confirm).toString();
     return authRepo.register(data);
   }
 

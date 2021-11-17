@@ -60,7 +60,7 @@ const NewApartment: FC = observer(() => {
     }
     console.log("editujem");
     editApartment.mutate(data);
-    // history.push("/");
+    history.goBack();
   };
 
   const addImage = () => {
@@ -218,8 +218,6 @@ const NewApartment: FC = observer(() => {
                 onClick={clearImage}
               />
             </div>
-            {/* <span v-if="imageFileSizeError" className="text-theme-red text-xs">Morate izabrati sliku manju od 5 MB</span>
-                    <span v-if="imageFileTypeError" className="text-theme-red text-xs">Morate izabrati sliku koja je tip jpg,jpeg ili png</span> */}
           </div>
         </div>
       </div>

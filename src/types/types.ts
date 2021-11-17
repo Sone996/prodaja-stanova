@@ -237,3 +237,25 @@ export interface IEditContract {
   status: string;
   user: IFullUser;
 }
+
+export interface IDateFilters {
+  start_date: string;
+  end_date: string;
+}
+
+export interface IReportsFullFilters {
+  customer_id: string;
+  start_date: string | undefined;
+  end_date: string | undefined;
+}
+
+export interface IParsedFinishedSales {
+  contract_number: string;
+  customer_id: number;
+  customer_name: string;
+  date_of_creation: string;
+  id: number;
+  price: number;
+  user_id: number;
+  user_name: string;
+}

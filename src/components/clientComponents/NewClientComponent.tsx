@@ -1,6 +1,4 @@
 import { FC } from "react";
-// import DatePicker from "react-datepicker";
-// import { DateTime } from "luxon";
 import { IBasicClient } from "../../types/types";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
@@ -33,21 +31,13 @@ const NewClientSchema = Yup.object().shape({
     .required("Polje je obavezno"),
 });
 
-
 const NewClientComponent: FC<{ cancel: any }> = ({ cancel }) => {
-
   const createClient = useNewClientHook();
-  // var satrtData: Date | null = null;
 
   const sendData = (data: IBasicClient) => {
     createClient.mutate(data);
     cancel();
   };
-
-  // const setDate = (date: Date) => {
-  //   satrtData = date;
-  //   return date ? DateTime.fromJSDate(date).toFormat("yyyy-LL-dd") : null;
-  // };
 
   return (
     <div className="flex flex-col">
@@ -111,22 +101,6 @@ const NewClientComponent: FC<{ cancel: any }> = ({ cancel }) => {
               }}
               type="text"
             />
-            {/* <span>Datum Prve posete</span> */}
-            {/* <DatePicker
-              className="w-3/4 border rounded py-2 border-gray-300 text-center text-gray-700"
-              selected={satrtData}
-              dateFormat="dd.MM.yyyy"
-              isClearable
-              onChange={(date: Date) => {
-                setFieldValue("date_of_visit", setDate(date));
-              }}
-            /> */}
-            {/* <InputAndLabel
-              label="Napomena"
-              name="note"
-              errors={null}
-              type="text"
-            /> */}
             <div className="flex items-center justify-between w-full px-8 mt-4">
               <span
                 onClick={cancel}

@@ -21,6 +21,7 @@ export const ERROR_CODES: iCodes = {
   ERR_PRICE_NOT_APPROVED: "Cena nije odobrena",
   ERR_BAD_ROLE_FOR_APPROVING: "Ova rola nema prava da odobri ugovor",
   ERR_APARTMENT_NOT_AVAILABLE: "Stan nije dostupan",
+  ERR_NOT_VISIBLE_FOR_ROLE: "Nije dostupno ovoj roli",
 };
 
 export const SUCCESS_CODES: iCodes = {

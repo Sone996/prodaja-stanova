@@ -57,7 +57,7 @@ const ApartmentCard: FC<{ props: IApartmenttt }> = ({ props }) => {
           <div className="flex">
             <div className="flex flex-col w-1/2">
               <span className="my-1">id: {id}</span>
-              <span className="my-1">labela: {lamella}</span>
+              <span className="my-1 truncate">labela: {lamella}</span>
               <span className="my-1">Kvadratura: {square_footage}</span>
             </div>
             <div className="flex flex-col w-1/2">

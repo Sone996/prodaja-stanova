@@ -17,7 +17,8 @@ const ApartmentData: FC<{ data: IApartmenttt }> = observer(({ data }) => {
     price,
     status,
   } = data;
-  const loggedUser: ILoggedUser | undefined = useQueryClient().getQueryData("activeUser");
+  const loggedUser: ILoggedUser | undefined =
+    useQueryClient().getQueryData("activeUser");
   const { saveFormsModule } = RootStore();
   const history = useHistory();
   const editData = () => {
@@ -62,7 +63,15 @@ const ApartmentData: FC<{ data: IApartmenttt }> = observer(({ data }) => {
         </div>
       </div>
       <div className="flex w-full justify-between">
-        <span className="flex items-center px-2 py-1 font-semibold uppercase rounded-md tracking-wide text-xs bg-darkGreen text-white bg-opacity-50">
+        <span
+          className={`flex items-center px-2 py-1 font-semibold uppercase rounded-md tracking-wide text-xs text-white bg-opacity-50 ${
+            status === "available"
+              ? "bg-darkGreen"
+              : status === "sold"
+              ? "bg-darkRed"
+              : "bg-orange-200"
+          }`}
+        >
           {statusParser(status)}
         </span>
         {loggedUser?.role === "admin" && (

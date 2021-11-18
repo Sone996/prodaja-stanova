@@ -32,7 +32,7 @@ const SingleApartment: FC = () => {
               </div>
             </div>
             <div className="flex h-2/3 w-full p-2">
-              <ApartmentPotentialBuyers />
+              <ApartmentPotentialBuyers sold={apartment.data.status} />
             </div>
           </div>
         </>

@@ -17,7 +17,7 @@ const titles = [
   "Datum kreiranja",
 ];
 
-const ApartmentPotentialBuyers: FC = observer(() => {
+const ApartmentPotentialBuyers: FC<{ sold: string }> = observer(({ sold }) => {
   const { appStore, saveFormsModule } = RootStore();
   const history = useHistory();
   let x = history.location.pathname.split("/");
@@ -65,20 +65,22 @@ const ApartmentPotentialBuyers: FC = observer(() => {
           )}
         </div>
       </div>
-      <div className="flex justify-end">
-        <button
-          className="button bg-darkGreen w-1/4 text-white"
-          onClick={chooseBuyer}
-        >
-          Izaberi postojećeg
-        </button>
-        <button
-          className="button bg-blue-500 w-1/4 text-white ml-4"
-          onClick={addNewBuyer}
-        >
-          Dodaj novog kupca
-        </button>
-      </div>
+      {sold != "sold" && (
+        <div className="flex justify-end">
+          <button
+            className="button bg-darkGreen w-1/4 text-white"
+            onClick={chooseBuyer}
+          >
+            Izaberi postojećeg
+          </button>
+          <button
+            className="button bg-blue-500 w-1/4 text-white ml-4"
+            onClick={addNewBuyer}
+          >
+            Dodaj novog kupca
+          </button>
+        </div>
+      )}
     </div>
   );
 });

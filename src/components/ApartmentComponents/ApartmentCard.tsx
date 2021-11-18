@@ -39,7 +39,7 @@ const ApartmentCard: FC<{ props: IApartmenttt }> = ({ props }) => {
         </div>
         <div className="p-4">
           <span
-            className={`inline-block px-2 py-1 leading-none text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs bg-opacity-50 ${
+            className={`inline-block px-2 py-1 leading-none text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs text-white bg-opacity-50 ${
               status === "available"
                 ? "bg-darkGreen"
                 : status === "sold"

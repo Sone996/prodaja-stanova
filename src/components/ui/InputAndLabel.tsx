@@ -14,6 +14,7 @@ const InputAndLabel: FC<IInputAndLabel> = ({ label, name, errors, type }) => {
         ) : null}
       </div>
       <Field
+        autoComplete="new-password"
         className="input"
         type={type}
         name={name}

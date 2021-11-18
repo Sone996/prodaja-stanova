@@ -41,9 +41,10 @@ const ApartmentData: FC<{ data: IApartmenttt }> = observer(({ data }) => {
       ? "Dostupan"
       : data === "sold"
       ? "Prodat"
-      : "rezervisan";
+      : "Rezervisan";
   };
 
+  console.log(status);
   return (
     <>
       <div className="flex mt-4 text-gray-700">
@@ -69,7 +70,7 @@ const ApartmentData: FC<{ data: IApartmenttt }> = observer(({ data }) => {
               ? "bg-darkGreen"
               : status === "sold"
               ? "bg-darkRed"
-              : "bg-orange-200"
+              : "bg-yellow-500"
           }`}
         >
           {statusParser(status)}

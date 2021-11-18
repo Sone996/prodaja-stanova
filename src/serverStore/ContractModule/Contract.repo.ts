@@ -28,7 +28,6 @@ class ContractRepo {
   }
 
   editContract(data: any) {
-    console.log(data);
     const URL = `${ROUTES.CLIENTS}/${data.clientId}${ROUTES.APARTMENT}/${data.apartmentId}${ROUTES.CONTRACT}/${data.contractId}`;
     return api.patch(URL, data.data);
   }

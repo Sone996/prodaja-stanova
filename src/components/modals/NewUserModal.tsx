@@ -17,6 +17,7 @@ const defaultForm: INewUserModal = {
   role: "salesman",
   username: "",
   password: "",
+  password_confirm: "",
 };
 
 const NewUserSchema = Yup.object().shape({
@@ -28,10 +29,8 @@ const NewUserSchema = Yup.object().shape({
     .min(4, "Potrebno je 4 - 15 karaktera")
     .max(15, "Potrebno je 4 - 15 karaktera")
     .required("Polje je obavezno"),
-  password: Yup.string()
-    .min(4, "Potrebno je 4 - 15 karaktera")
-    .max(15, "Potrebno je 4 - 15 karaktera")
-    .required("Polje je obavezno"),
+  password: Yup.string().required("Polje je obavezno"),
+  password_confirm: Yup.string().required("Polje je obavezno"),
   username: Yup.string()
     .min(4, "Potrebno je 4 - 15 karaktera")
     .max(15, "Potrebno je 4 - 15 karaktera")
@@ -70,6 +69,7 @@ const NewUserModal: FC = observer(() => {
         username: appStore.getModal.data.username,
         role: appStore.getModal.data.role,
         password: "",
+        password_confirm: "",
       });
     }
     // eslint-disable-next-line
@@ -86,7 +86,13 @@ const NewUserModal: FC = observer(() => {
       <div className="flex flex-col w-full p-4 pt-0">
         <Formik
           initialValues={
-            appStore.getModal.data ? appStore.getModal.data : defaultForm
+            appStore.getModal.data
+              ? {
+                  ...appStore.getModal.data,
+                  password: "",
+                  password_confirm: "",
+                }
+              : defaultForm
           }
           onSubmit={(values) => {
             appStore.getModal.data
@@ -136,7 +142,16 @@ const NewUserModal: FC = observer(() => {
                 label="Lozinka"
                 name="password"
                 errors={{ errors: errors.password, touched: touched.password }}
-                type="text"
+                type="password"
+              />
+              <InputAndLabel
+                label="Ponovi lozinku"
+                name="password_confirm"
+                errors={{
+                  errors: errors.password_confirm,
+                  touched: touched.password_confirm,
+                }}
+                type="password"
               />
               <div className="flex items-center justify-between w-full mt-4">
                 <span

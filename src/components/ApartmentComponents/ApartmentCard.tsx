@@ -44,7 +44,7 @@ const ApartmentCard: FC<{ props: IApartmenttt }> = ({ props }) => {
                 ? "bg-darkGreen"
                 : status === "sold"
                 ? "bg-darkRed"
-                : "bg-orange-200"
+                : "bg-yellow-500"
             }`}
           >
             {status === "available"

@@ -12,7 +12,15 @@ class UsersService {
   }
 
   newUser(data: INewUserModal) {
-    data.password = SHA512(data.password).toString();
+    if (data.password === data.password_confirm) {
+      data.password = SHA512(data.password).toString();
+      data.password_confirm = data.password;
+    } else {
+      data.password = SHA512(data.password).toString();
+      data.password_confirm
+        ? (data.password_confirm = SHA512(data.password_confirm).toString())
+        : (data.password_confirm = data.password_confirm);
+    }
     return usersRepo.newUser(data);
   }
 

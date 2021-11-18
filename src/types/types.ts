@@ -108,7 +108,7 @@ export interface IApartmenttt {
   price: number | string;
   rooms: number | string;
   square_footage: number | string;
-  status: string;
+  status?: string;
 }
 
 export interface IModal {

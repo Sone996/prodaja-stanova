@@ -18,7 +18,6 @@ const ProfileSchema = Yup.object().shape({
     .min(4, "Potrebno je 4 - 30 karaktera")
     .max(30, "Potrebno je 4 - 30 karaktera")
     .required("Polje je obavezno"),
-  password: Yup.string().required("Polje je obavezno"),
 });
 
 const EditProfileData: FC<{ oldData: ILoggedUser; toggleEdit: () => void }> = ({
@@ -80,19 +79,13 @@ const EditProfileData: FC<{ oldData: ILoggedUser; toggleEdit: () => void }> = ({
             <InputAndLabel
               label="Lozinka"
               name="password"
-              errors={{
-                errors: errors.password,
-                touched: touched.password,
-              }}
+              errors={null}
               type="password"
             />
             <InputAndLabel
               label="Ponovi lozinku"
               name="password_confirm"
-              errors={{
-                errors: errors.password,
-                touched: touched.password,
-              }}
+              errors={null}
               type="password"
             />
             <div className="flex justify-end mt-2">

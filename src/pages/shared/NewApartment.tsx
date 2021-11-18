@@ -15,12 +15,11 @@ const defaultForm: IApartmenttt = {
   balconies: "",
   floor: "",
   lamella: "",
-  orientation: "",
+  orientation: "north",
   photo: null,
   price: "",
   rooms: "",
   square_footage: "",
-  status: "",
 };
 
 const NewApartmentSchema = Yup.object().shape({
@@ -159,14 +158,6 @@ const NewApartment: FC = observer(() => {
                     touched: touched.balconies,
                   }}
                   type="number"
-                />
-                <SelectAndLabel
-                  label="Status"
-                  value={values.status}
-                  options={statusOptions}
-                  onChange={(value: any) => {
-                    setFieldValue("status", value.value);
-                  }}
                 />
                 <InputAndLabel
                   label="Cena"

@@ -33,7 +33,20 @@ const NewUserSchema = Yup.object().shape({
   password_confirm: Yup.string().required("Polje je obavezno"),
   username: Yup.string()
     .min(4, "Potrebno je 4 - 15 karaktera")
+    .required("Polje je obavezno"),
+});
+
+const EditUserSchema = Yup.object().shape({
+  first_name: Yup.string()
+    .min(4, "Potrebno je 4 - 30 karaktera")
+    .max(30, "Potrebno je 4 - 30 karaktera")
+    .required("Polje je obavezno"),
+  last_name: Yup.string()
+    .min(4, "Potrebno je 4 - 15 karaktera")
     .max(15, "Potrebno je 4 - 15 karaktera")
+    .required("Polje je obavezno"),
+  username: Yup.string()
+    .min(4, "Potrebno je 4 - 15 karaktera")
     .required("Polje je obavezno"),
 });
 
@@ -99,7 +112,9 @@ const NewUserModal: FC = observer(() => {
               ? editUserHandler(values)
               : createUserHandler(values);
           }}
-          validationSchema={NewUserSchema}
+          validationSchema={
+            appStore.getModal.data ? EditUserSchema : NewUserSchema
+          }
         >
           {({ errors, touched, isValid, dirty, values, setFieldValue }) => (
             <Form autoComplete="off">

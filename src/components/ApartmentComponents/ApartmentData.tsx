@@ -37,14 +37,15 @@ const ApartmentData: FC<{ data: IApartmenttt }> = observer(({ data }) => {
   };
 
   const statusParser = (data: string) => {
-    return data === "available"
-      ? "Dostupan"
-      : data === "sold"
-      ? "Prodat"
-      : "Rezervisan";
+    if (data != "") {
+      return data === "available"
+        ? "Dostupan"
+        : data === "sold"
+        ? "Prodat"
+        : "Rezervisan";
+    }
   };
 
-  console.log(status);
   return (
     <>
       <div className="flex mt-4 text-gray-700">
@@ -73,9 +74,9 @@ const ApartmentData: FC<{ data: IApartmenttt }> = observer(({ data }) => {
               : "bg-yellow-500"
           }`}
         >
-          {statusParser(status)}
+          {statusParser(status ? status : "")}
         </span>
-        {loggedUser?.role === "admin" && (
+        {loggedUser?.role === "admin" && status === "available" && (
           <button
             className="button bg-blue-500 w-1/4 text-white"
             onClick={editData}

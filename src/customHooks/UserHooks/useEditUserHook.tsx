@@ -13,11 +13,11 @@ export function useEditUserHook() {
     onSuccess: (response) => {
       successMsg(notificationMsg(response, "USER_EDITED"));
       queryClient.invalidateQueries("users");
+      queryClient.invalidateQueries("activeUser");
       appStore.closeModal();
     },
     onError: (err: AxiosError) => {
       errorMsg(notificationMsg(err, null));
-      appStore.closeModal();
     },
   });
 }

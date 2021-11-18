@@ -14,7 +14,6 @@ export class SaveFormsStore {
     orientation: "",
     balconies: "",
     price: "",
-    status: "",
     photo: null,
   };
   idsForContract: IIdsForContract = {

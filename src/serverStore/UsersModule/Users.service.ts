@@ -25,10 +25,17 @@ class UsersService {
   }
 
   editUser(data: INewUserModal) {
+    if (data.password === "" || data.password_confirm === "") {
+      return usersRepo.editUser({
+        id: data.id,
+        data: omit(data, ["id", "password", "password_confirm"]),
+      });
+    }
     if (data.password === data.password_confirm) {
       data.password = SHA512(data.password).toString();
       data.password_confirm = data.password;
-    } else {
+    }
+    if (data.password !== data.password_confirm) {
       data.password = SHA512(data.password).toString();
       data.password_confirm = SHA512(data.password).toString();
     }

@@ -17,7 +17,6 @@ export function useNewUserHook() {
     },
     onError: (err: AxiosError) => {
       errorMsg(notificationMsg(err, null));
-      appStore.closeModal();
     },
   });
 }

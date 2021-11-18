@@ -6,6 +6,13 @@ import { errorMsg } from "../../services/MessageDisplayHandler";
 import { DateTime } from "luxon";
 
 const useFetchContracyByClient = (id: string) => {
+  const statusParser = (data: string) => {
+    return data === "available"
+      ? "Dostupan"
+      : data === "sold"
+      ? "Prodat"
+      : "Rezervisan";
+  };
   const parseContacts = (data: any) => {
     data.forEach((user: {}, i: number) => {
       data[i] = {
@@ -13,9 +20,9 @@ const useFetchContracyByClient = (id: string) => {
         client_id: data[i].customer.id,
         contract_id: data[i].id,
         contract_number: data[i].contract_number,
-        approved: data[i].approved,
-        status: data[i].status,
-        signed: data[i].signed,
+        approved: data[i].approved === true ? "Da" : "Ne",
+        status: statusParser(data[i].status),
+        signed: data[i].signed === true ? "Da" : "Ne",
         date_of_creation: DateTime.fromJSDate(
           new Date(data[i].date_of_creation)
         ).toFormat("yyyy-LL-dd"),

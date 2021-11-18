@@ -16,7 +16,6 @@ export function useDeleteUserHook() {
     },
     onError: (err: AxiosError) => {
       errorMsg(notificationMsg(err, null));
-      appStore.closeModal();
     },
   });
 }

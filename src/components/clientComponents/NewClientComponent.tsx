@@ -25,7 +25,13 @@ const NewClientSchema = Yup.object().shape({
   phone: Yup.number()
     .min(8, "Potrebno je minimum 9 cifara")
     .required("Polje je obavezno"),
-  pib_jmbg: Yup.number().required("Polje je obavezno"),
+  pib_jmbg: Yup.number()
+    .required("Polje je obavezno")
+    .test(
+      "len",
+      "Potrebno je 13 cifara",
+      (val) => val != undefined && val.toString().length === 13
+    ),
   address: Yup.string()
     .min(4, "Potrebno je minimum 4 karaktera")
     .required("Polje je obavezno"),
@@ -36,7 +42,6 @@ const NewClientComponent: FC<{ cancel: any }> = ({ cancel }) => {
 
   const sendData = (data: IBasicClient) => {
     createClient.mutate(data);
-    cancel();
   };
 
   return (
@@ -75,7 +80,7 @@ const NewClientComponent: FC<{ cancel: any }> = ({ cancel }) => {
               type="text"
             />
             <InputAndLabel
-              label="Br. phoneefona"
+              label="Br. telefona"
               name="phone"
               errors={{
                 errors: errors.phone,

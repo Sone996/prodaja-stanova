@@ -65,7 +65,7 @@ const ApartmentPotentialBuyers: FC<{ sold: string }> = observer(({ sold }) => {
           )}
         </div>
       </div>
-      {sold != "sold" && (
+      {sold !== "sold" && (
         <div className="flex justify-end">
           <button
             className="button bg-darkGreen w-1/4 text-white"

@@ -63,7 +63,7 @@ const Navigation: FC<{ toggle: (val: string) => void; activeTab: string }> = ({
               Izveštaji
             </span>
           ))}
-        <span onClick={openMenu} className="cursor-pointer text-right">
+        <span onClick={openMenu} className="cursor-pointer text-right" data-test="dropdown">
           {loggedUser!.username}
           <div className="relative bottom-0 right-0">
             <NavigationDropdown

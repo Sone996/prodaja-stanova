@@ -115,6 +115,7 @@ const NavigationDropdown: FC<{
           <span
             className="hover:text-lightBlue cursor-pointer text-right"
             onClick={goToProfile}
+            data-test="profile"
           >
             Profil
           </span>
@@ -124,6 +125,7 @@ const NavigationDropdown: FC<{
         <span
           onClick={handleLogOut}
           className="hover:text-lightBlue cursor-pointer text-right"
+          data-test="logout"
         >
           Odjavi se
         </span>

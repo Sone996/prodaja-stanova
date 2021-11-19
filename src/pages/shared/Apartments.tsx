@@ -47,6 +47,7 @@ const Apartments: FC = observer(() => {
             <div className="flex py-1 w-full justify-end">
               <button
                 className="button bg-blue-500 w-1/6 text-white text-2xl font-bold items-center"
+                data-test="new_apartment"
                 onClick={addApartment}
               >
                 +

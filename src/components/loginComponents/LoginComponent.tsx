@@ -55,6 +55,7 @@ const LoginComponent: FC = () => {
             <button
               disabled={!(isValid && dirty)}
               type="submit"
+              data-test="login_button"
               className={`button bg-blue-500 w-full text-white mt-6 ${
                 !(isValid && dirty) ? "opacity-25 pointer-events-none" : null
               }`}

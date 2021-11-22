@@ -30,14 +30,14 @@ const NewClientSchema = Yup.object().shape({
     .test(
       "len",
       "Potrebno je 13 cifara",
-      (val) => val != undefined && val.toString().length === 13
+      (val) => val !== undefined && val.toString().length === 13
     ),
   address: Yup.string()
     .min(4, "Potrebno je minimum 4 karaktera")
     .required("Polje je obavezno"),
 });
 
-const NewClientComponent: FC<{ cancel: any }> = ({ cancel }) => {
+const NewClientComponent: FC<{ cancel: () => void }> = ({ cancel }) => {
   const createClient = useNewClientHook();
 
   const sendData = (data: IBasicClient) => {

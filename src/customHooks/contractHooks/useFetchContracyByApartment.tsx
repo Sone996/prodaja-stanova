@@ -31,7 +31,7 @@ const useFetchContracyByApartment = (id: string) => {
     onError: (err: AxiosError) => {
       errorMsg(notificationMsg(err, null));
     },
-    onSettled: (val: any) => {
+    onSettled: (val) => {
       parseContacts(val);
     },
   });

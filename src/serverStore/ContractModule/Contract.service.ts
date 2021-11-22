@@ -1,5 +1,5 @@
 import { omit } from "lodash";
-import { IEditContract, IPreContract } from "../../types/types";
+import { IEditContract, IIdsForContract, IPreContract } from "../../types/types";
 import { contractRepo } from "./Contract.repo";
 
 class ContractService {
@@ -19,7 +19,7 @@ class ContractService {
     return contractRepo.fetchContractsForClient(id);
   }
 
-  fetchContract(data: any) {
+  fetchContract(data: IIdsForContract) {
     return contractRepo.fetchContract({
       apartmentId: data.apartment_id,
       clientId: data.client_id,

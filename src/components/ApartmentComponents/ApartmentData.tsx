@@ -37,7 +37,7 @@ const ApartmentData: FC<{ data: IApartmenttt }> = observer(({ data }) => {
   };
 
   const statusParser = (data: string) => {
-    if (data != "") {
+    if (data !== "") {
       return data === "available"
         ? "Dostupan"
         : data === "sold"

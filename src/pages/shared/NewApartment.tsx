@@ -173,6 +173,7 @@ const NewApartment: FC = observer(() => {
                         : null
                     }`}
                     type="submit"
+                    data-test="submit-apartment"
                   >
                     {saveFormsModule.getEditApartment.price !== ""
                       ? "Izmeni stan"
@@ -195,6 +196,7 @@ const NewApartment: FC = observer(() => {
                 ref={ref}
                 id="selectedFile"
                 style={{ display: "none" }}
+                data-test="upload-image"
                 onChange={uploadImage}
               />
               <input

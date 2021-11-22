@@ -42,7 +42,10 @@ const Apartments: FC = observer(() => {
   return (
     <div className="relative h-full w-full">
       <Scroll>
-        <div className="antialiased bg-gray-200 text-gray-900 font-sans p-6">
+        <div
+          data-test="apartments-page"
+          className="antialiased bg-gray-200 text-gray-900 font-sans p-6"
+        >
           {loggedUser.role === "admin" && (
             <div className="flex py-1 w-full justify-end">
               <button
@@ -62,11 +65,12 @@ const Apartments: FC = observer(() => {
               ) : apartments.isError ? (
                 <div>{apartments.error.message}</div>
               ) : (
-                apartments.data.map((apartment: IApartmenttt) => {
+                apartments.data.map((apartment: IApartmenttt, index: number) => {
                   return (
                     <ApartmentCard
                       key={apartment.id}
                       props={{ ...apartment }}
+                      index={index}
                     />
                   );
                 })

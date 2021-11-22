@@ -46,7 +46,7 @@ const AppLayout: FC = observer(() => {
   // END :: modal logic
 
   return (
-    <div className="flex flex-col w-full h-full">
+    <div className="flex flex-col w-full h-full" data-test="layout">
       {/* MODALS */}
       {appStore.getModal.status ? (
         <div className="fixed top-0 left-0 h-screen w-screen flex modal">

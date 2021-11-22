@@ -1,5 +1,14 @@
 /// <reference types="cypress" />
 
+const card = [
+  { name: "lamella", value: 2 },
+  { name: "square_footage", value: 80 },
+  { name: "rooms", value: 3 },
+  { name: "floor", value: 4 },
+  { name: "balconies", value: 2 },
+  { name: "price", value: 80000 },
+];
+
 describe("custom test", () => {
   beforeEach(() => {
     cy.visit("/login");
@@ -17,14 +26,15 @@ describe("custom test", () => {
     cy.dataTest("login_button").click();
     // add new apartment
     cy.dataTest("new_apartment").click();
-    cy.dataTest("data_lamella").type("2");
-    cy.dataTest("data_square_footage").type("100");
-    cy.dataTest("data_rooms").type("3");
-    cy.dataTest("data_floor").type("4");
+    cy.wrap(card).each((item: { name: string; value: string }) => {
+      cy.dataTest(`data_${item.name}`).type(item.value);
+    });
     cy.get(".css-b62m3t-container").click();
     cy.contains("Zapad").click();
-    cy.dataTest("data_balconies").type("2");
-    cy.dataTest("data_price").type("130000");
-    cy.dataTest("add-image").click();
+    cy.dataTest("upload-image").attachFile("stan3.jpg");
+    cy.dataTest("submit-apartment").click();
+    cy.wait(1000);
+    // check if new apartment is in list
+    cy.checkApartmentCard(card);
   });
 });

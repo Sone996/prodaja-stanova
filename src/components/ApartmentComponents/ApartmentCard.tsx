@@ -2,7 +2,10 @@ import { FC } from "react";
 import { useHistory } from "react-router";
 import { IApartmenttt } from "../../types/types";
 
-const ApartmentCard: FC<{ props: IApartmenttt }> = ({ props }) => {
+const ApartmentCard: FC<{ props: IApartmenttt; index: number }> = ({
+  props,
+  index,
+}) => {
   const {
     id,
     lamella,
@@ -24,6 +27,7 @@ const ApartmentCard: FC<{ props: IApartmenttt }> = ({ props }) => {
     <div className="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
       <span
         className="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden cursor-pointer"
+        data-test={`apartment-card-${index}`}
         onClick={singleApartment}
       >
         <div className="relative pb-48 overflow-hidden">
@@ -57,17 +61,32 @@ const ApartmentCard: FC<{ props: IApartmenttt }> = ({ props }) => {
           <div className="flex">
             <div className="flex flex-col w-1/2">
               <span className="my-1">id: {id}</span>
-              <span className="my-1 truncate">labela: {lamella}</span>
-              <span className="my-1">Kvadratura: {square_footage}</span>
+              <span className="my-1 truncate" data-test="lamella">
+                lamela: {lamella}
+              </span>
+              <span className="my-1" data-test="square_footage">
+                Kvadratura: {square_footage}
+              </span>
             </div>
             <div className="flex flex-col w-1/2">
-              <span className="my-1">br. soba: {rooms}</span>
-              <span className="my-1">sprat: {floor}</span>
-              <span className="my-1">terase: {balconies}</span>
+              <span className="my-1" data-test="rooms">
+                br. soba: {rooms}
+              </span>
+              <span className="my-1" data-test="floor">
+                sprat: {floor}
+              </span>
+              <span className="my-1" data-test="balconies">
+                terase: {balconies}
+              </span>
             </div>
           </div>
           <div className="flex justify-end">
-            <span className="text-lg font-bold text-darkGreen">{price}€</span>
+            <span
+              className="text-lg font-bold text-darkGreen"
+              data-test="price"
+            >
+              {price}€
+            </span>
           </div>
         </div>
       </span>

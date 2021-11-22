@@ -1,3 +1,4 @@
+import "cypress-file-upload";
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -28,6 +29,14 @@ Cypress.Commands.add("dataTest", (value) => {
   return cy.get(`[data-test=${value}]`);
 });
 
-// Cypress.Commands.add("dataTest", (value) => {
-//   return cy.get(`[data-test=${value}]`);
-// });
+Cypress.Commands.add("checkApartmentCard", (card) => {
+  return cy.wrap(card).each((item: any) => {
+    return cy
+      .dataTest("apartments-page")
+      .find("[data-test=apartment-card-0]")
+      .should("be.visible")
+      .find(`[data-test=${item.name}]`)
+      .contains(item.value)
+      .should("be.visible");
+  });
+});

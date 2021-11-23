@@ -2,9 +2,7 @@ import { TOKEN_LS_NAME } from "../constants/Constants";
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  // baseURL: process.env.VUE_APP_API_PATH
-  baseURL: "http://192.168.1.139:5000/",
-  // baseURL: "http://192.168.1.24:5000/",
+  baseURL: process.env.REACT_APP_API_PATH,
 });
 
 axiosInstance.interceptors.request.use((config) => {

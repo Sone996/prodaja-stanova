@@ -10,7 +10,7 @@ import {
   PaymentMethodEnum,
 } from "../../constants/Constants";
 import useFetchContract from "../../customHooks/contractHooks/useFetchContract";
-import { useEditContractHook } from "../../customHooks/contractHooks/UseEditContractHook";
+import { useEditContractHook } from "../../customHooks/contractHooks/useEditContractHook";
 import { useQueryClient } from "react-query";
 import { IEditContract, ILoggedUser } from "../../types/types";
 

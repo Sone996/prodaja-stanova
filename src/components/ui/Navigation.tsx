@@ -52,18 +52,19 @@ const Navigation: FC<{ toggle: (val: string) => void; activeTab: string }> = ({
             Korisnici
           </span>
         )}
-        {loggedUser?.role === "admin" ||
-          (loggedUser?.role === "finance" && (
-            <span
-              onClick={openReports}
-              className={`hover:text-lightBlue cursor-pointer rounded-md p-3 mx-2 ${
-                activeTab === "Izveštaji" ? "text-lightBlue" : null
-              }`}
-            >
-              Izveštaji
-            </span>
-          ))}
-        <span onClick={openMenu} className="cursor-pointer text-right" data-test="dropdown">
+        <span
+          onClick={openReports}
+          className={`hover:text-lightBlue cursor-pointer rounded-md p-3 mx-2 ${
+            activeTab === "Izveštaji" ? "text-lightBlue" : null
+          }`}
+        >
+          Izveštaji
+        </span>
+        <span
+          onClick={openMenu}
+          className="cursor-pointer text-right"
+          data-test="dropdown"
+        >
           {loggedUser!.username}
           <div className="relative bottom-0 right-0">
             <NavigationDropdown

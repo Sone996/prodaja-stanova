@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import InputAndLabel from "../../components/ui/InputAndLabel";
 import SelectAndLabel from "../../components/ui/SelectAndLabel";
 import {
-  CustomerApartmentStatus,
+  CustomerApartmentPartialStatus,
   PaymentMethodEnum,
 } from "../../constants/Constants";
 import useFetchContract from "../../customHooks/contractHooks/useFetchContract";
@@ -56,7 +56,7 @@ const ContractPage: FC = observer(() => {
                 <SelectAndLabel
                   label="Status"
                   value={values.status}
-                  options={CustomerApartmentStatus}
+                  options={CustomerApartmentPartialStatus}
                   onChange={(value: any) => {
                     setFieldValue("status", value.value);
                   }}
